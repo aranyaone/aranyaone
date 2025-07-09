@@ -1,4 +1,10 @@
 export const metadata = {
+  title: 'AranyaOne - The AI Empire',
+  description: 'The World’s First AI-Powered Business Empire by Srinivas Makam',
+  other: {
+    'msvalidate.01': 'F2AD1B41FC883B077051C56AC2ABB90B', // 👈 Paste it here
+  }
+}export const metadata = {
   title: "AranyaOne.com | World's First AI-Powered Empire",
   description: "Built by Srinivas Makam – Fully Automated | Multi-Sector | AI Business Control",
   openGraph: {
@@ -40,10 +46,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-export const metadata = {
-  title: 'AranyaOne - The AI Empire',
-  description: 'The World’s First AI-Powered Business Empire by Srinivas Makam',
-  other: {
-    'msvalidate.01': 'F2AD1B41FC883B077051C56AC2ABB90B', // 👈 Paste it here
-  }
-}
+

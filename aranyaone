@@ -1,0 +1,15 @@
+app/page.js
+export default function Home() {
+  return (
+    <main style={{ textAlign: 'center', padding: '60px' }}>
+      <h1 style={{ fontSize: '42px', color: '#00FF99' }}>🌍 Welcome to Aranya One</h1>
+      <p style={{ fontSize: '20px', marginTop: '20px' }}>
+        World's Most Powerful AI Empire built by <strong>Srinivas Makam</strong>
+      </p>
+      <p style={{ fontSize: '16px', marginTop: '10px', color: '#ccc' }}>
+        💠 Automation | 💎 Intelligence | 🌐 Global Growth
+
+      </p>
+    </main>
+  );
+}

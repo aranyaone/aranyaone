@@ -32,7 +32,18 @@ export default function RootLayout({ children }) {
         </nav>
 
         {children}
-
+<body
+  className={`${geistSans.variable} ${geistMono.variable}`}
+  style={{
+    margin: 0,
+    padding: 0,
+    background: "linear-gradient(to bottom right, #FFECD2, #FCB69F)", // 🍑 Juicy Peach Gradient
+    minHeight: "100vh",
+    fontFamily: "'Segoe UI', sans-serif",
+  }}
+>
+  {children}
+</body>
         {/* 🔗 Footer */}
         <footer style={{ padding: "1rem", background: "#f0f0f0", textAlign: "center", marginTop: "2rem" }}>
           <p>© 2025 AranyaOne | Built by King Srinivas Makam 👑</p>

@@ -1,0 +1,8 @@
+export default function ToolsLayout({ children }) {
+  return (
+    <section style={{ padding: "2rem", background: "#f9f9f9" }}>
+      <h2>🧰 Tools Layout</h2>
+      {children}
+    </section>
+  );
+}

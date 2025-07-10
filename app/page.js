@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <meta name="msvalidate.01" content="xxxxxxxxxxxx" />
+        <meta name="msvalidate.01" content="F2AD1B41FC838077051C56AC2ABB90B8" />
         <title>AranyaOne – AI Empire</title>
       </Head>
 

@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { FaHome, FaCogs, FaCrown, FaTools } from 'react-icons/fa';
 
 export default function Navbar() {
-  const navItemStyle = {
+  const navItemBaseStyle = {
     fontWeight: 'bold',
     fontSize: '20px',
     textTransform: 'uppercase',
@@ -11,41 +12,43 @@ export default function Navbar() {
     background: 'linear-gradient(90deg, #ff8a00, #e52e71, #9b00ff)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+    textShadow: '2px 2px 6px rgba(255, 255, 255, 0.5)',
     transition: 'transform 0.3s ease, text-shadow 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
   };
 
-  const navItemHover = {
-    transform: 'scale(1.1)',
-    textShadow: '4px 4px 10px rgba(255, 255, 255, 0.4)',
+  const iconStyle = {
+    fontSize: '24px',
+    background: 'linear-gradient(120deg, #ff6ec4, #7873f5)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    filter: 'drop-shadow(2px 2px 4px rgba(255,255,255,0.6))',
   };
 
   return (
     <nav style={{
       display: 'flex',
       justifyContent: 'center',
-      gap: '50px',
-      padding: '20px 30px',
-      background: 'linear-gradient(to right, #1e1e2f, #202040)',
-      boxShadow: '0px 8px 20px rgba(0,0,0,0.5)',
-      borderBottom: '2px solid #444',
+      gap: '60px',
+      padding: '20px',
+      background: 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
+      boxShadow: '0px 10px 30px rgba(0,0,0,0.6)',
+      borderBottom: '2px solid #5f5f5f',
     }}>
-      {[
-        { href: '/', label: '🏠 Home' },
-        { href: '/services', label: '🛠️ Services' },
-        { href: '/founder', label: '👑 Founder' },
-        { href: '/tools', label: '🧰 Tools' }
-      ].map((item, index) => (
-        <Link
-          key={index}
-          href={item.href}
-          style={navItemStyle}
-          onMouseOver={e => Object.assign(e.target.style, navItemHover)}
-          onMouseOut={e => Object.assign(e.target.style, navItemStyle)}
-        >
-          {item.label}
-        </Link>
-      ))}
+      <Link href="/" style={navItemBaseStyle}>
+        <FaHome style={iconStyle} /> Home
+      </Link>
+      <Link href="/services" style={navItemBaseStyle}>
+        <FaCogs style={iconStyle} /> Services
+      </Link>
+      <Link href="/founder" style={navItemBaseStyle}>
+        <FaCrown style={iconStyle} /> Founder
+      </Link>
+      <Link href="/tools" style={navItemBaseStyle}>
+        <FaTools style={iconStyle} /> Tools
+      </Link>
     </nav>
   );
 }

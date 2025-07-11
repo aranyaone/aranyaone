@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { FaHome, FaCogs, FaCrown, FaTools } from 'react-icons/fa';
 
 export default function Navbar() {
   const navItemBaseStyle = {
@@ -19,14 +18,6 @@ export default function Navbar() {
     gap: '10px',
   };
 
-  const iconStyle = {
-    fontSize: '24px',
-    background: 'linear-gradient(120deg, #ff6ec4, #7873f5)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    filter: 'drop-shadow(2px 2px 4px rgba(255,255,255,0.6))',
-  };
-
   return (
     <nav style={{
       display: 'flex',
@@ -38,16 +29,16 @@ export default function Navbar() {
       borderBottom: '2px solid #5f5f5f',
     }}>
       <Link href="/" style={navItemBaseStyle}>
-        <FaHome style={iconStyle} /> Home
+        Home
       </Link>
       <Link href="/services" style={navItemBaseStyle}>
-        <FaCogs style={iconStyle} /> Services
+        Services
       </Link>
       <Link href="/founder" style={navItemBaseStyle}>
-        <FaCrown style={iconStyle} /> Founder
+        Founder
       </Link>
       <Link href="/tools" style={navItemBaseStyle}>
-        <FaTools style={iconStyle} /> Tools
+        Tools
       </Link>
     </nav>
   );

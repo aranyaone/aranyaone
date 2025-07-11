@@ -1,3 +1,5 @@
+import '../tools/globals.css'; // ✅ Global styles for tools layout
+
 export const metadata = {
   title: 'Aranya Tools',
   description: 'Explore tools by Aranya One',

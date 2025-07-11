@@ -1,4 +1,16 @@
+'use client';
+import Link from 'next/link';
+
 export default function ServicesPage() {
+  const linkStyle = {
+    fontSize: '20px',
+    margin: '12px 0',
+    display: 'block',
+    color: '#00ffd5',
+    textDecoration: 'none',
+    textShadow: '1px 1px 6px rgba(0,255,213,0.4)'
+  };
+
   return (
     <main style={{
       padding: '60px',
@@ -15,21 +27,15 @@ export default function ServicesPage() {
       }}>
         💼 Our Royal Services
       </h1>
-      <ul style={{
-        listStyleType: 'disc',
-        fontSize: '20px',
-        lineHeight: '2.2em',
-        paddingLeft: '25px',
-      }}>
-        <li>🔧 Custom AI Plugin Development</li>
-        <li>🌐 Full-Stack Website & App Building</li>
-        <li>🛡️ Cybersecurity & Identity Lock Systems</li>
-        <li>💸 Global Payment Gateway Setup</li>
-        <li>📊 Business Automation + Dashboards</li>
-        <li>🧠 Brain Room AI Control Panel Setup</li>
-        <li>🎯 Branding, SEO, and User Strategy</li>
-        <li>💬 24/7 AI Customer Engagement Systems</li>
-      </ul>
+
+      <Link href="/services/plugin-dev" style={linkStyle}>🛠️ Custom AI Plugin Development</Link>
+      <Link href="/services/fullstack-apps" style={linkStyle}>🌐 Full-Stack Website & App Building</Link>
+      <Link href="/services/cybersecurity" style={linkStyle}>🔐 Cybersecurity & Identity Lock Systems</Link>
+      <Link href="/services/gateway" style={linkStyle}>💳 Global Payment Gateway Setup</Link>
+      <Link href="/services/dashboards" style={linkStyle}>📊 Business Dashboards & Automation</Link>
+      <Link href="/services/brain-room" style={linkStyle}>🧠 Brain Room AI Control Panel</Link>
+      <Link href="/services/branding" style={linkStyle}>🎯 Branding, SEO & Strategy</Link>
+      <Link href="/services/engagement-ai" style={linkStyle}>💬 24/7 AI Customer Engagement Systems</Link>
     </main>
   );
 }

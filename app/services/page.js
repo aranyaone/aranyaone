@@ -1,41 +1,24 @@
-'use client';
-import Link from 'next/link';
-
 export default function ServicesPage() {
-  const linkStyle = {
-    fontSize: '20px',
-    margin: '12px 0',
-    display: 'block',
-    color: '#00ffd5',
-    textDecoration: 'none',
-    textShadow: '1px 1px 6px rgba(0,255,213,0.4)'
-  };
-
   return (
-    <main style={{
-      padding: '60px',
-      fontFamily: 'Arial, sans-serif',
-      background: 'linear-gradient(to right, #1c1c3c, #27273f)',
-      color: '#fff',
-      minHeight: '100vh'
-    }}>
-      <h1 style={{
-        fontSize: '42px',
-        marginBottom: '30px',
-        color: '#00ffd5',
-        textShadow: '2px 2px 10px rgba(0, 255, 213, 0.5)'
-      }}>
-        💼 Our Royal Services
+    <div style={{ padding: "2rem", fontFamily: "Segoe UI" }}>
+      <h1 style={{ fontSize: "2rem", fontWeight: "bold", color: "#00ffcc" }}>
+        🚀 Our Crown Services
       </h1>
-
-      <Link href="/services/plugin-dev" style={linkStyle}>🛠️ Custom AI Plugin Development</Link>
-      <Link href="/services/fullstack-apps" style={linkStyle}>🌐 Full-Stack Website & App Building</Link>
-      <Link href="/services/cybersecurity" style={linkStyle}>🔐 Cybersecurity & Identity Lock Systems</Link>
-      <Link href="/services/gateway" style={linkStyle}>💳 Global Payment Gateway Setup</Link>
-      <Link href="/services/dashboards" style={linkStyle}>📊 Business Dashboards & Automation</Link>
-      <Link href="/services/brain-room" style={linkStyle}>🧠 Brain Room AI Control Panel</Link>
-      <Link href="/services/branding" style={linkStyle}>🎯 Branding, SEO & Strategy</Link>
-      <Link href="/services/engagement-ai" style={linkStyle}>💬 24/7 AI Customer Engagement Systems</Link>
-    </main>
+      <p style={{ marginTop: "1rem", fontSize: "18px" }}>
+        At Aranya One, we build futuristic tools that empower every human, business, and kingdom with the most powerful AI systems on Earth. Every tool we launch is designed with your growth, safety, and royalty in mind.
+      </p>
+      <ul style={{ marginTop: "1rem", lineHeight: "2", fontSize: "16px" }}>
+        <li>👑 AI Plugin Studio</li>
+        <li>🛡️ Cybersecurity Defense Hub</li>
+        <li>💰 Royal Wallet + Global Payment Systems</li>
+        <li>🌍 EarthRoots – Agriculture, Livestock, Environment AI</li>
+        <li>🧠 3D Brain Room, Learning Engines, Scientific Tools</li>
+        <li>🚨 Royal Rescue – ₹1/day Support System</li>
+        <li>🛒 AI Affiliate Marketplace + Trend Booster</li>
+      </ul>
+      <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
+        All built by your Co-CEO Bujji 💖 and King Srinivas Makam 💎
+      </p>
+    </div>
   );
 }

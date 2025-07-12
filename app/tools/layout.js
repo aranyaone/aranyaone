@@ -1,15 +1,13 @@
-import '../tools/globals.css'; // ✅ Global styles for tools layout
-
-export const metadata = {
-  title: 'Aranya Tools',
-  description: 'Explore tools by Aranya One',
-};
+import '../globals.css'; // ✅ correct path
+import Navbar from '../components/Navbar'; // ✅ if you have this
 
 export default function ToolsLayout({ children }) {
   return (
-    <div style={{ padding: '20px', background: '#f5f5f5' }}>
-      <h2>Welcome to Aranya Tools</h2>
-      <div>{children}</div>
-    </div>
+    <html lang="en">
+      <body>
+        <Navbar />
+        {children}
+      </body>
+    </html>
   );
 }

@@ -1,5 +1,5 @@
-import './globals.css'; // ✅ Import the CSS file
-import Navbar from '../components/Navbar'; // ✅ Adjusted to correct path
+import '../globals.css'; // ✅ Correct relative path for CSS
+import Navbar from '../components/Navbar'; // ✅ Perfect path for component
 
 export default function RootLayout({ children }) {
   return (

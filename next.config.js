@@ -3,8 +3,10 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: true,
   },
-  generateStaticParams: false,
-  dynamicParams: true
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  }
 }
 
 module.exports = nextConfig

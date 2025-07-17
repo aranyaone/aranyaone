@@ -1,14 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  trailingSlash: true,
+  output: 'standalone',
   poweredByHeader: false,
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     unoptimized: true
   },
+  // Force all pages to be dynamic
   experimental: {
-    optimizePackageImports: ['react', 'react-dom']
+    appDir: true,
+    serverComponentsExternalPackages: []
   },
   // Skip build errors temporarily for deployment
   eslint: {

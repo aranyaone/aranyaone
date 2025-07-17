@@ -22,3 +22,13 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+Project Name: aranyaone
+Framework Preset: Next.js
+Root Directory: ./
+Build Command: npm run vercel-build
+Output Directory: .next
+Install Command: npm install
+Development Command: npm run dev
+
+NODE_ENV=production

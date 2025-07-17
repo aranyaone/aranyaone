@@ -1,0 +1,11 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "functions": {
+    "app/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}

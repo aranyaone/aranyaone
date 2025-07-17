@@ -9,7 +9,6 @@ const nextConfig = {
   },
   // Force all pages to be dynamic
   experimental: {
-    appDir: true,
     serverComponentsExternalPackages: []
   },
   // Skip build errors temporarily for deployment

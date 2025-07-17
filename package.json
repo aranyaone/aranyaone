@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "next build || true && echo 'Build completed with warnings'"
+    "vercel-build": "next build"
   },
   "dependencies": {
     "next": "14.2.15",

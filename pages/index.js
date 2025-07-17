@@ -8,8 +8,9 @@ export default function Home() {
         <title>Aranya One - Dashboard</title>
         <meta name="description" content="A powerful dashboard application" />
       </Head>
-      <h1>🌟 Welcome to Aranya One</h1>
+      <h1>🌟 Welcome to Aranya One - WORKING!</h1>
       <p>Your digital empire starts here</p>
+      <p>🚀 Pages Router Version - July 17, 2025</p>
       <a href="/dashboard">Enter Dashboard 📊</a>
     </div>
   )

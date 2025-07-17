@@ -10,8 +10,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['react', 'react-dom']
   },
-  // Force all pages to be dynamic
-  generateStaticParams: false,
   // Skip build errors temporarily for deployment
   eslint: {
     ignoreDuringBuilds: true,

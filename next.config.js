@@ -1,15 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  output: 'export',
+  trailingSlash: true,
   poweredByHeader: false,
   reactStrictMode: false,
-  swcMinify: true,
+  swcMinify: false,
   images: {
     unoptimized: true
-  },
-  // Force all pages to be dynamic
-  experimental: {
-    serverComponentsExternalPackages: []
   },
   // Skip build errors temporarily for deployment
   eslint: {

@@ -1,8 +1,5 @@
 "use client";
 
-// Force this page to be dynamic
-export const dynamic = 'force-dynamic'
-
 export default function DashboardPage() {
   return (
     <div>

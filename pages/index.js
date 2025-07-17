@@ -1,5 +1,6 @@
 import Head from 'next/head'
 
+// Pages Router version - fixed deployment
 export default function Home() {
   return (
     <div>

@@ -4,7 +4,7 @@ const nextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   reactStrictMode: false,
-  swcMinify: false,
+  swcMinify: true,
   images: {
     unoptimized: true
   },

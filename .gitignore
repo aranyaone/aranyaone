@@ -31,3 +31,14 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.cursor/
+.sonarlint/
+
+# Docker
+.docker/
+
+# Logs
+*.log
+*.lck

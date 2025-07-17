@@ -1,0 +1,6 @@
+.cursor/
+.sonarlint/
+.docker/
+node_modules/
+*.log
+*.lck

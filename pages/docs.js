@@ -311,7 +311,7 @@ function TutorialCard({ title, description, difficulty, time, tags }) {
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer">
+            <button className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow w-full text-left">
       <h4 className="text-lg font-semibold text-gray-800 mb-2">{title}</h4>
       <p className="text-gray-600 mb-4">{description}</p>
       
@@ -329,6 +329,6 @@ function TutorialCard({ title, description, difficulty, time, tags }) {
           </span>
         ))}
       </div>
-    </div>
+    </button>
   );
 }

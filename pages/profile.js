@@ -99,10 +99,10 @@ function AchievementsBadges() {
       <h3 className="text-xl font-bold text-gray-800 mb-4">🏅 Achievements</h3>
       <div className="grid grid-cols-2 gap-3">
         {achievements.map((achievement, index) => (
-          <div key={index} className="text-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer">
+          <button key={index} className="text-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group w-full">
             <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{achievement.icon}</div>
             <div className="text-xs font-semibold text-gray-800">{achievement.title}</div>
-          </div>
+          </button>
         ))}
       </div>
     </div>

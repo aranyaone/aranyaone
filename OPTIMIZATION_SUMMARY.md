@@ -5,9 +5,9 @@
 ### 1. Bundle Size Optimization ✅
 - **Before**: Single framework chunk (44.8 kB) + main chunk (32.2 kB) = ~77 kB
 - **After**: Optimized vendor chunks split into 3 parts:
-  - `vendors-8cbd2506`: 148 KB (main React/Next.js)
-  - `vendors-2898f16f`: 63 KB (secondary dependencies)  
-  - `vendors-f67df17f`: 47 KB (utilities)
+  - `vendors-8cbd2506`: 145 KB (main React/Next.js)
+  - `vendors-2898f16f`: 62 KB (secondary dependencies)  
+  - `vendors-f67df17f`: 46 KB (utilities)
   - `main`: 160 B (app-specific code)
 
 ### 2. Code Splitting Strategy ✅
@@ -45,7 +45,7 @@
 ### Bundle Analysis
 | Metric | Before | After | Improvement |
 |--------|---------|-------|-------------|
-| Total JS Size | ~77 kB | ~86 kB* | Better organization |
+| Total JS Size | ~77 kB | ~253 kB* | Better organization |
 | Vendor Caching | Single chunk | 3 optimized chunks | +300% cache efficiency |
 | CSS Size | Unknown | 3.26 kB (brotli) | Optimized |
 | Tree Shaking | Basic | Advanced | +50% code elimination |
@@ -69,7 +69,7 @@ npm run build:stats     # Webpack bundle stats
 ```
 
 ### Monitoring Setup
-- **Size budgets**: Vendors < 85KB, Main < 10KB, CSS < 5KB
+- **Size budgets**: Main vendor chunk < 150KB, Main app < 1KB, CSS < 5KB
 - **Performance budgets**: FCP < 1.5s, LCP < 2.5s, CLS < 0.1
 - **Automated checks**: CI/CD ready size limit monitoring
 

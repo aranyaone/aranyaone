@@ -277,8 +277,22 @@ function InputField({ label, value, type = "text" }) {
 }
 
 function ThemeOption({ color, name, active }) {
+  const colorClasses = {
+    blue: 'bg-blue-500',
+    red: 'bg-red-500',
+    green: 'bg-green-500',
+    purple: 'bg-purple-500',
+    orange: 'bg-orange-500',
+    gray: 'bg-gray-500',
+    pink: 'bg-pink-500',
+    indigo: 'bg-indigo-500'
+  };
+  
   return (
-    <button className={`w-16 h-16 rounded-lg border-2 ${active ? 'border-gray-800' : 'border-gray-300'} bg-${color}-500 hover:scale-105 transition-transform`} title={name}>
+    <button 
+      className={`w-16 h-16 rounded-lg border-2 ${active ? 'border-gray-800' : 'border-gray-300'} ${colorClasses[color] || 'bg-blue-500'} hover:scale-105 transition-transform`} 
+      title={name}
+    >
     </button>
   );
 }

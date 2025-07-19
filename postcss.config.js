@@ -17,9 +17,9 @@ module.exports = {
           'animate-pulse-slow',
           'animate-bounce-subtle',
           // Keep dynamic color classes
-          /^bg-(blue|purple|indigo|gray|orange|pink|teal|green)-(50|100|500|600)$/,
-          /^text-(blue|purple|indigo|gray|orange|pink|teal|green)-(50|100|500|600|700|800)$/,
-          /^border-(blue|purple|indigo|gray|orange|pink|teal|green)-(100|200|300)$/,
+          /^bg-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(50|100|500|600)$/,
+          /^text-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(50|100|500|600|700|800)$/,
+          /^border-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(100|200|300|800)$/,
           // Keep hover states
           /^hover:/,
           // Keep responsive classes

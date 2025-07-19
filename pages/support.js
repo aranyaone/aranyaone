@@ -256,13 +256,20 @@ function SupportCategories() {
 }
 
 function InputField({ label, placeholder, type = "text" }) {
+  const fieldId = `field-${label.toLowerCase().replace(/\s+/g, '-')}`;
+  
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+      <label htmlFor={fieldId} className="block text-sm font-medium text-gray-700 mb-2">
+        {label}
+      </label>
       <input
+        id={fieldId}
         type={type}
         placeholder={placeholder}
         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        required
+        aria-describedby={`${fieldId}-desc`}
       />
     </div>
   );

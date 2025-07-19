@@ -19,10 +19,10 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   
-  // Bundle optimization
+  // Bundle optimization - only for production
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Optimize bundle splitting
+      // Production-only optimizations
       config.optimization = {
         ...config.optimization,
         splitChunks: {
@@ -49,13 +49,11 @@ const nextConfig = {
         },
         moduleIds: 'deterministic',
         chunkIds: 'deterministic',
+        usedExports: true,
+        providedExports: true,
+        sideEffects: false,
       };
     }
-
-    // Tree shaking
-    config.optimization.usedExports = true;
-    config.optimization.providedExports = true;
-    config.optimization.sideEffects = false;
     
     return config;
   },

@@ -14,17 +14,29 @@ const NavCard = memo(function NavCard({ href, icon, title, description, color })
     green: "bg-green-500 hover:bg-green-600"
   };
 
+  const handlePrefetch = () => {
+    // Only prefetch in browser environment and avoid duplicates
+    if (typeof window === 'undefined') return;
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    
+    try {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = href;
+      link.onload = () => setTimeout(() => link.remove(), 5000); // Clean up after 5s
+      link.onerror = () => link.remove();
+      document.head.appendChild(link);
+    } catch (error) {
+      console.warn('Prefetch failed for:', href, error);
+    }
+  };
+
   return (
     <a 
       href={href} 
       className={`block p-6 ${colorClasses[color]} text-white rounded-xl hover:shadow-lg transition-all transform hover:scale-105 group gpu-accelerated will-change-transform`}
-      // Performance: Preload on hover
-      onMouseEnter={() => {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.href = href;
-        document.head.appendChild(link);
-      }}
+      onMouseEnter={handlePrefetch}
+      onFocus={handlePrefetch}
     >
       <div className="text-center">
         <div className="text-4xl mb-3 group-hover:scale-110 transition-transform will-change-transform">{icon}</div>
@@ -39,6 +51,8 @@ const StatCard = memo(function StatCard({ icon, title, value }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -49,7 +63,7 @@ const StatCard = memo(function StatCard({ icon, title, value }) {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById(`stat-${title}`);
+    const element = document.getElementById(`stat-${title.replace(/\s+/g, '-')}`);
     if (element) observer.observe(element);
 
     return () => observer.disconnect();
@@ -57,7 +71,7 @@ const StatCard = memo(function StatCard({ icon, title, value }) {
 
   return (
     <div 
-      id={`stat-${title}`}
+      id={`stat-${title.replace(/\s+/g, '-')}`}
       className={`bg-white rounded-xl shadow-lg p-6 text-center border-2 border-gray-100 metric-card ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       } transition-all duration-500`}
@@ -76,13 +90,24 @@ export default function Home() {
   useEffect(() => {
     setIsLoaded(true);
     
-    // Performance: Preload critical pages
+    // Performance: Preload critical pages safely
+    if (typeof window === 'undefined') return;
+    
     const criticalPages = ['/dashboard', '/analytics', '/services'];
     criticalPages.forEach(page => {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = page;
-      document.head.appendChild(link);
+      // Check if already prefetched
+      if (document.querySelector(`link[href="${page}"]`)) return;
+      
+      try {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = page;
+        link.onload = () => setTimeout(() => link.remove(), 10000); // Clean up after 10s
+        link.onerror = () => link.remove();
+        document.head.appendChild(link);
+      } catch (error) {
+        console.warn('Critical page prefetch failed for:', page, error);
+      }
     });
   }, []);
 

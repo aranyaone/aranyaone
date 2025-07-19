@@ -1,0 +1,25 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="royal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9f61ff"/>
+      <stop offset="100%" style="stop-color:#7928e3"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffca3a"/>
+      <stop offset="100%" style="stop-color:#f2b01e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="32" height="32" rx="8" fill="url(#royal)"/>
+  
+  <!-- Crown -->
+  <g transform="translate(16,15)">
+    <path d="M-8 2 L8 2 L7 4 L-7 4 Z" fill="url(#gold)"/>
+    <path d="M-6 -4 L-4 2 L-2 -2 L0 2 L2 -2 L4 2 L6 -4 L4 0 L2 0 L0 0 L-2 0 L-4 0 Z" fill="url(#gold)"/>
+    <circle cx="0" cy="-1" r="1" fill="#ffffff"/>
+  </g>
+  
+  <!-- Letter A -->
+  <path d="M13 20 L16 12 L19 20 L18 20 L17.5 18.5 L14.5 18.5 L14 20 Z M15 16.5 L17 16.5 L16 14 Z" fill="#ffffff"/>
+</svg>

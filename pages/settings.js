@@ -1,330 +1,434 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 export default function SettingsPage() {
+  const [activeSection, setActiveSection] = useState('general')
+
+  const sections = [
+    { id: 'general', name: 'General', icon: '⚙️' },
+    { id: 'empire', name: 'Empire', icon: '🏰' },
+    { id: 'notifications', name: 'Notifications', icon: '🔔' },
+    { id: 'security', name: 'Security', icon: '🔐' },
+    { id: 'billing', name: 'Billing', icon: '💳' },
+    { id: 'integrations', name: 'Integrations', icon: '🔗' },
+  ]
+
   return (
-    <div>
+    <div className="bg-gray-50 min-h-screen">
       <Head>
         <title>Settings - Aranya One</title>
-        <meta name="description" content="Configure your empire settings" />
+        <meta name="description" content="Configure your empire settings and preferences" />
       </Head>
       
-      <main className="p-6 md:p-10 bg-gray-50 min-h-screen">
-        <div className="max-w-screen-2xl mx-auto">
-          
-          {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">⚙️ Settings</h1>
-            <p className="text-gray-600">Configure your digital empire preferences</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            {/* Settings Navigation */}
-            <div className="lg:col-span-1">
-              <SettingsNavigation />
-            </div>
-
-            {/* Settings Content */}
-            <div className="lg:col-span-2 space-y-8">
-              
-              {/* Account Settings */}
-              <AccountSettings />
-              
-              {/* Empire Settings */}
-              <EmpireSettings />
-              
-              {/* Notification Settings */}
-              <NotificationSettings />
-              
-              {/* Security Settings */}
-              <SecuritySettings />
-              
-              {/* Billing Settings */}
-              <BillingSettings />
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</a>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-8 animate-fade-in">
+          <h1 className="font-heading font-bold text-4xl text-gray-900 mb-2">
+            ⚙️ Settings
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Configure your digital empire preferences and manage your account
+          </p>
         </div>
-      </main>
-    </div>
-  );
-}
 
-function SettingsNavigation() {
-  const sections = [
-    { icon: "👤", label: "Account", active: true },
-    { icon: "👑", label: "Empire" },
-    { icon: "🔔", label: "Notifications" },
-    { icon: "🔐", label: "Security" },
-    { icon: "💳", label: "Billing" },
-  ];
-
-  return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 border-2 border-blue-100 sticky top-6">
-      <h2 className="text-xl font-bold text-gray-800 mb-4">Settings Menu</h2>
-      <nav className="space-y-2">
-        {sections.map((section, index) => (
-          <button
-            key={index}
-            className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-colors ${
-              section.active 
-                ? 'bg-blue-500 text-white' 
-                : 'text-gray-700 hover:bg-gray-100'
-            }`}
-          >
-            <span className="text-xl">{section.icon}</span>
-            <span className="font-medium">{section.label}</span>
-          </button>
-        ))}
-      </nav>
-    </div>
-  );
-}
-
-function AccountSettings() {
-  return (
-    <SettingsCard icon="👤" title="Account Settings" description="Manage your personal account information">
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputField label="Full Name" value="Srinivas Makam" />
-          <InputField label="Email" value="srinivas@aranyaone.com" />
-          <InputField label="Phone" value="+91 98765 43210" />
-          <InputField label="Location" value="India" />
-        </div>
-        
-        <div className="border-t pt-6">
-          <h4 className="font-semibold text-gray-800 mb-4">Profile Picture</h4>
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600">
-              SM
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Settings Navigation */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-2xl shadow-soft p-6 border border-gray-100 sticky top-6">
+              <h2 className="font-heading font-semibold text-lg text-gray-900 mb-4">Settings Menu</h2>
+              <nav className="space-y-2">
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => setActiveSection(section.id)}
+                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                      activeSection === section.id
+                        ? 'bg-royal-purple-500 text-white shadow-soft'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span>{section.icon}</span>
+                    <span className="font-medium">{section.name}</span>
+                  </button>
+                ))}
+              </nav>
             </div>
-            <div>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors mr-2">
-                Upload New
-              </button>
-              <button className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
-                Remove
-              </button>
+          </div>
+
+          {/* Settings Content */}
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded-2xl shadow-soft border border-gray-100">
+              {activeSection === 'general' && <GeneralSettings />}
+              {activeSection === 'empire' && <EmpireSettings />}
+              {activeSection === 'notifications' && <NotificationSettings />}
+              {activeSection === 'security' && <SecuritySettings />}
+              {activeSection === 'billing' && <BillingSettings />}
+              {activeSection === 'integrations' && <IntegrationsSettings />}
             </div>
           </div>
         </div>
       </div>
-    </SettingsCard>
-  );
+    </div>
+  )
+}
+
+function GeneralSettings() {
+  return (
+    <div className="p-8">
+      <h2 className="font-heading font-bold text-2xl text-gray-900 mb-6">General Settings</h2>
+      
+      <div className="space-y-6">
+        <div>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">Dashboard Preferences</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Default View</label>
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500">
+                <option>Dashboard Overview</option>
+                <option>Analytics</option>
+                <option>Services</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Theme</label>
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500">
+                <option>Light</option>
+                <option>Dark</option>
+                <option>System</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">Language & Region</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500">
+                <option>English</option>
+                <option>Spanish</option>
+                <option>French</option>
+                <option>German</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Timezone</label>
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500">
+                <option>UTC-8 (Pacific)</option>
+                <option>UTC-5 (Eastern)</option>
+                <option>UTC+0 (GMT)</option>
+                <option>UTC+5:30 (IST)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+          <div>
+            <h4 className="font-medium text-gray-900">Auto-save Settings</h4>
+            <p className="text-sm text-gray-600">Automatically save your changes</p>
+          </div>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" defaultChecked className="sr-only peer" />
+            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-royal-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-royal-purple-500"></div>
+          </label>
+        </div>
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <button className="px-6 py-2 bg-royal-purple-500 text-white rounded-lg font-medium hover:bg-royal-purple-600 transition-colors">
+          Save Changes
+        </button>
+      </div>
+    </div>
+  )
 }
 
 function EmpireSettings() {
   return (
-    <SettingsCard icon="👑" title="Empire Settings" description="Configure your digital empire preferences">
+    <div className="p-8">
+      <h2 className="font-heading font-bold text-2xl text-gray-900 mb-6">Empire Configuration</h2>
+      
       <div className="space-y-6">
-        <InputField label="Empire Name" value="AranyaOne Digital Empire" />
-        <InputField label="Empire Tagline" value="Building the Future, One Service at a Time" />
-        
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Empire Theme</label>
-          <div className="flex gap-4">
-            <ThemeOption color="blue" name="Ocean Blue" active />
-            <ThemeOption color="purple" name="Royal Purple" />
-            <ThemeOption color="green" name="Forest Green" />
-            <ThemeOption color="orange" name="Sunset Orange" />
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">Empire Information</h3>
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Empire Name</label>
+              <input type="text" defaultValue="Aranya Digital Empire" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Empire Description</label>
+              <textarea rows={3} defaultValue="Building and scaling digital solutions for the modern world." className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500"></textarea>
+            </div>
           </div>
         </div>
-        
+
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
-          <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            <option>Asia/Kolkata (IST)</option>
-            <option>America/New_York (EST)</option>
-            <option>Europe/London (GMT)</option>
-            <option>Asia/Tokyo (JST)</option>
-          </select>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">Service Limits</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Max Active Services</label>
+              <input type="number" defaultValue="10" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Auto-scaling</label>
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-purple-500">
+                <option>Enabled</option>
+                <option>Disabled</option>
+                <option>Conservative</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-4 border border-green-200 rounded-xl bg-green-50">
+            <h4 className="font-medium text-green-900 mb-2">Backup & Recovery</h4>
+            <p className="text-sm text-green-700 mb-3">Automatic daily backups enabled</p>
+            <button className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm hover:bg-green-600 transition-colors">
+              Manage Backups
+            </button>
+          </div>
+          
+          <div className="p-4 border border-blue-200 rounded-xl bg-blue-50">
+            <h4 className="font-medium text-blue-900 mb-2">Performance Monitoring</h4>
+            <p className="text-sm text-blue-700 mb-3">Real-time performance tracking</p>
+            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition-colors">
+              View Metrics
+            </button>
+          </div>
         </div>
       </div>
-    </SettingsCard>
-  );
+
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <button className="px-6 py-2 bg-royal-purple-500 text-white rounded-lg font-medium hover:bg-royal-purple-600 transition-colors">
+          Update Empire Settings
+        </button>
+      </div>
+    </div>
+  )
 }
 
 function NotificationSettings() {
   const notifications = [
-    { label: "Service Status Updates", desc: "Get notified when services start, stop, or encounter issues", enabled: true },
-    { label: "Usage Alerts", desc: "Receive alerts when usage exceeds thresholds", enabled: true },
-    { label: "Billing Notifications", desc: "Get notified about billing, renewals, and payments", enabled: true },
-    { label: "Marketing Updates", desc: "Receive updates about new features and services", enabled: false },
-    { label: "Security Alerts", desc: "Get notified about security events and login attempts", enabled: true },
-  ];
+    { id: 'system', label: 'System Alerts', description: 'Important system notifications and updates' },
+    { id: 'billing', label: 'Billing Notifications', description: 'Payment reminders and billing updates' },
+    { id: 'services', label: 'Service Updates', description: 'Service status changes and updates' },
+    { id: 'marketing', label: 'Marketing Communications', description: 'Product updates and promotions' },
+    { id: 'security', label: 'Security Alerts', description: 'Security-related notifications' },
+  ]
 
   return (
-    <SettingsCard icon="🔔" title="Notification Settings" description="Manage how you receive notifications">
+    <div className="p-8">
+      <h2 className="font-heading font-bold text-2xl text-gray-900 mb-6">Notification Preferences</h2>
+      
       <div className="space-y-4">
-        {notifications.map((notification, index) => (
-          <div key={index} className="flex items-start justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex-1">
-              <h4 className="font-semibold text-gray-800">{notification.label}</h4>
-              <p className="text-sm text-gray-600 mt-1">{notification.desc}</p>
+        {notifications.map((notification) => (
+          <div key={notification.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
+            <div>
+              <h4 className="font-medium text-gray-900">{notification.label}</h4>
+              <p className="text-sm text-gray-600">{notification.description}</p>
             </div>
-            <ToggleSwitch enabled={notification.enabled} />
+            <div className="flex items-center space-x-4">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" defaultChecked className="rounded border-gray-300 text-royal-purple-500 focus:ring-royal-purple-500" />
+                <span className="text-sm text-gray-600">Email</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" className="rounded border-gray-300 text-royal-purple-500 focus:ring-royal-purple-500" />
+                <span className="text-sm text-gray-600">SMS</span>
+              </label>
+            </div>
           </div>
         ))}
       </div>
-    </SettingsCard>
-  );
+
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <button className="px-6 py-2 bg-royal-purple-500 text-white rounded-lg font-medium hover:bg-royal-purple-600 transition-colors">
+          Save Notification Settings
+        </button>
+      </div>
+    </div>
+  )
 }
 
 function SecuritySettings() {
   return (
-    <SettingsCard icon="🔐" title="Security Settings" description="Manage your account security and privacy">
+    <div className="p-8">
+      <h2 className="font-heading font-bold text-2xl text-gray-900 mb-6">Security Settings</h2>
+      
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <button className="p-4 bg-blue-50 border-2 border-blue-200 rounded-lg text-left hover:bg-blue-100 transition-colors">
-            <div className="text-2xl mb-2">🔑</div>
-            <h4 className="font-semibold text-gray-800">Change Password</h4>
-            <p className="text-sm text-gray-600">Update your account password</p>
-          </button>
-          
-          <button className="p-4 bg-green-50 border-2 border-green-200 rounded-lg text-left hover:bg-green-100 transition-colors">
-            <div className="text-2xl mb-2">📱</div>
-            <h4 className="font-semibold text-gray-800">Two-Factor Auth</h4>
-            <p className="text-sm text-gray-600">Enable 2FA for extra security</p>
-          </button>
-        </div>
-        
-        <div className="border-t pt-6">
-          <h4 className="font-semibold text-gray-800 mb-4">Active Sessions</h4>
-          <div className="space-y-3">
-            <SessionItem device="Chrome on Windows" location="Mumbai, India" time="Current session" current />
-            <SessionItem device="Mobile App" location="Delhi, India" time="2 hours ago" />
-            <SessionItem device="Safari on MacBook" location="Bangalore, India" time="1 day ago" />
+        <div className="p-4 border border-green-200 rounded-xl bg-green-50">
+          <div className="flex items-center justify-between">
+            <div>
+              <h4 className="font-medium text-green-900">Two-Factor Authentication</h4>
+              <p className="text-sm text-green-700">Currently enabled via authenticator app</p>
+            </div>
+            <button className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm hover:bg-green-600 transition-colors">
+              Manage 2FA
+            </button>
           </div>
         </div>
+
+        <div className="p-4 border border-gray-200 rounded-xl">
+          <h4 className="font-medium text-gray-900 mb-3">Active Sessions</h4>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-sm">
+              <div>
+                <span className="font-medium">Current session</span>
+                <span className="text-gray-600 ml-2">Chrome on MacOS</span>
+              </div>
+              <span className="text-green-600">Active now</span>
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <div>
+                <span className="font-medium">Mobile session</span>
+                <span className="text-gray-600 ml-2">Safari on iOS</span>
+              </div>
+              <button className="text-red-600 hover:text-red-800">Revoke</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-4 border border-yellow-200 rounded-xl bg-yellow-50">
+          <h4 className="font-medium text-yellow-900 mb-2">API Keys</h4>
+          <p className="text-sm text-yellow-800 mb-3">Manage your API access keys</p>
+          <button className="px-4 py-2 bg-yellow-500 text-white rounded-lg text-sm hover:bg-yellow-600 transition-colors">
+            Manage API Keys
+          </button>
+        </div>
       </div>
-    </SettingsCard>
-  );
+
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <button className="px-6 py-2 bg-royal-purple-500 text-white rounded-lg font-medium hover:bg-royal-purple-600 transition-colors">
+          Update Security Settings
+        </button>
+      </div>
+    </div>
+  )
 }
 
 function BillingSettings() {
   return (
-    <SettingsCard icon="💳" title="Billing Settings" description="Manage your subscription and payment methods">
+    <div className="p-8">
+      <h2 className="font-heading font-bold text-2xl text-gray-900 mb-6">Billing & Subscription</h2>
+      
       <div className="space-y-6">
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border-2 border-blue-200">
+        <div className="p-6 border border-royal-purple-200 rounded-xl bg-royal-purple-50">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-xl font-bold text-gray-800">👑 Empire Pro Plan</h3>
-              <p className="text-gray-600">All services included</p>
+              <h3 className="font-semibold text-xl text-royal-purple-900">Premium Plan</h3>
+              <p className="text-royal-purple-700">$99/month • Auto-renewal enabled</p>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-blue-600">₹299/month</div>
-              <div className="text-sm text-gray-500">Next billing: Jan 15, 2025</div>
+              <p className="text-2xl font-bold text-royal-purple-900">$99</p>
+              <p className="text-sm text-royal-purple-700">per month</p>
             </div>
           </div>
-          <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-            Manage Subscription
-          </button>
-        </div>
-        
-        <div>
-          <h4 className="font-semibold text-gray-800 mb-4">Payment Methods</h4>
-          <div className="space-y-3">
-            <PaymentMethod type="card" last4="4242" brand="Visa" expiry="12/25" primary />
-            <PaymentMethod type="upi" id="srinivas@paytm" primary={false} />
+          <div className="flex space-x-3">
+            <button className="px-4 py-2 bg-royal-purple-500 text-white rounded-lg text-sm hover:bg-royal-purple-600 transition-colors">
+              Change Plan
+            </button>
+            <button className="px-4 py-2 border border-royal-purple-300 text-royal-purple-700 rounded-lg text-sm hover:bg-royal-purple-100 transition-colors">
+              View Invoice
+            </button>
           </div>
-          <button className="mt-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
-            + Add Payment Method
-          </button>
         </div>
-      </div>
-    </SettingsCard>
-  );
-}
 
-// Helper Components
-function SettingsCard({ icon, title, description, children }) {
-  return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-100">
-      <div className="flex items-center gap-3 mb-6">
-        <span className="text-3xl">{icon}</span>
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
-          <p className="text-gray-600">{description}</p>
-        </div>
-      </div>
-      {children}
-      <div className="mt-6 pt-6 border-t">
-        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors mr-3">
-          Save Changes
-        </button>
-        <button className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
-          Cancel
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function InputField({ label, value, type = "text" }) {
-  return (
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
-      <input
-        type={type}
-        defaultValue={value}
-        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      />
-    </div>
-  );
-}
-
-function ThemeOption({ color, name, active }) {
-  return (
-    <button className={`w-16 h-16 rounded-lg border-2 ${active ? 'border-gray-800' : 'border-gray-300'} bg-${color}-500 hover:scale-105 transition-transform`} title={name}>
-    </button>
-  );
-}
-
-function ToggleSwitch({ enabled }) {
-  return (
-    <button className={`w-12 h-6 rounded-full ${enabled ? 'bg-blue-500' : 'bg-gray-300'} relative transition-colors`}>
-      <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enabled ? 'translate-x-6' : 'translate-x-0.5'}`}></div>
-    </button>
-  );
-}
-
-function SessionItem({ device, location, time, current }) {
-  return (
-    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-      <div>
-        <div className="font-medium text-gray-800">{device}</div>
-        <div className="text-sm text-gray-600">{location} • {time}</div>
-      </div>
-      {current ? (
-        <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">Current</span>
-      ) : (
-        <button className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium hover:bg-red-200">
-          Revoke
-        </button>
-      )}
-    </div>
-  );
-}
-
-function PaymentMethod({ type, last4, brand, expiry, id, primary }) {
-  return (
-    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-      <div className="flex items-center gap-3">
-        <div className="text-2xl">{type === 'card' ? '💳' : '📱'}</div>
-        <div>
-          <div className="font-medium text-gray-800">
-            {type === 'card' ? `${brand} ending in ${last4}` : id}
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">Payment Method</h3>
+          <div className="p-4 border border-gray-200 rounded-xl">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-8 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">VISA</div>
+                <div>
+                  <p className="font-medium">•••• •••• •••• 4242</p>
+                  <p className="text-sm text-gray-600">Expires 12/26</p>
+                </div>
+              </div>
+              <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50 transition-colors">
+                Update
+              </button>
+            </div>
           </div>
-          {expiry && <div className="text-sm text-gray-600">Expires {expiry}</div>}
+        </div>
+
+        <div>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">Billing History</h3>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+              <div>
+                <p className="font-medium">February 2024</p>
+                <p className="text-sm text-gray-600">Premium Plan</p>
+              </div>
+              <div className="text-right">
+                <p className="font-medium">$99.00</p>
+                <a href="#" className="text-sm text-royal-purple-600 hover:text-royal-purple-800">Download</a>
+              </div>
+            </div>
+            <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+              <div>
+                <p className="font-medium">January 2024</p>
+                <p className="text-sm text-gray-600">Premium Plan</p>
+              </div>
+              <div className="text-right">
+                <p className="font-medium">$99.00</p>
+                <a href="#" className="text-sm text-royal-purple-600 hover:text-royal-purple-800">Download</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="flex items-center gap-2">
-        {primary && <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm">Primary</span>}
-        <button className="text-gray-500 hover:text-gray-700">⋮</button>
+    </div>
+  )
+}
+
+function IntegrationsSettings() {
+  const integrations = [
+    { name: 'Google Analytics', icon: '📊', status: 'Connected', color: 'green' },
+    { name: 'Slack', icon: '💬', status: 'Not Connected', color: 'gray' },
+    { name: 'Zapier', icon: '⚡', status: 'Connected', color: 'green' },
+    { name: 'GitHub', icon: '🐙', status: 'Connected', color: 'green' },
+    { name: 'Stripe', icon: '💳', status: 'Not Connected', color: 'gray' },
+    { name: 'Mailchimp', icon: '📧', status: 'Connected', color: 'green' },
+  ]
+
+  return (
+    <div className="p-8">
+      <h2 className="font-heading font-bold text-2xl text-gray-900 mb-6">Integrations</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {integrations.map((integration, index) => (
+          <div key={index} className="p-4 border border-gray-200 rounded-xl hover:shadow-soft transition-all">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="text-2xl">{integration.icon}</div>
+                <div>
+                  <h4 className="font-medium text-gray-900">{integration.name}</h4>
+                  <p className={`text-sm ${integration.color === 'green' ? 'text-green-600' : 'text-gray-500'}`}>
+                    {integration.status}
+                  </p>
+                </div>
+              </div>
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                integration.status === 'Connected'
+                  ? 'bg-red-100 text-red-700 hover:bg-red-200'
+                  : 'bg-royal-purple-500 text-white hover:bg-royal-purple-600'
+              }`}>
+                {integration.status === 'Connected' ? 'Disconnect' : 'Connect'}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <button className="px-6 py-2 bg-royal-purple-500 text-white rounded-lg font-medium hover:bg-royal-purple-600 transition-colors">
+          Save Integration Settings
+        </button>
       </div>
     </div>
-  );
+  )
 }

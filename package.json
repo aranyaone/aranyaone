@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "next build"
+    "vercel-build": "next build",
+    "analyze": "ANALYZE=true next build",
+    "analyze-server": "BUNDLE_ANALYZE=server next build",
+    "analyze-browser": "BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -23,6 +26,7 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.4.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.15"
   }

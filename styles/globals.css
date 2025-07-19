@@ -1,8 +1,63 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  
+  --color-royal-purple-50: #faf5ff;
+  --color-royal-purple-100: #f3e8ff;
+  --color-royal-purple-200: #e9d5ff;
+  --color-royal-purple-300: #d8b4fe;
+  --color-royal-purple-400: #c084fc;
+  --color-royal-purple-500: #a855f7;
+  --color-royal-purple-600: #9333ea;
+  --color-royal-purple-700: #7c3aed;
+  --color-royal-purple-800: #6b21a8;
+  --color-royal-purple-900: #581c87;
+  --color-royal-purple-950: #3b0764;
+  
+  --radius: 0.5rem;
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-soft-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom utility classes */
+.bg-royal-gradient {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #9333ea 100%);
+}
+
+.bg-royal-gradient-light {
+  background-image: linear-gradient(135deg, #a855f7 0%, #c084fc 50%, #e9d5ff 100%);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow-soft-lg {
+  box-shadow: var(--shadow-soft-lg);
+}
 
 /* Custom animations for real-time dashboard */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes pulse-slow {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.8; }

@@ -1,0 +1,50 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="royal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9f61ff"/>
+      <stop offset="100%" style="stop-color:#7928e3"/>
+    </linearGradient>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffca3a"/>
+      <stop offset="100%" style="stop-color:#f2b01e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with royal gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#royal-gradient)" filter="url(#glow)"/>
+  
+  <!-- Inner circle for depth -->
+  <circle cx="256" cy="256" r="200" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+  
+  <!-- Crown symbol representing royal empire -->
+  <g transform="translate(256,240)">
+    <!-- Crown base -->
+    <path d="M-80 20 L80 20 L70 40 L-70 40 Z" fill="url(#gold-gradient)"/>
+    
+    <!-- Crown points -->
+    <path d="M-60 -40 L-40 20 L-20 -20 L0 20 L20 -20 L40 20 L60 -40 L40 0 L20 0 L0 0 L-20 0 L-40 0 Z" fill="url(#gold-gradient)"/>
+    
+    <!-- Crown jewels -->
+    <circle cx="0" cy="-10" r="8" fill="#ffffff" opacity="0.9"/>
+    <circle cx="-30" cy="0" r="6" fill="#ffffff" opacity="0.8"/>
+    <circle cx="30" cy="0" r="6" fill="#ffffff" opacity="0.8"/>
+    
+    <!-- Letter "A" for Aranya -->
+    <path d="M-15 -5 L0 -25 L15 -5 L10 -5 L8 -10 L-8 -10 L-10 -5 Z M-5 -15 L5 -15 L3 -20 L-3 -20 Z" fill="#ffffff"/>
+  </g>
+  
+  <!-- Company name arc -->
+  <path id="text-arc" d="M 100 256 A 156 156 0 0 1 412 256" fill="none"/>
+  <text font-family="Inter, sans-serif" font-size="24" font-weight="600" fill="#ffffff" opacity="0.9">
+    <textPath href="#text-arc" startOffset="50%" text-anchor="middle">
+      ARANYA ONE
+    </textPath>
+  </text>
+</svg>

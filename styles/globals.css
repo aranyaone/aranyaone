@@ -1,15 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom animations for real-time dashboard */
+/* Global luxury styling */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Custom luxury utility classes */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #9f61ff 0%, #7928e3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #ffca3a 0%, #f2b01e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .btn-royal {
+    @apply px-6 py-3 bg-royal-gradient text-white font-medium rounded-xl shadow-royal hover:shadow-glow transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-gold {
+    @apply px-6 py-3 bg-gold-gradient text-white font-medium rounded-xl shadow-gold hover:shadow-luxury transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .card-luxury {
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl shadow-luxury border border-white/20 p-6 transition-all duration-300 hover:shadow-royal hover:scale-105;
+  }
+  
+  .card-glass {
+    @apply glass rounded-2xl p-6 transition-all duration-300 hover:bg-white/20;
+  }
+  
+  .nav-link {
+    @apply px-4 py-2 rounded-lg transition-all duration-200 hover:bg-white/10 hover:text-gold-400;
+  }
+}
+
+/* Enhanced animations */
 @keyframes pulse-slow {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.8; }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px rgba(159, 97, 255, 0.3); }
+  100% { box-shadow: 0 0 30px rgba(159, 97, 255, 0.6); }
+}
+
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 /* Smooth transitions for charts */
@@ -34,17 +132,59 @@
   animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* Hover effects for cards */
-.metric-card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+/* Luxury scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.metric-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
-/* Custom gradient for charts */
-.gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #9f61ff 0%, #7928e3 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #bb92ff 0%, #8b3ff7 100%);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(159, 97, 255, 0.3);
+  color: white;
+}
+
+/* Focus styling */
+:focus {
+  outline: 2px solid #9f61ff;
+  outline-offset: 2px;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 3px solid rgba(159, 97, 255, 0.3);
+  border-top: 3px solid #9f61ff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design helpers */
+@media (max-width: 640px) {
+  .card-luxury {
+    @apply p-4;
+  }
+  
+  .btn-royal, .btn-gold {
+    @apply px-4 py-2 text-sm;
+  }
 }

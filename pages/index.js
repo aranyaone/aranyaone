@@ -1,232 +1,297 @@
-import Head from 'next/head'
-import { memo, useState, useEffect } from 'react'
+import Head from 'next/head';
+import Link from 'next/link';
+import { useState, useEffect, memo } from 'react';
 
-// Performance: Lazy load heavy components
-const NavCard = memo(function NavCard({ href, icon, title, description, color }) {
-  const colorClasses = {
-    blue: "bg-blue-500 hover:bg-blue-600",
-    purple: "bg-purple-500 hover:bg-purple-600", 
-    indigo: "bg-indigo-500 hover:bg-indigo-600",
-    gray: "bg-gray-500 hover:bg-gray-600",
-    orange: "bg-orange-500 hover:bg-orange-600",
-    pink: "bg-pink-500 hover:bg-pink-600",
-    teal: "bg-teal-500 hover:bg-teal-600",
-    green: "bg-green-500 hover:bg-green-600"
-  };
+// Icons (using Unicode for now, will be replaced with proper icons)
+const CrownIcon = () => <span className="royal-icon crown-animation">👑</span>;
+const StarIcon = () => <span className="royal-icon">⭐</span>;
+const ShieldIcon = () => <span className="royal-icon">🛡️</span>;
+const DiamondIcon = () => <span className="royal-icon">💎</span>;
 
-  const handlePrefetch = () => {
-    // Only prefetch in browser environment and avoid duplicates
-    if (typeof window === 'undefined') return;
-    if (document.querySelector(`link[href="${href}"]`)) return;
-    
-    try {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = href;
-      link.onload = () => setTimeout(() => link.remove(), 5000); // Clean up after 5s
-      link.onerror = () => link.remove();
-      document.head.appendChild(link);
-    } catch (error) {
-      console.warn('Prefetch failed for:', href, error);
-    }
-  };
-
-  return (
-    <a 
-      href={href} 
-      className={`block p-6 ${colorClasses[color]} text-white rounded-xl hover:shadow-lg transition-all transform hover:scale-105 group gpu-accelerated will-change-transform`}
-      onMouseEnter={handlePrefetch}
-      onFocus={handlePrefetch}
-    >
-      <div className="text-center">
-        <div className="text-4xl mb-3 group-hover:scale-110 transition-transform will-change-transform">{icon}</div>
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-sm opacity-90">{description}</p>
-      </div>
-    </a>
-  );
-});
-
-const StatCard = memo(function StatCard({ icon, title, value }) {
+const StatCard = memo(({ title, value, description, icon, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
-
+  
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById(`stat-${title.replace(/\s+/g, '-')}`);
-    if (element) observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [title]);
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
 
   return (
-    <div 
-      id={`stat-${title.replace(/\s+/g, '-')}`}
-      className={`bg-white rounded-xl shadow-lg p-6 text-center border-2 border-gray-100 metric-card ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-      } transition-all duration-500`}
-    >
-      <div className="text-3xl mb-2">{icon}</div>
-      <h3 className="text-lg font-semibold text-gray-700 mb-1">{title}</h3>
-      <div className="text-2xl font-bold text-blue-600">{value}</div>
+    <div className={`royal-card transform transition-all duration-700 ${
+      isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+    }`}>
+      <div className="flex items-center justify-between mb-4">
+        <div className="royal-icon-container">{icon}</div>
+        <div className="status-online"></div>
+      </div>
+      <h3 className="text-2xl font-bold text-yellow-400 mb-2">{value}</h3>
+      <p className="text-lg font-semibold text-white mb-1">{title}</p>
+      <p className="text-gray-400 text-sm">{description}</p>
     </div>
   );
 });
 
-// Pages Router version - optimized for performance
+const ServiceCard = memo(({ title, description, icon, link, isPrivate = false }) => (
+  <div className="royal-card group cursor-pointer">
+    <div className="flex items-center mb-4">
+      {icon}
+      {isPrivate && <span className="ml-2 text-xs bg-red-600 px-2 py-1 rounded text-white">PRIVATE</span>}
+    </div>
+    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
+      {title}
+    </h3>
+    <p className="text-gray-400 mb-4 leading-relaxed">{description}</p>
+    <Link href={link} className="btn-royal inline-block text-center">
+      {isPrivate ? '🔐 Admin Only' : 'Explore →'}
+    </Link>
+  </div>
+));
+
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true);
+    setMounted(true);
     
-    // Performance: Preload critical pages safely
-    if (typeof window === 'undefined') return;
-    
-    const criticalPages = ['/dashboard', '/analytics', '/services'];
-    criticalPages.forEach(page => {
-      // Check if already prefetched
-      if (document.querySelector(`link[href="${page}"]`)) return;
-      
-      try {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.href = page;
-        link.onload = () => setTimeout(() => link.remove(), 10000); // Clean up after 10s
-        link.onerror = () => link.remove();
-        document.head.appendChild(link);
-      } catch (error) {
-        console.warn('Critical page prefetch failed for:', page, error);
-      }
-    });
+    // Preload critical resources
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap';
+    link.as = 'style';
+    document.head.appendChild(link);
   }, []);
 
-  return (
-    <div>
-      <Head>
-        <title>Aranya One - Digital Empire Dashboard</title>
-        <meta name="description" content="Your complete digital empire management platform - optimized for performance" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        
-        {/* Performance optimizations */}
-        <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="preconnect" href="//fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* PWA optimizations */}
-        <meta name="theme-color" content="#3b82f6" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      
-      <main className={`p-6 md:p-10 bg-gray-50 min-h-screen transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="max-w-6xl mx-auto">
-          
-          {/* Hero Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-6xl font-bold text-gray-800 mb-4 gpu-accelerated">🌟 Aranya One</h1>
-            <p className="text-2xl text-gray-600 mb-6">Your Digital Empire Starts Here</p>
-            <p className="text-lg text-green-600 font-semibold">🚀 Performance Optimized - July 17, 2025</p>
-          </div>
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="royal-loader"></div>
+      </div>
+    );
+  }
 
-          {/* Main Navigation Dashboard */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-4 border-green-300">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">🎯 Empire Control Center</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              
-              {/* Core Pages */}
-              <NavCard 
-                href="/dashboard"
-                icon="🎯"
-                title="Dashboard"
-                description="Main control center"
-                color="blue"
-              />
-              
-              <NavCard 
-                href="/analytics"
-                icon="📊"
-                title="Analytics"
-                description="Performance metrics"
-                color="purple"
-              />
-              
-              <NavCard 
-                href="/services"
-                icon="⚙️"
-                title="Services"
-                description="Manage your tools"
-                color="indigo"
-              />
-              
-              <NavCard 
-                href="/settings"
-                icon="🔧"
-                title="Settings"
-                description="Configure empire"
-                color="gray"
-              />
-              
-              {/* User Pages */}
-              <NavCard 
-                href="/profile"
-                icon="👤"
-                title="Profile"
-                description="Your empire profile"
-                color="orange"
-              />
-              
-              <NavCard 
-                href="/support"
-                icon="💬"
-                title="Support"
-                description="Get help & contact"
-                color="pink"
-              />
-              
-              <NavCard 
-                href="/docs"
-                icon="📚"
-                title="Documentation"
-                description="Guides & API docs"
-                color="teal"
-              />
-              
-              <NavCard 
-                href="/status"
-                icon="✅"
-                title="Status"
-                description="System health"
-                color="green"
-              />
-              
+  return (
+    <>
+      <Head>
+        <title>Aranya One - Royal Digital Empire | Premium AI Solutions</title>
+        <meta name="description" content="Experience the power of Aranya One - Your premium digital empire with AI solutions, royal wallet management, and world-class tools." />
+        <meta name="keywords" content="Aranya One, Digital Empire, AI Solutions, Royal Wallet, Premium Tools, Srinivas Makam" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content="Aranya One - Royal Digital Empire" />
+        <meta property="og:description" content="Premium AI solutions and digital empire management platform" />
+        <meta property="og:type" content="website" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+      </Head>
+
+      {/* Navigation Header */}
+      <header className="royal-header fixed top-0 w-full z-50">
+        <nav className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <CrownIcon />
+              <h1 className="text-2xl font-bold text-white">Aranya One</h1>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/" className="nav-link">Home</Link>
+              <Link href="/services" className="nav-link">Services</Link>
+              <Link href="/about" className="nav-link">About</Link>
+              <Link href="/founder" className="nav-link">Founder</Link>
+              <Link href="/contact" className="nav-link">Contact</Link>
+              <Link href="/admin-dashboard" className="btn-royal text-sm">
+                👑 Royal Access
+              </Link>
             </div>
           </div>
+        </nav>
+      </header>
 
-          {/* Quick Stats */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <StatCard icon="👥" title="Active Users" value="1,234" />
-            <StatCard icon="💰" title="Revenue" value="$8,432" />
-            <StatCard icon="📈" title="Growth" value="+23%" />
-          </div>
-
-          {/* Footer */}
-          <div className="mt-12 text-center text-gray-600">
-            <p>🏗️ Built with Next.js & Tailwind CSS | Optimized for Performance</p>
-            <p className="text-sm mt-2">🌟 Aranya One Digital Empire Platform</p>
+      {/* Hero Section */}
+      <section className="hero-section min-h-screen flex items-center justify-center pt-20">
+        <div className="container mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto">
+            <CrownIcon />
+            <h1 className="royal-title mt-6 mb-6">
+              Welcome to Aranya One
+            </h1>
+            <p className="royal-subtitle mb-8 max-w-2xl mx-auto">
+              Your Premium Digital Empire - Powered by AI, Secured by Innovation, 
+              Ruled by Excellence
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/services" className="btn-royal">
+                🚀 Explore Services
+              </Link>
+              <Link href="/bujji-ai" className="btn-royal">
+                🤖 Meet Bujji AI
+              </Link>
+              <Link href="/royal-wallet" className="btn-royal glow-gold">
+                💰 Royal Wallet
+              </Link>
+            </div>
           </div>
         </div>
-      </main>
-    </div>
-  )
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-gray-900 bg-opacity-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-white mb-12">
+            Empire Statistics
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <StatCard
+              icon={<DiamondIcon />}
+              title="Active Services"
+              value="25+"
+              description="Premium tools and AI solutions"
+              delay={100}
+            />
+            <StatCard
+              icon={<ShieldIcon />}
+              title="Security Level"
+              value="100%"
+              description="Royal-grade protection"
+              delay={200}
+            />
+            <StatCard
+              icon={<StarIcon />}
+              title="User Satisfaction"
+              value="99.9%"
+              description="Exceptional experience"
+              delay={300}
+            />
+            <StatCard
+              icon={<CrownIcon />}
+              title="Empire Status"
+              value="ACTIVE"
+              description="Fully operational kingdom"
+              delay={400}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Services Preview */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-white mb-12">
+            Royal Services
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ServiceCard
+              icon={<span className="text-3xl">🤖</span>}
+              title="Bujji AI Queen"
+              description="Your intelligent AI companion for all empire operations and decision-making support."
+              link="/bujji-ai"
+            />
+            <ServiceCard
+              icon={<span className="text-3xl">🏪</span>}
+              title="Plugin Store"
+              description="Discover and install premium plugins to enhance your digital empire capabilities."
+              link="/plugin-store"
+            />
+            <ServiceCard
+              icon={<span className="text-3xl">📊</span>}
+              title="Analytics Dashboard"
+              description="Real-time insights and performance metrics for your entire digital kingdom."
+              link="/analytics"
+            />
+            <ServiceCard
+              icon={<span className="text-3xl">💳</span>}
+              title="Royal Wallet"
+              description="Secure financial management and transaction processing for your empire."
+              link="/royal-wallet"
+              isPrivate={true}
+            />
+            <ServiceCard
+              icon={<span className="text-3xl">🛡️</span>}
+              title="Security Center"
+              description="Advanced protection systems and monitoring for your digital assets."
+              link="/security"
+            />
+            <ServiceCard
+              icon={<span className="text-3xl">👑</span>}
+              title="Crown Control"
+              description="Ultimate administrative control panel for empire management."
+              link="/crown-control"
+              isPrivate={true}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 bg-gray-900 bg-opacity-50">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-white mb-8">
+            About Aranya One
+          </h2>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              Aranya One is a premium digital empire platform created by 
+              <span className="text-yellow-400 font-semibold"> King Srinivas Makam</span>. 
+              Our mission is to provide world-class AI solutions, secure financial management, 
+              and innovative tools for the digital age.
+            </p>
+            <div className="flex justify-center">
+              <Link href="/founder" className="btn-royal">
+                Meet the Founder 👑
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="royal-footer py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <CrownIcon />
+                <h3 className="text-xl font-bold text-white">Aranya One</h3>
+              </div>
+              <p className="text-gray-400">
+                Your premium digital empire platform with AI-powered solutions.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Services</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/bujji-ai" className="hover:text-yellow-400">Bujji AI</Link></li>
+                <li><Link href="/plugin-store" className="hover:text-yellow-400">Plugin Store</Link></li>
+                <li><Link href="/analytics" className="hover:text-yellow-400">Analytics</Link></li>
+                <li><Link href="/security" className="hover:text-yellow-400">Security</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Empire</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/about" className="hover:text-yellow-400">About</Link></li>
+                <li><Link href="/founder" className="hover:text-yellow-400">Founder</Link></li>
+                <li><Link href="/legal" className="hover:text-yellow-400">Legal</Link></li>
+                <li><Link href="/support" className="hover:text-yellow-400">Support</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Connect</h4>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-yellow-400 text-2xl">📧</a>
+                <a href="#" className="text-gray-400 hover:text-yellow-400 text-2xl">🐦</a>
+                <a href="#" className="text-gray-400 hover:text-yellow-400 text-2xl">💼</a>
+                <a href="#" className="text-gray-400 hover:text-yellow-400 text-2xl">📱</a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+            <p className="text-gray-400">
+              © 2024 Aranya One Digital Empire. All rights reserved. | 
+              Powered by <span className="text-yellow-400">King Srinivas Makam</span>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
 }

@@ -1,6 +1,29 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
+import FeedbackCard from '../components/feedback/FeedbackCard'
+import FeedbackForm from '../components/feedback/FeedbackForm'
 
 export default function ServicesPage() {
+  const [feedbackData, setFeedbackData] = useState([]);
+  const [loadingFeedback, setLoadingFeedback] = useState(true);
+
+  useEffect(() => {
+    fetchServiceFeedback();
+  }, []);
+
+  const fetchServiceFeedback = async () => {
+    try {
+      const response = await fetch('/api/feedback?serviceId=services&limit=3');
+      if (response.ok) {
+        const data = await response.json();
+        setFeedbackData(data.feedback || []);
+      }
+    } catch (error) {
+      console.error('Error fetching feedback:', error);
+    } finally {
+      setLoadingFeedback(false);
+    }
+  };
   return (
     <div>
       <Head>
@@ -67,6 +90,50 @@ export default function ServicesPage() {
 
           {/* Quick Actions */}
           <QuickActions />
+
+          {/* Customer Feedback Section */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-green-200 mb-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">💬 Customer Feedback</h2>
+            
+            {loadingFeedback ? (
+              <div className="text-center py-4">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p className="mt-2 text-gray-600">Loading feedback...</p>
+              </div>
+            ) : feedbackData.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {feedbackData.map((feedback) => (
+                  <FeedbackCard key={feedback.id} feedback={feedback} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <p>No feedback available yet.</p>
+                <p className="text-sm mt-1">Be the first to share your experience!</p>
+              </div>
+            )}
+            
+            <div className="text-center mt-6">
+              <a
+                href="#feedback-form"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                📝 Share Your Feedback
+              </a>
+            </div>
+          </div>
+
+          {/* Feedback Form */}
+          <div id="feedback-form" className="mb-8">
+            <FeedbackForm 
+              serviceId="services"
+              serviceName="Service Management"
+              onSubmit={(result) => {
+                // Refresh feedback after submission
+                fetchServiceFeedback();
+              }}
+            />
+          </div>
 
           <div className="mt-8 text-center">
             <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</a>

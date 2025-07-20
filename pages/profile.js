@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import { withAuth } from '../hooks/useAuth'
 
-export default function ProfilePage() {
+function ProfilePage() {
   return (
     <div>
       <Head>
@@ -278,3 +279,6 @@ function ActivityItem({ time, action, icon, color }) {
     </div>
   );
 }
+
+// Protect the profile page - requires user authentication
+export default withAuth(ProfilePage, 'user')

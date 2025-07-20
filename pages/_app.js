@@ -1,5 +1,8 @@
 import '../styles/globals.css'
 import { useEffect } from 'react'
+import { AuthProvider } from '../lib/auth'
+import { TrialBanner } from '../lib/access-control'
+import { NotificationSystem } from '../lib/notifications'
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -77,5 +80,11 @@ export default function App({ Component, pageProps }) {
     };
   }, []);
 
-  return <Component {...pageProps} />
+  return (
+    <AuthProvider>
+      <TrialBanner />
+      <Component {...pageProps} />
+      <NotificationSystem />
+    </AuthProvider>
+  )
 }

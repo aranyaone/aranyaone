@@ -15,9 +15,11 @@
     "size-limit": "npx size-limit"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^7.5.0",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
+    "stripe": "^18.3.0",
     "web-vitals": "^4.2.4"
   },
   "devDependencies": {
@@ -39,7 +41,7 @@
       "limit": "85 KB"
     },
     {
-      "path": "out/_next/static/chunks/main-*.js", 
+      "path": "out/_next/static/chunks/main-*.js",
       "limit": "10 KB"
     },
     {

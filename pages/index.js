@@ -179,6 +179,14 @@ export default function Home() {
               
               {/* User Pages */}
               <NavCard 
+                href="/pricing"
+                icon="💎"
+                title="Pricing"
+                description="View plans & upgrade"
+                color="green"
+              />
+              
+              <NavCard 
                 href="/profile"
                 icon="👤"
                 title="Profile"

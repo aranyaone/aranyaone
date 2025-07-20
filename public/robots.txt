@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /out/
+
+# Performance optimization
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://aranyaone.vercel.app/sitemap.xml

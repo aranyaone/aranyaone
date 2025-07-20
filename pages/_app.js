@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import { useEffect } from 'react'
+import Head from 'next/head'
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -54,7 +55,27 @@ export default function App({ Component, pageProps }) {
     // Preload critical resources safely
     const preloadCriticalResources = () => {
       try {
-        // Only preload if not already present
+        // Preload critical fonts
+        const fontPreloads = [
+          { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', type: 'font' },
+        ];
+
+        fontPreloads.forEach(({ href, type }) => {
+          if (!document.querySelector(`link[href="${href}"]`)) {
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'preload';
+            preloadLink.as = 'style';
+            preloadLink.href = href;
+            preloadLink.crossOrigin = 'anonymous';
+            preloadLink.onload = () => {
+              preloadLink.rel = 'stylesheet';
+            };
+            preloadLink.onerror = () => preloadLink.remove();
+            document.head.appendChild(preloadLink);
+          }
+        });
+
+        // Preload critical CSS
         if (!document.querySelector('link[href*="app.css"]')) {
           const preloadLink = document.createElement('link');
           preloadLink.rel = 'preload';
@@ -77,5 +98,32 @@ export default function App({ Component, pageProps }) {
     };
   }, []);
 
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Head>
+        {/* Critical font preloading */}
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          as="style"
+          onLoad="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          />
+        </noscript>
+        
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Preconnect to critical third parties */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  )
 }

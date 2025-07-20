@@ -162,10 +162,18 @@ function NotificationSettings() {
         {notifications.map((notification, index) => (
           <div key={index} className="flex items-start justify-between p-4 bg-gray-50 rounded-lg">
             <div className="flex-1">
-              <h4 className="font-semibold text-gray-800">{notification.label}</h4>
-              <p className="text-sm text-gray-600 mt-1">{notification.desc}</p>
+              <h4 className="font-semibold text-gray-800" id={`notification-label-${index}`}>
+                {notification.label}
+              </h4>
+              <p className="text-sm text-gray-600 mt-1" id={`notification-desc-${index}`}>
+                {notification.desc}
+              </p>
             </div>
-            <ToggleSwitch enabled={notification.enabled} />
+            <ToggleSwitch 
+              enabled={notification.enabled} 
+              ariaLabel={`Toggle ${notification.label}`}
+              id={`notification-toggle-${index}`}
+            />
           </div>
         ))}
       </div>
@@ -263,14 +271,25 @@ function SettingsCard({ icon, title, description, children }) {
   );
 }
 
-function InputField({ label, value, type = "text" }) {
+function InputField({ label, value, type = "text", id, required = false, ariaDescribedBy }) {
+  const inputId = id || `input-${label.toLowerCase().replace(/\s+/g, '-')}`;
+  
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+      <label 
+        htmlFor={inputId} 
+        className="block text-sm font-medium text-gray-700 mb-2"
+      >
+        {label}
+        {required && <span className="text-red-500 ml-1" aria-label="required">*</span>}
+      </label>
       <input
+        id={inputId}
         type={type}
         defaultValue={value}
-        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        required={required}
+        aria-describedby={ariaDescribedBy}
+        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
       />
     </div>
   );
@@ -297,9 +316,18 @@ function ThemeOption({ color, name, active }) {
   );
 }
 
-function ToggleSwitch({ enabled }) {
+function ToggleSwitch({ enabled, onChange, ariaLabel, id }) {
+  const toggleId = id || `toggle-${Math.random().toString(36).substr(2, 9)}`;
+  
   return (
-    <button className={`w-12 h-6 rounded-full ${enabled ? 'bg-blue-500' : 'bg-gray-300'} relative transition-colors`}>
+    <button 
+      id={toggleId}
+      onClick={onChange}
+      className={`w-12 h-6 rounded-full ${enabled ? 'bg-blue-500' : 'bg-gray-300'} relative transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+      role="switch"
+      aria-checked={enabled}
+      aria-label={ariaLabel}
+    >
       <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enabled ? 'translate-x-6' : 'translate-x-0.5'}`}></div>
     </button>
   );

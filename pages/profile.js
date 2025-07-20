@@ -79,6 +79,9 @@ function ProfileCard() {
         <button className="w-full px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium">
           📤 Share Profile
         </button>
+        <a href="/profile/subscription" className="block w-full px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors font-medium text-center">
+          💎 Manage Subscription
+        </a>
       </div>
     </div>
   );

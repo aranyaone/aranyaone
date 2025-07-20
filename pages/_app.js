@@ -1,5 +1,7 @@
 import '../styles/globals.css'
 import { useEffect } from 'react'
+import { AuthProvider } from '../hooks/useAuth'
+import { NotificationProvider } from '../components/SmartNotification'
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -77,5 +79,11 @@ export default function App({ Component, pageProps }) {
     };
   }, []);
 
-  return <Component {...pageProps} />
+  return (
+    <AuthProvider>
+      <NotificationProvider>
+        <Component {...pageProps} />
+      </NotificationProvider>
+    </AuthProvider>
+  )
 }

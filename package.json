@@ -15,7 +15,7 @@
     "size-limit": "npx size-limit"
   },
   "dependencies": {
-    "next": "14.2.15",
+    "next": "^14.2.30",
     "react": "^18",
     "react-dom": "^18",
     "web-vitals": "^4.2.4"
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
     "@next/bundle-analyzer": "^14.2.15",
-    "@size-limit/preset-app": "^11.1.6",
+    "@size-limit/preset-app": "^11.0.0",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "eslint": "^8",
@@ -39,7 +39,7 @@
       "limit": "85 KB"
     },
     {
-      "path": "out/_next/static/chunks/main-*.js", 
+      "path": "out/_next/static/chunks/main-*.js",
       "limit": "10 KB"
     },
     {

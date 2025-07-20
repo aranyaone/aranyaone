@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function ProfilePage() {
   return (
@@ -20,21 +21,21 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Profile Card */}
-            <div className="lg:col-span-1">
+            <aside className="lg:col-span-1" role="complementary" aria-label="Profile summary">
               <ProfileCard />
               <AchievementsBadges />
-            </div>
+            </aside>
             
             {/* Main Profile Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <section className="lg:col-span-2 space-y-8" role="main" aria-label="Profile information">
               <PersonalInformation />
               <EmpireStats />
               <ActivityTimeline />
-            </div>
+            </section>
           </div>
 
           <div className="mt-8 text-center">
-            <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</a>
+            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</Link>
           </div>
         </div>
       </main>
@@ -131,13 +132,20 @@ function PersonalInformation() {
       </div>
       
       <div className="mt-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
-        <div className="p-4 bg-gray-50 rounded-lg">
+        <label htmlFor="bio-text" className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+        <div 
+          id="bio-text"
+          className="p-4 bg-gray-50 rounded-lg"
+          role="textbox"
+          aria-readonly="true"
+          aria-describedby="bio-desc"
+        >
           <p className="text-gray-800">
             Building the future of digital empires with AI-powered tools and innovative solutions. 
             Passionate about technology, automation, and helping businesses grow their online presence.
           </p>
         </div>
+        <span id="bio-desc" className="sr-only">User biography information</span>
       </div>
       
       <div className="mt-6 flex gap-4">
@@ -178,9 +186,9 @@ function EmpireStats() {
       </div>
       
       <div className="mt-6 text-center">
-        <a href="/analytics" className="text-blue-600 hover:text-blue-800 font-medium">
+        <Link href="/analytics" className="text-blue-600 hover:text-blue-800 font-medium">
           📈 View Detailed Analytics →
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -246,10 +254,16 @@ function ActivityTimeline() {
 }
 
 function InfoField({ label, value }) {
+  const fieldId = `info-${label.toLowerCase().replace(/\s+/g, '-')}`;
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
-      <div className="p-3 bg-gray-50 rounded-lg text-gray-800 font-medium">
+      <label htmlFor={fieldId} className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <div 
+        id={fieldId}
+        className="p-3 bg-gray-50 rounded-lg text-gray-800 font-medium"
+        role="textbox"
+        aria-readonly="true"
+      >
         {value}
       </div>
     </div>

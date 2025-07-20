@@ -1,0 +1,26 @@
+# Robots.txt for AranyaOne Digital Empire Platform
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://aranyaone.com/sitemap.xml
+
+# Optimize crawling for search engines
+Crawl-delay: 1
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Disallow certain paths if any (currently allowing all)
+# Disallow: /admin/
+# Disallow: /private/

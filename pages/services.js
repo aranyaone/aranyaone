@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import FeedbackCard from '../components/feedback/FeedbackCard'
+import FeedbackForm from '../components/feedback/FeedbackForm'
 
 export default function ServicesPage() {
   const [feedbackData, setFeedbackData] = useState([]);
@@ -120,6 +121,18 @@ export default function ServicesPage() {
                 📝 Share Your Feedback
               </a>
             </div>
+          </div>
+
+          {/* Feedback Form */}
+          <div id="feedback-form" className="mb-8">
+            <FeedbackForm 
+              serviceId="services"
+              serviceName="Service Management"
+              onSubmit={(result) => {
+                // Refresh feedback after submission
+                fetchServiceFeedback();
+              }}
+            />
           </div>
 
           <div className="mt-8 text-center">

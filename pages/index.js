@@ -211,6 +211,33 @@ export default function Home() {
               />
               
             </div>
+
+            {/* Additional Features Row */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <NavCard 
+                href="/admin/metrics"
+                icon="🛠️"
+                title="Admin Panel"
+                description="Admin controls & metrics"
+                color="red"
+              />
+              
+              <NavCard 
+                href="/affiliate"
+                icon="🤝"
+                title="Affiliate Program"
+                description="Earn through referrals"
+                color="purple"
+              />
+              
+              <NavCard 
+                href="/profile#rewards"
+                icon="🎁"
+                title="Rewards"
+                description="Points & achievements"
+                color="yellow"
+              />
+            </div>
           </div>
 
           {/* Quick Stats */}

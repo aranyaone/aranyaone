@@ -23,9 +23,25 @@
     50% { opacity: 0.8; }
   }
 
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
   .animate-pulse-slow {
     animation: pulse-slow 3s ease-in-out infinite;
     will-change: opacity;
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out;
+    will-change: transform, opacity;
   }
 
   /* Performance optimized chart transitions */
@@ -86,6 +102,7 @@
   /* Remove animations for users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .animate-pulse-slow,
+    .animate-slide-in,
     .chart-bar,
     .live-indicator::before,
     .metric-card {

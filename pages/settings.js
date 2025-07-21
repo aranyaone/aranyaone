@@ -1,6 +1,9 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 export default function SettingsPage() {
+  const [activeTab, setActiveTab] = useState('account')
+
   return (
     <div>
       <Head>
@@ -21,31 +24,23 @@ export default function SettingsPage() {
             
             {/* Settings Navigation */}
             <div className="lg:col-span-1">
-              <SettingsNavigation />
+              <SettingsNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
 
             {/* Settings Content */}
             <div className="lg:col-span-2 space-y-8">
-              
-              {/* Account Settings */}
-              <AccountSettings />
-              
-              {/* Empire Settings */}
-              <EmpireSettings />
-              
-              {/* Notification Settings */}
-              <NotificationSettings />
-              
-              {/* Security Settings */}
-              <SecuritySettings />
-              
-              {/* Billing Settings */}
-              <BillingSettings />
+              {activeTab === 'account' && <AccountSettings />}
+              {activeTab === 'empire' && <EmpireSettings />}
+              {activeTab === 'api' && <APIKeyManagement />}
+              {activeTab === 'notifications' && <NotificationSettings />}
+              {activeTab === 'security' && <SecuritySettings />}
+              {activeTab === 'billing' && <BillingSettings />}
+              {activeTab === 'enterprise' && <EnterpriseSettings />}
             </div>
           </div>
 
           <div className="mt-8 text-center">
-            <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</a>
+            <a href="/dashboard" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</a>
           </div>
         </div>
       </main>
@@ -53,24 +48,27 @@ export default function SettingsPage() {
   );
 }
 
-function SettingsNavigation() {
+function SettingsNavigation({ activeTab, setActiveTab }) {
   const sections = [
-    { icon: "👤", label: "Account", active: true },
-    { icon: "👑", label: "Empire" },
-    { icon: "🔔", label: "Notifications" },
-    { icon: "🔐", label: "Security" },
-    { icon: "💳", label: "Billing" },
+    { id: 'account', icon: "👤", label: "Account" },
+    { id: 'empire', icon: "👑", label: "Empire" },
+    { id: 'api', icon: "🔑", label: "API Keys" },
+    { id: 'notifications', icon: "🔔", label: "Notifications" },
+    { id: 'security', icon: "🔐", label: "Security" },
+    { id: 'billing', icon: "💳", label: "Billing" },
+    { id: 'enterprise', icon: "🏢", label: "Enterprise" },
   ];
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 border-2 border-blue-100 sticky top-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Settings Menu</h2>
       <nav className="space-y-2">
-        {sections.map((section, index) => (
+        {sections.map((section) => (
           <button
-            key={index}
+            key={section.id}
+            onClick={() => setActiveTab(section.id)}
             className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-colors ${
-              section.active 
+              activeTab === section.id 
                 ? 'bg-blue-500 text-white' 
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
@@ -341,4 +339,250 @@ function PaymentMethod({ type, last4, brand, expiry, id, primary }) {
       </div>
     </div>
   );
+}
+
+function APIKeyManagement() {
+  const [apiKeys, setApiKeys] = useState([
+    {
+      id: 1,
+      name: 'Production API',
+      key: 'ak_live_abc123...def456',
+      created: '2024-01-15',
+      lastUsed: '2 hours ago',
+      permissions: ['read', 'write'],
+      status: 'active'
+    },
+    {
+      id: 2,
+      name: 'Development API',
+      key: 'ak_test_xyz789...uvw012',
+      created: '2024-01-10',
+      lastUsed: '1 day ago',
+      permissions: ['read'],
+      status: 'active'
+    },
+    {
+      id: 3,
+      name: 'Analytics Only',
+      key: 'ak_live_mno345...pqr678',
+      created: '2024-01-05',
+      lastUsed: '5 days ago',
+      permissions: ['read'],
+      status: 'inactive'
+    }
+  ])
+
+  const handleCreateKey = () => {
+    const newKey = {
+      id: apiKeys.length + 1,
+      name: 'New API Key',
+      key: `ak_live_${Math.random().toString(36).substring(2)}...${Math.random().toString(36).substring(2)}`,
+      created: new Date().toISOString().split('T')[0],
+      lastUsed: 'Never',
+      permissions: ['read'],
+      status: 'active'
+    }
+    setApiKeys([...apiKeys, newKey])
+  }
+
+  const handleRevokeKey = (id) => {
+    setApiKeys(apiKeys.map(key => 
+      key.id === id ? { ...key, status: 'revoked' } : key
+    ))
+  }
+
+  return (
+    <SettingsCard icon="🔑" title="API Key Management" description="Manage your API keys for service integration">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h4 className="font-semibold text-gray-800">API Keys</h4>
+          <button 
+            onClick={handleCreateKey}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            🔑 Create New Key
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          {apiKeys.map((key) => (
+            <div key={key.id} className="p-4 bg-gray-50 rounded-lg border">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h5 className="font-medium text-gray-800">{key.name}</h5>
+                  <div className="text-sm text-gray-600 mt-1">
+                    Created: {key.created} • Last used: {key.lastUsed}
+                  </div>
+                </div>
+                <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                  key.status === 'active' ? 'bg-green-100 text-green-800' :
+                  key.status === 'inactive' ? 'bg-yellow-100 text-yellow-800' :
+                  'bg-red-100 text-red-800'
+                }`}>
+                  {key.status}
+                </span>
+              </div>
+              
+              <div className="flex items-center gap-2 mb-3">
+                <input
+                  type="text"
+                  value={key.key}
+                  readOnly
+                  className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded text-sm font-mono"
+                />
+                <button className="px-3 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 text-sm">
+                  📋 Copy
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-600">Permissions:</span>
+                  {key.permissions.map((perm, idx) => (
+                    <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
+                      {perm}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1 text-sm text-blue-600 hover:text-blue-800">
+                    Edit
+                  </button>
+                  <button 
+                    onClick={() => handleRevokeKey(key.id)}
+                    className="px-3 py-1 text-sm text-red-600 hover:text-red-800"
+                  >
+                    Revoke
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div className="flex items-start gap-3">
+            <span className="text-xl">⚠️</span>
+            <div>
+              <h5 className="font-semibold text-yellow-800">Important Security Notes</h5>
+              <ul className="text-sm text-yellow-700 mt-1 space-y-1">
+                <li>• Never share your API keys publicly or in client-side code</li>
+                <li>• Rotate keys regularly for better security</li>
+                <li>• Use read-only keys when possible</li>
+                <li>• Monitor API usage for suspicious activity</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </SettingsCard>
+  )
+}
+
+function EnterpriseSettings() {
+  const [enterprisePlan, setEnterprisePlan] = useState('professional')
+
+  const plans = [
+    {
+      id: 'professional',
+      name: 'Professional',
+      price: '₹2,999/month',
+      features: ['Up to 10 services', '100K API calls/month', 'Standard support', 'Basic analytics'],
+      current: true
+    },
+    {
+      id: 'enterprise',
+      name: 'Enterprise',
+      price: '₹9,999/month',
+      features: ['Unlimited services', 'Unlimited API calls', 'Priority support', 'Advanced analytics', 'Custom integrations', 'Dedicated manager'],
+      recommended: true
+    },
+    {
+      id: 'enterprise-plus',
+      name: 'Enterprise Plus',
+      price: 'Custom pricing',
+      features: ['Everything in Enterprise', 'White-label solutions', 'Custom development', 'SLA guarantees', 'On-premise deployment']
+    }
+  ]
+
+  return (
+    <SettingsCard icon="🏢" title="Enterprise Settings" description="Upgrade to enterprise tier for advanced features">
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {plans.map((plan) => (
+            <div key={plan.id} className={`p-6 rounded-xl border-2 ${
+              plan.current ? 'border-green-500 bg-green-50' :
+              plan.recommended ? 'border-blue-500 bg-blue-50' :
+              'border-gray-200 bg-white'
+            }`}>
+              <div className="text-center mb-4">
+                {plan.recommended && (
+                  <span className="inline-block px-3 py-1 bg-blue-500 text-white text-sm rounded-full mb-2">
+                    Recommended
+                  </span>
+                )}
+                {plan.current && (
+                  <span className="inline-block px-3 py-1 bg-green-500 text-white text-sm rounded-full mb-2">
+                    Current Plan
+                  </span>
+                )}
+                <h4 className="text-xl font-bold text-gray-800">{plan.name}</h4>
+                <div className="text-2xl font-bold text-gray-900 mt-2">{plan.price}</div>
+              </div>
+              
+              <ul className="space-y-2 mb-6">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-2 text-sm">
+                    <span className="text-green-500">✓</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <button className={`w-full py-2 px-4 rounded-lg font-medium transition-colors ${
+                plan.current 
+                  ? 'bg-green-100 text-green-700 cursor-not-allowed' 
+                  : 'bg-blue-500 text-white hover:bg-blue-600'
+              }`}>
+                {plan.current ? 'Current Plan' : 'Upgrade'}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl border border-purple-200">
+          <h4 className="text-lg font-bold text-gray-800 mb-2">🚀 Enterprise Features</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h5 className="font-semibold text-gray-800 mb-2">Advanced Analytics</h5>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Real-time performance monitoring</li>
+                <li>• Custom dashboard creation</li>
+                <li>• Predictive analytics with AI</li>
+                <li>• Export capabilities</li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-semibold text-gray-800 mb-2">Enterprise Support</h5>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• 24/7 priority support</li>
+                <li>• Dedicated account manager</li>
+                <li>• Custom integration assistance</li>
+                <li>• Training and onboarding</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-4 flex gap-3">
+            <button className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium">
+              📞 Contact Sales
+            </button>
+            <button className="px-6 py-2 bg-white text-purple-600 border border-purple-600 rounded-lg hover:bg-purple-50 font-medium">
+              📊 View Demo
+            </button>
+          </div>
+        </div>
+      </div>
+    </SettingsCard>
+  )
 }

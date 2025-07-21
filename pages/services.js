@@ -65,6 +65,9 @@ export default function ServicesPage() {
           {/* Recommended Services */}
           <RecommendedServices />
 
+          {/* Affiliate Leaderboard */}
+          <AffiliateLeaderboard />
+
           {/* Quick Actions */}
           <QuickActions />
 
@@ -195,6 +198,121 @@ function QuickActions() {
             <div className="text-sm opacity-90">{action.desc}</div>
           </button>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function AffiliateLeaderboard() {
+  const affiliates = [
+    { 
+      rank: 1, 
+      name: "Digital Empire Pro", 
+      avatar: "🏆", 
+      referrals: 87, 
+      earnings: "₹43,500", 
+      growth: "+25%",
+      badge: "Top Performer"
+    },
+    { 
+      rank: 2, 
+      name: "Tech Solutions Inc", 
+      avatar: "🥈", 
+      referrals: 72, 
+      earnings: "₹36,200", 
+      growth: "+18%",
+      badge: "Rising Star"
+    },
+    { 
+      rank: 3, 
+      name: "Growth Hackers", 
+      avatar: "🥉", 
+      referrals: 65, 
+      earnings: "₹32,800", 
+      growth: "+22%",
+      badge: "Consistent"
+    },
+    { 
+      rank: 4, 
+      name: "Marketing Masters", 
+      avatar: "🚀", 
+      referrals: 58, 
+      earnings: "₹29,100", 
+      growth: "+15%",
+      badge: "Reliable"
+    },
+    { 
+      rank: 5, 
+      name: "Innovation Labs", 
+      avatar: "⭐", 
+      referrals: 52, 
+      earnings: "₹26,400", 
+      growth: "+28%",
+      badge: "Trending"
+    }
+  ];
+
+  return (
+    <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-yellow-200 mb-8">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-gray-800">🏆 Affiliate Leaderboard</h2>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-600">This Month</span>
+          <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">View All →</button>
+        </div>
+      </div>
+      
+      <div className="space-y-4">
+        {affiliates.map((affiliate, index) => (
+          <div key={index} className={`flex items-center justify-between p-4 rounded-xl border-2 ${
+            affiliate.rank === 1 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-200' :
+            affiliate.rank === 2 ? 'bg-gradient-to-r from-gray-50 to-blue-50 border-gray-200' :
+            affiliate.rank === 3 ? 'bg-gradient-to-r from-orange-50 to-red-50 border-orange-200' :
+            'bg-gray-50 border-gray-200'
+          }`}>
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${
+                affiliate.rank <= 3 ? 'bg-white shadow-md' : 'bg-white/50'
+              }`}>
+                {affiliate.avatar}
+              </div>
+              <div>
+                <div className="flex items-center gap-3">
+                  <h3 className="font-bold text-gray-800">{affiliate.name}</h3>
+                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                    affiliate.badge === 'Top Performer' ? 'bg-yellow-100 text-yellow-800' :
+                    affiliate.badge === 'Rising Star' ? 'bg-blue-100 text-blue-800' :
+                    affiliate.badge === 'Trending' ? 'bg-green-100 text-green-800' :
+                    'bg-purple-100 text-purple-800'
+                  }`}>
+                    {affiliate.badge}
+                  </span>
+                </div>
+                <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <span>👥 {affiliate.referrals} referrals</span>
+                  <span>📈 {affiliate.growth}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-right">
+              <div className="text-2xl font-bold text-gray-800">{affiliate.earnings}</div>
+              <div className="text-sm text-gray-500">Total earnings</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="font-bold text-gray-800 mb-1">🎯 Your Affiliate Progress</h3>
+            <p className="text-sm text-gray-600">Rank #8 • 42 referrals • ₹21,600 earned</p>
+          </div>
+          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            🚀 Boost Referrals
+          </button>
+        </div>
       </div>
     </div>
   );

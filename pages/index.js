@@ -70,7 +70,7 @@ export default function Home() {
           </div>
           
           <div className="bg-white rounded-3xl shadow-soft-lg p-8 md:p-12 border border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               
               {/* Core Pages */}
               <NavCard 
@@ -131,6 +131,30 @@ export default function Home() {
               />
               
               <NavCard 
+                href="/ai-generator"
+                icon="🚀"
+                title="AI Generator"
+                description="Build with AI"
+                color="purple"
+              />
+              
+              <NavCard 
+                href="/performance"
+                icon="⚡"
+                title="Performance"
+                description="Speed & optimization"
+                color="yellow"
+              />
+              
+              <NavCard 
+                href="/seo-optimizer"
+                icon="🔍"
+                title="SEO Optimizer"
+                description="Search rankings"
+                color="blue"
+              />
+              
+              <NavCard 
                 href="/status"
                 icon="✅"
                 title="Status"
@@ -174,7 +198,9 @@ function NavCard({ href, icon, title, description, color }) {
     orange: "bg-orange-500 hover:bg-orange-600 border-orange-200",
     pink: "bg-pink-500 hover:bg-pink-600 border-pink-200",
     teal: "bg-teal-500 hover:bg-teal-600 border-teal-200",
-    green: "bg-green-500 hover:bg-green-600 border-green-200"
+    green: "bg-green-500 hover:bg-green-600 border-green-200",
+    purple: "bg-purple-500 hover:bg-purple-600 border-purple-200",
+    yellow: "bg-yellow-500 hover:bg-yellow-600 border-yellow-200"
   };
 
   return (

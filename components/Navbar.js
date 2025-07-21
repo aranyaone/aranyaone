@@ -8,6 +8,7 @@ export default function Navbar() {
     { name: 'Dashboard', href: '/dashboard', icon: '🎯' },
     { name: 'Services', href: '/services', icon: '⚙️' },
     { name: 'Analytics', href: '/analytics', icon: '📊' },
+    { name: 'AI Generator', href: '/ai-generator', icon: '🚀' },
     { name: 'Bujji AI', href: '/bujji-ai', icon: '🤖' },
     { name: 'Admin', href: '/admin', icon: '🔧' },
     { name: 'Support', href: '/support', icon: '💬' },

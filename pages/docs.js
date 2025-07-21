@@ -150,18 +150,18 @@ function GettingStartedContent() {
         </p>
 
         <div className="bg-royal-purple-50 border border-royal-purple-200 rounded-xl p-6 mb-8">
-          <h3 className="font-semibold text-royal-purple-900 mb-3">What You'll Learn</h3>
+          <h3 className="font-semibold text-royal-purple-900 mb-3">What You&apos;ll Learn</h3>
           <ul className="space-y-2 text-royal-purple-800">
             <li>• How to set up your first service</li>
             <li>• Navigate the dashboard effectively</li>
             <li>• Configure basic settings</li>
-            <li>• Monitor your empire's performance</li>
+            <li>• Monitor your empire&apos;s performance</li>
           </ul>
         </div>
 
         <h2 className="font-heading font-bold text-2xl text-gray-900 mb-4">Step 1: Access Your Dashboard</h2>
         <p className="text-gray-600 mb-4">
-          After logging in, you'll see your main dashboard with an overview of all your services and metrics.
+          After logging in, you&apos;ll see your main dashboard with an overview of all your services and metrics.
         </p>
 
         <div className="bg-gray-50 rounded-lg p-4 mb-6">
@@ -178,7 +178,7 @@ function GettingStartedContent() {
         <ol className="space-y-3 text-gray-600 mb-6">
           <li>1. Go to the Services page</li>
           <li>2. Browse available services</li>
-          <li>3. Click "Try Free" on any service</li>
+          <li>3. Click &quot;Try Free&quot; on any service</li>
           <li>4. Follow the setup wizard</li>
         </ol>
 
@@ -411,7 +411,7 @@ function WebhooksContent() {
         <h2 className="font-heading font-bold text-2xl text-gray-900 mb-4">Setting Up Webhooks</h2>
         <ol className="space-y-3 text-gray-600 mb-6">
           <li>1. Go to Settings → Integrations</li>
-          <li>2. Click "Add Webhook"</li>
+          <li>2. Click &quot;Add Webhook&quot;</li>
           <li>3. Enter your endpoint URL</li>
           <li>4. Select events to subscribe to</li>
           <li>5. Save the webhook configuration</li>
@@ -610,7 +610,7 @@ function TroubleshootingContent() {
         <div className="bg-red-50 border border-red-200 rounded-xl p-6">
           <h4 className="font-semibold text-red-900 mb-2">🆘 Need More Help?</h4>
           <p className="text-red-800">
-            If you can't find a solution here, don't hesitate to contact our support team through the Support Center.
+            If you can&apos;t find a solution here, don&apos;t hesitate to contact our support team through the Support Center.
           </p>
         </div>
       </div>

@@ -1,0 +1,45 @@
+{
+  "name": "Aranya One - Digital Empire",
+  "short_name": "AranyaOne",
+  "description": "Your complete digital empire management platform with AI-powered tools",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#9333ea",
+  "theme_color": "#9333ea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.png", 
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "features": [
+    "AI-powered analytics",
+    "Real-time dashboard",
+    "Advanced service management",
+    "Predictive insights"
+  ]
+}

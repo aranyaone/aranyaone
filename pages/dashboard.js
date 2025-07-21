@@ -34,7 +34,7 @@ export default function Dashboard() {
             🎯 Dashboard Control Center
           </h1>
           <p className="text-gray-600 text-lg">
-            Monitor your digital empire's performance and growth metrics
+            Monitor your digital empire&apos;s performance and growth metrics
           </p>
         </div>
 

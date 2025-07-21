@@ -150,7 +150,7 @@ export default function Home() {
               📈 Empire Analytics
             </h2>
             <p className="font-sans text-xl text-gray-600">
-              Real-time insights into your digital empire's performance
+              Real-time insights into your digital empire&apos;s performance
             </p>
           </div>
           
@@ -172,7 +172,7 @@ function NavCard({ href, icon, title, description, color }) {
     indigo: "bg-indigo-500 hover:bg-indigo-600 border-indigo-200",
     gray: "bg-gray-500 hover:bg-gray-600 border-gray-200",
     orange: "bg-orange-500 hover:bg-orange-600 border-orange-200",
-    pink: "bg-pink-500 hover:pink-600 border-pink-200",
+    pink: "bg-pink-500 hover:bg-pink-600 border-pink-200",
     teal: "bg-teal-500 hover:bg-teal-600 border-teal-200",
     green: "bg-green-500 hover:bg-green-600 border-green-200"
   };

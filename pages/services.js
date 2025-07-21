@@ -26,6 +26,38 @@ export default function ServicesPage() {
       features: ["SSL Monitoring", "Threat Detection", "Compliance Reports"]
     },
     
+    // AI Website Builder Services
+    { 
+      id: 10, icon: "🌐", name: "AI Website Builder", category: "ai-builder",
+      status: "Active", usage: "85%", price: "₹99/month",
+      description: "World-class AI-powered website builder with advanced components",
+      features: ["AI Design Generation", "Smart Components", "Voice Interface", "Real-time Collaboration"]
+    },
+    { 
+      id: 11, icon: "🎨", name: "Smart Design Assistant", category: "ai-builder",
+      status: "Active", usage: "92%", price: "₹79/month",
+      description: "AI assistant that creates professional designs based on your requirements",
+      features: ["Brand Analysis", "Auto Layout", "Color Psychology", "Responsive Magic"]
+    },
+    { 
+      id: 12, icon: "💻", name: "Code Generator Pro", category: "ai-builder",
+      status: "Active", usage: "78%", price: "₹129/month",
+      description: "Advanced AI code generation for React, Next.js, and modern frameworks",
+      features: ["Smart Components", "API Integration", "Performance Optimization", "TypeScript Support"]
+    },
+    { 
+      id: 13, icon: "🚀", name: "Deployment Engine", category: "ai-builder",
+      status: "Active", usage: "88%", price: "₹59/month",
+      description: "One-click deployment with CI/CD, monitoring, and scaling",
+      features: ["Auto Deploy", "Performance Monitoring", "CDN Integration", "SSL & Security"]
+    },
+    { 
+      id: 14, icon: "🎯", name: "SEO AI Optimizer", category: "ai-builder",
+      status: "Active", usage: "95%", price: "₹69/month",
+      description: "AI-powered SEO that automatically optimizes your site for search engines",
+      features: ["Content Optimization", "Schema Generation", "Speed Optimization", "Meta AI"]
+    },
+    
     // Marketing Services
     { 
       id: 4, icon: "🔍", name: "SEO Optimizer", category: "marketing",
@@ -69,6 +101,7 @@ export default function ServicesPage() {
 
   const categories = [
     { id: 'all', name: 'All Services', count: services.length },
+    { id: 'ai-builder', name: '🤖 AI Website Builder', count: services.filter(s => s.category === 'ai-builder').length },
     { id: 'core', name: 'Core Services', count: services.filter(s => s.category === 'core').length },
     { id: 'marketing', name: 'Marketing', count: services.filter(s => s.category === 'marketing').length },
     { id: 'advanced', name: 'Advanced', count: services.filter(s => s.category === 'advanced').length },

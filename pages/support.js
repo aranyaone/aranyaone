@@ -1,276 +1,368 @@
-import Head from 'next/head'
+import { memo, useState } from 'react';
+import Layout from '../components/layout/Layout';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+import Form from '../components/forms/Form';
+import { TabNavigation } from '../components/navigation';
 
-export default function SupportPage() {
+const FAQItem = memo(function FAQItem({ question, answer, isOpen, onToggle }) {
   return (
-    <div>
-      <Head>
-        <title>Support Center - Aranya One</title>
-        <meta name="description" content="Get help and support for your digital empire" />
-      </Head>
-      
-      <main className="p-6 md:p-10 bg-gray-50 min-h-screen">
-        <div className="max-w-screen-2xl mx-auto">
-          
-          {/* Header */}
-          <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">💬 Support Center</h1>
-            <p className="text-gray-600">Get help, find answers, and contact our support team</p>
-          </div>
-
-          {/* Quick Help */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <QuickHelpCard 
-              icon="📚" 
-              title="Knowledge Base" 
-              description="Find answers to common questions"
-              link="/docs"
-            />
-            <QuickHelpCard 
-              icon="💬" 
-              title="Live Chat" 
-              description="Chat with our support team"
-              link="#chat"
-            />
-            <QuickHelpCard 
-              icon="📧" 
-              title="Email Support" 
-              description="Send us an email for detailed help"
-              link="mailto:support@aranyaone.com"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
-            {/* Contact Form */}
-            <ContactForm />
-            
-            {/* FAQ and Status */}
-            <div className="space-y-8">
-              <SystemStatus />
-              <PopularQuestions />
-            </div>
-          </div>
-
-          {/* Support Categories */}
-          <SupportCategories />
-
-          <div className="mt-8 text-center">
-            <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</a>
-          </div>
+    <div className="border border-gray-200 rounded-lg">
+      <button
+        onClick={onToggle}
+        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50"
+      >
+        <span className="font-medium text-gray-900">{question}</span>
+        <svg
+          className={`w-5 h-5 transform transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {isOpen && (
+        <div className="px-6 pb-4 text-gray-600">
+          {answer}
         </div>
-      </main>
+      )}
     </div>
   );
-}
+});
 
-function QuickHelpCard({ icon, title, description, link }) {
-  return (
-    <a href={link} className="block bg-white rounded-2xl shadow-xl p-6 border-2 border-blue-100 hover:border-blue-300 transition-colors group">
-      <div className="text-center">
-        <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{icon}</div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
-      </div>
-    </a>
-  );
-}
-
-function ContactForm() {
-  return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-green-100">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">🎯 Contact Support</h2>
-      <form className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <InputField label="Your Name" placeholder="Enter your name" />
-          <InputField label="Email" placeholder="your@email.com" type="email" />
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Priority Level</label>
-          <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            <option>🔴 High - Service Down</option>
-            <option>🟡 Medium - Feature Issue</option>
-            <option>🟢 Low - General Question</option>
-          </select>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Service Category</label>
-          <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            <option>🤖 AI Chat Service</option>
-            <option>📊 Analytics Dashboard</option>
-            <option>🔍 SEO Optimizer</option>
-            <option>📱 Social Media Manager</option>
-            <option>⚙️ General/Account</option>
-          </select>
-        </div>
-        
-        <InputField label="Subject" placeholder="Brief description of your issue" />
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
-          <textarea 
-            rows="5"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Please describe your issue in detail..."
-          ></textarea>
-        </div>
-        
-        <div className="flex items-center gap-3">
-          <button className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
-            Send Message
-          </button>
-          <button className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium">
-            📞 Request Call
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-}
-
-function SystemStatus() {
-  const services = [
-    { name: "AI Chat Service", status: "operational", uptime: "99.9%" },
-    { name: "Analytics Dashboard", status: "operational", uptime: "99.8%" },
-    { name: "SEO Optimizer", status: "maintenance", uptime: "99.5%" },
-    { name: "Payment System", status: "operational", uptime: "100%" },
-  ];
-
-  return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-purple-100">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">🛡️ System Status</h2>
-      <div className="space-y-4">
-        {services.map((service, index) => (
-          <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-            <div>
-              <h4 className="font-semibold text-gray-800">{service.name}</h4>
-              <p className="text-sm text-gray-600">Uptime: {service.uptime}</p>
-            </div>
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(service.status)}`}>
-              {service.status === 'operational' ? '✅ Operational' : 
-               service.status === 'maintenance' ? '🔧 Maintenance' : '❌ Down'}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4 text-center">
-        <a href="#status" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-          View Full Status Page →
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function getStatusColor(status) {
-  switch(status) {
-    case 'operational': return 'text-green-700 bg-green-100';
-    case 'maintenance': return 'text-yellow-700 bg-yellow-100';
-    case 'down': return 'text-red-700 bg-red-100';
-    default: return 'text-gray-700 bg-gray-100';
-  }
-}
-
-function PopularQuestions() {
-  const faqs = [
-    { question: "How do I reset my password?", category: "Account" },
-    { question: "Why is my service showing as paused?", category: "Services" },
-    { question: "How do I upgrade my plan?", category: "Billing" },
-    { question: "Can I integrate with third-party tools?", category: "Technical" },
-    { question: "How do I contact billing support?", category: "Billing" },
-  ];
-
-  return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-orange-100">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">❓ Popular Questions</h2>
-      <div className="space-y-3">
-        {faqs.map((faq, index) => (
-          <button key={index} className="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group">
-            <div className="flex items-center justify-between">
-              <span className="font-medium text-gray-800 group-hover:text-blue-600">{faq.question}</span>
-              <span className="text-gray-400 group-hover:text-blue-500">→</span>
-            </div>
-            <span className="text-sm text-gray-500">{faq.category}</span>
-          </button>
-        ))}
-      </div>
-      <div className="mt-4 text-center">
-        <a href="#faq" className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-          View All FAQs →
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function SupportCategories() {
-  const categories = [
-    { 
-      icon: "🚀", 
-      title: "Getting Started", 
-      description: "Setup guides and onboarding help",
-      articles: ["First Steps", "Account Setup", "Service Activation", "Basic Configuration"]
-    },
-    { 
-      icon: "🔧", 
-      title: "Technical Support", 
-      description: "API documentation and troubleshooting",
-      articles: ["API Reference", "Integration Guide", "Error Codes", "Performance Optimization"]
-    },
-    { 
-      icon: "💳", 
-      title: "Billing & Plans", 
-      description: "Subscription management and billing",
-      articles: ["Plan Comparison", "Payment Methods", "Billing Cycle", "Refund Policy"]
-    },
-    { 
-      icon: "📱", 
-      title: "Mobile App", 
-      description: "Mobile app features and support",
-      articles: ["Download App", "Push Notifications", "Offline Mode", "Sync Issues"]
-    },
-  ];
-
-  return (
-    <div className="mt-12">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">📚 Help Categories</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {categories.map((category, index) => (
-          <div key={index} className="bg-white rounded-2xl shadow-xl p-6 border-2 border-gray-100 hover:border-blue-300 transition-colors group">
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{category.icon}</div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">{category.title}</h3>
-            <p className="text-gray-600 mb-4">{category.description}</p>
-            <div className="space-y-2">
-              {category.articles.map((article, i) => (
-                <a key={i} href="#" className="block text-sm text-blue-600 hover:text-blue-800">
-                  • {article}
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function InputField({ label, placeholder, type = "text" }) {
-  const fieldId = `field-${label.toLowerCase().replace(/\s+/g, '-')}`;
+const ContactForm = memo(function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    priority: 'medium',
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitting support ticket:', formData);
+    // Here you would typically send the data to your API
+    alert('Support ticket submitted successfully!');
+  };
+  
+  const handleChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
   
   return (
-    <div>
-      <label htmlFor={fieldId} className="block text-sm font-medium text-gray-700 mb-2">
-        {label}
-      </label>
-      <input
-        id={fieldId}
-        type={type}
-        placeholder={placeholder}
-        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        required
-        aria-describedby={`${fieldId}-desc`}
-      />
-    </div>
+    <Card>
+      <Card.Header>
+        <Card.Title>📝 Contact Support</Card.Title>
+      </Card.Header>
+      <Card.Content>
+        <Form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Form.Group>
+              <Form.Label htmlFor="name" required>Full Name</Form.Label>
+              <Form.Input
+                id="name"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                required
+              />
+            </Form.Group>
+            
+            <Form.Group>
+              <Form.Label htmlFor="email" required>Email Address</Form.Label>
+              <Form.Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleChange('email', e.target.value)}
+                required
+              />
+            </Form.Group>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Form.Group>
+              <Form.Label htmlFor="subject" required>Subject</Form.Label>
+              <Form.Input
+                id="subject"
+                value={formData.subject}
+                onChange={(e) => handleChange('subject', e.target.value)}
+                required
+              />
+            </Form.Group>
+            
+            <Form.Group>
+              <Form.Label htmlFor="priority">Priority</Form.Label>
+              <Form.Select
+                id="priority"
+                value={formData.priority}
+                onChange={(e) => handleChange('priority', e.target.value)}
+                options={[
+                  { value: 'low', label: 'Low' },
+                  { value: 'medium', label: 'Medium' },
+                  { value: 'high', label: 'High' },
+                  { value: 'urgent', label: 'Urgent' }
+                ]}
+              />
+            </Form.Group>
+          </div>
+          
+          <Form.Group>
+            <Form.Label htmlFor="message" required>Message</Form.Label>
+            <Form.Textarea
+              id="message"
+              value={formData.message}
+              onChange={(e) => handleChange('message', e.target.value)}
+              rows={6}
+              placeholder="Please describe your issue in detail..."
+              required
+            />
+          </Form.Group>
+          
+          <Button type="submit">Send Message</Button>
+        </Form>
+      </Card.Content>
+    </Card>
+  );
+});
+
+const ResourceCard = memo(function ResourceCard({ icon, title, description, link }) {
+  return (
+    <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+      <Card.Content className="text-center">
+        <div className="text-4xl mb-4">{icon}</div>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
+        <p className="text-gray-600 mb-4">{description}</p>
+        <Button variant="outline" size="sm">
+          {link}
+        </Button>
+      </Card.Content>
+    </Card>
+  );
+});
+
+export default function SupportPage() {
+  const [activeTab, setActiveTab] = useState('faq');
+  const [openFAQ, setOpenFAQ] = useState(null);
+  
+  const tabs = [
+    { id: 'faq', label: 'FAQ', icon: '❓' },
+    { id: 'contact', label: 'Contact', icon: '📧' },
+    { id: 'resources', label: 'Resources', icon: '📚' },
+    { id: 'status', label: 'System Status', icon: '🟢' }
+  ];
+  
+  const faqs = [
+    {
+      id: 1,
+      question: 'How do I reset my password?',
+      answer: 'You can reset your password by going to Settings > Security > Change Password, or by clicking the "Forgot Password" link on the login page.'
+    },
+    {
+      id: 2,
+      question: 'How do I deploy a new service?',
+      answer: 'Navigate to the Services page, click "Add Service", fill in the required information, and click "Deploy". The deployment process typically takes 2-5 minutes.'
+    },
+    {
+      id: 3,
+      question: 'Can I export my analytics data?',
+      answer: 'Yes! Go to the Analytics page and click the "Export" button in the top right corner. You can export data in CSV, JSON, or PDF formats.'
+    },
+    {
+      id: 4,
+      question: 'How do I upgrade my plan?',
+      answer: 'Visit Settings > Billing to view available plans and upgrade options. All upgrades are prorated and take effect immediately.'
+    },
+    {
+      id: 5,
+      question: 'What are the API rate limits?',
+      answer: 'Free tier: 1,000 requests/hour. Pro tier: 10,000 requests/hour. Enterprise: Custom limits. You can view your current usage in Settings > API.'
+    }
+  ];
+  
+  const resources = [
+    {
+      icon: '📖',
+      title: 'Documentation',
+      description: 'Complete guides and API reference',
+      link: 'Browse Docs'
+    },
+    {
+      icon: '🎥',
+      title: 'Video Tutorials',
+      description: 'Step-by-step video guides',
+      link: 'Watch Videos'
+    },
+    {
+      icon: '💬',
+      title: 'Community Forum',
+      description: 'Connect with other users',
+      link: 'Join Forum'
+    },
+    {
+      icon: '🔧',
+      title: 'API Reference',
+      description: 'Complete API documentation',
+      link: 'View API Docs'
+    }
+  ];
+  
+  return (
+    <Layout title="Support - Aranya One">
+      <div className="space-y-6">
+        {/* Header */}
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">💬 Support Center</h1>
+          <p className="text-gray-600">Get help and find answers to your questions</p>
+        </div>
+        
+        {/* Quick Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <Card className="text-center">
+            <div className="text-3xl mb-2 text-green-600">⚡</div>
+            <h3 className="text-sm font-medium text-gray-500">Avg Response Time</h3>
+            <p className="text-2xl font-bold text-gray-900">&lt; 2 hours</p>
+          </Card>
+          
+          <Card className="text-center">
+            <div className="text-3xl mb-2 text-blue-600">🎯</div>
+            <h3 className="text-sm font-medium text-gray-500">Resolution Rate</h3>
+            <p className="text-2xl font-bold text-gray-900">98.5%</p>
+          </Card>
+          
+          <Card className="text-center">
+            <div className="text-3xl mb-2 text-purple-600">📚</div>
+            <h3 className="text-sm font-medium text-gray-500">Help Articles</h3>
+            <p className="text-2xl font-bold text-gray-900">150+</p>
+          </Card>
+          
+          <Card className="text-center">
+            <div className="text-3xl mb-2 text-yellow-600">⭐</div>
+            <h3 className="text-sm font-medium text-gray-500">Satisfaction</h3>
+            <p className="text-2xl font-bold text-gray-900">4.9/5</p>
+          </Card>
+        </div>
+        
+        {/* Tab Navigation */}
+        <TabNavigation
+          tabs={tabs}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
+        
+        {/* Tab Content */}
+        <div>
+          {activeTab === 'faq' && (
+            <div className="space-y-4">
+              <Card>
+                <Card.Header>
+                  <Card.Title>❓ Frequently Asked Questions</Card.Title>
+                </Card.Header>
+                <Card.Content className="space-y-4">
+                  {faqs.map((faq) => (
+                    <FAQItem
+                      key={faq.id}
+                      question={faq.question}
+                      answer={faq.answer}
+                      isOpen={openFAQ === faq.id}
+                      onToggle={() => setOpenFAQ(openFAQ === faq.id ? null : faq.id)}
+                    />
+                  ))}
+                </Card.Content>
+              </Card>
+            </div>
+          )}
+          
+          {activeTab === 'contact' && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2">
+                <ContactForm />
+              </div>
+              
+              <div className="space-y-4">
+                <Card>
+                  <Card.Header>
+                    <Card.Title>📞 Other Ways to Reach Us</Card.Title>
+                  </Card.Header>
+                  <Card.Content className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-gray-900">Email Support</h4>
+                      <p className="text-sm text-gray-600">support@aranyaone.com</p>
+                      <p className="text-xs text-gray-500">Response within 2 hours</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium text-gray-900">Live Chat</h4>
+                      <p className="text-sm text-gray-600">Available 24/7</p>
+                      <Button size="sm" className="mt-2">Start Chat</Button>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium text-gray-900">Phone Support</h4>
+                      <p className="text-sm text-gray-600">+1 (555) 123-4567</p>
+                      <p className="text-xs text-gray-500">Mon-Fri 9AM-6PM EST</p>
+                    </div>
+                  </Card.Content>
+                </Card>
+              </div>
+            </div>
+          )}
+          
+          {activeTab === 'resources' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {resources.map((resource, index) => (
+                <ResourceCard
+                  key={index}
+                  icon={resource.icon}
+                  title={resource.title}
+                  description={resource.description}
+                  link={resource.link}
+                />
+              ))}
+            </div>
+          )}
+          
+          {activeTab === 'status' && (
+            <Card>
+              <Card.Header>
+                <Card.Title>🟢 System Status</Card.Title>
+              </Card.Header>
+              <Card.Content>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      <span className="font-medium text-green-900">All Systems Operational</span>
+                    </div>
+                    <span className="text-sm text-green-700">Last updated: 5 minutes ago</span>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {[
+                      { name: 'API Gateway', status: 'operational', uptime: '99.98%' },
+                      { name: 'Dashboard', status: 'operational', uptime: '99.95%' },
+                      { name: 'Analytics Engine', status: 'operational', uptime: '99.99%' },
+                      { name: 'Service Deployments', status: 'operational', uptime: '99.92%' },
+                      { name: 'Database', status: 'operational', uptime: '99.97%' },
+                    ].map((service, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span className="font-medium text-gray-900">{service.name}</span>
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          <span className="text-green-600 font-medium">{service.uptime}</span> uptime
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Card.Content>
+            </Card>
+          )}
+        </div>
+      </div>
+    </Layout>
   );
 }

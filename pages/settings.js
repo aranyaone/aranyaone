@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function SettingsPage() {
   return (
@@ -25,7 +26,7 @@ export default function SettingsPage() {
             </div>
 
             {/* Settings Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <section className="lg:col-span-2 space-y-8" role="main" aria-label="Settings content">
               
               {/* Account Settings */}
               <AccountSettings />
@@ -41,11 +42,11 @@ export default function SettingsPage() {
               
               {/* Billing Settings */}
               <BillingSettings />
-            </div>
+            </section>
           </div>
 
           <div className="mt-8 text-center">
-            <a href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</a>
+            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium">← Back to Dashboard</Link>
           </div>
         </div>
       </main>
@@ -65,7 +66,7 @@ function SettingsNavigation() {
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 border-2 border-blue-100 sticky top-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Settings Menu</h2>
-      <nav className="space-y-2">
+      <nav className="space-y-2" role="navigation" aria-label="Settings navigation">
         {sections.map((section, index) => (
           <button
             key={index}
@@ -74,9 +75,14 @@ function SettingsNavigation() {
                 ? 'bg-blue-500 text-white' 
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
+            aria-pressed={section.active}
+            aria-describedby={`section-${index}-desc`}
           >
-            <span className="text-xl">{section.icon}</span>
+            <span className="text-xl" aria-hidden="true">{section.icon}</span>
             <span className="font-medium">{section.label}</span>
+            <span id={`section-${index}-desc`} className="sr-only">
+              {section.active ? 'Currently selected' : 'Navigate to'} {section.label} settings
+            </span>
           </button>
         ))}
       </nav>
@@ -134,13 +140,18 @@ function EmpireSettings() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
-          <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            <option>Asia/Kolkata (IST)</option>
-            <option>America/New_York (EST)</option>
-            <option>Europe/London (GMT)</option>
-            <option>Asia/Tokyo (JST)</option>
+          <label htmlFor="timezone-select" className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
+          <select 
+            id="timezone-select"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            aria-describedby="timezone-desc"
+          >
+            <option value="asia-kolkata">Asia/Kolkata (IST)</option>
+            <option value="america-new-york">America/New_York (EST)</option>
+            <option value="europe-london">Europe/London (GMT)</option>
+            <option value="asia-tokyo">Asia/Tokyo (JST)</option>
           </select>
+          <span id="timezone-desc" className="sr-only">Select your preferred timezone</span>
         </div>
       </div>
     </SettingsCard>
@@ -165,7 +176,7 @@ function NotificationSettings() {
               <h4 className="font-semibold text-gray-800">{notification.label}</h4>
               <p className="text-sm text-gray-600 mt-1">{notification.desc}</p>
             </div>
-            <ToggleSwitch enabled={notification.enabled} />
+            <ToggleSwitch enabled={notification.enabled} label={notification.label} />
           </div>
         ))}
       </div>
@@ -264,13 +275,16 @@ function SettingsCard({ icon, title, description, children }) {
 }
 
 function InputField({ label, value, type = "text" }) {
+  const fieldId = `field-${label.toLowerCase().replace(/\s+/g, '-')}`;
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
+      <label htmlFor={fieldId} className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
       <input
+        id={fieldId}
         type={type}
         defaultValue={value}
         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        aria-describedby={`${fieldId}-desc`}
       />
     </div>
   );
@@ -297,11 +311,21 @@ function ThemeOption({ color, name, active }) {
   );
 }
 
-function ToggleSwitch({ enabled }) {
+function ToggleSwitch({ enabled, label }) {
+  const toggleId = `toggle-${label?.toLowerCase().replace(/\s+/g, '-') || 'switch'}`;
   return (
-    <button className={`w-12 h-6 rounded-full ${enabled ? 'bg-blue-500' : 'bg-gray-300'} relative transition-colors`}>
-      <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enabled ? 'translate-x-6' : 'translate-x-0.5'}`}></div>
-    </button>
+    <div className="flex items-center">
+      <button 
+        id={toggleId}
+        className={`w-12 h-6 rounded-full ${enabled ? 'bg-blue-500' : 'bg-gray-300'} relative transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+        role="switch"
+        aria-checked={enabled}
+        aria-label={label || 'Toggle setting'}
+      >
+        <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enabled ? 'translate-x-6' : 'translate-x-0.5'}`}></div>
+      </button>
+      <span className="sr-only">{label || 'Toggle setting'}</span>
+    </div>
   );
 }
 

@@ -131,27 +131,27 @@ export default function Home() {
               />
               
               <NavCard 
-                href="/ai-generator"
+                href="/ai-website-builder"
                 icon="🚀"
-                title="AI Generator"
-                description="Build with AI"
+                title="AI Website Builder"
+                description="Generate websites with AI"
                 color="purple"
               />
               
               <NavCard 
-                href="/performance"
-                icon="⚡"
-                title="Performance"
-                description="Speed & optimization"
-                color="yellow"
+                href="/collaboration"
+                icon="🤝"
+                title="Collaboration"
+                description="Real-time team workspace"
+                color="blue"
               />
               
               <NavCard 
-                href="/seo-optimizer"
-                icon="🔍"
-                title="SEO Optimizer"
-                description="Search rankings"
-                color="blue"
+                href="/notifications"
+                icon="🔔"
+                title="Notifications"
+                description="Smart alert system"
+                color="orange"
               />
               
               <NavCard 
@@ -160,6 +160,14 @@ export default function Home() {
                 title="Status"
                 description="System health"
                 color="green"
+              />
+              
+              <NavCard 
+                href="/api-management"
+                icon="🔗"
+                title="API Management"
+                description="Manage APIs & webhooks"
+                color="indigo"
               />
             </div>
           </div>

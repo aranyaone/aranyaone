@@ -1,14 +1,26 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: The commit cannot be empty — Vercel/GitHub sync failure when pushing
 title: ''
 labels: ''
-assignees: ''
+assignees: aranyaone
 
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+A clear and concise description of what the bug is.           Describe the bug
+When attempting to push a commit from Cursor or terminal to the aranyaone GitHub repo, the error The commit cannot be empty is shown, even though PR changes and files are visible. This blocks further sync and Vercel deployment.
+
+To Reproduce
+Steps to reproduce the behavior:
+
+In Cursor or Git terminal, make code changes
+
+Use git add . followed by git commit -m "" or similar
+
+Error appears: The commit cannot be empty
+
+Push is aborted and PR is not updated
 
 **To Reproduce**
 Steps to reproduce the behavior:

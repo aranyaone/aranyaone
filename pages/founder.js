@@ -35,7 +35,7 @@ export default function FounderPage() {
               <div className="relative">
                 {!imageError ? (
                   <Image
-                    src="/founder-srinivas.jpg"
+                    src="/srinivas-makam.jpg"
                     width={160}
                     height={160}
                     alt="Srinivas Makam - Founder of Aranya One"

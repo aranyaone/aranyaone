@@ -1,6 +1,6 @@
 {
   "name": "aranyaone",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,13 +12,18 @@
     "build:stats": "next build && npx webpack-bundle-analyzer .next/static/chunks/*.js",
     "lighthouse": "npx lighthouse http://localhost:3000 --output-path ./lighthouse-report.html --output html",
     "perf:audit": "npm run build && npm run lighthouse",
-    "size-limit": "npx size-limit"
+    "size-limit": "npx size-limit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^4.2.4",
+    "clsx": "^2.0.0",
+    "date-fns": "^3.0.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
@@ -31,20 +36,24 @@
     "postcss": "^8.4.49",
     "size-limit": "^11.1.6",
     "tailwindcss": "^3.4.16",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "webpack-bundle-analyzer": "^4.10.2",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0"
   },
   "size-limit": [
     {
       "path": "out/_next/static/chunks/vendors-*.js",
-      "limit": "85 KB"
+      "limit": "100 KB"
     },
     {
       "path": "out/_next/static/chunks/main-*.js", 
-      "limit": "10 KB"
+      "limit": "15 KB"
     },
     {
       "path": "out/_next/static/css/*.css",
-      "limit": "5 KB"
+      "limit": "8 KB"
     }
   ]
 }

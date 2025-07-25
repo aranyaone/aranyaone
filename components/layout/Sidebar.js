@@ -9,6 +9,7 @@ const Sidebar = memo(function Sidebar({ isOpen, onClose }) {
     { href: '/services', icon: '⚙️', label: 'Services' },
     { href: '/settings', icon: '🔧', label: 'Settings' },
     { href: '/profile', icon: '👤', label: 'Profile' },
+    { href: '/founder', icon: '👑', label: 'Founder' },
     { href: '/support', icon: '💬', label: 'Support' },
     { href: '/docs', icon: '📚', label: 'Documentation' },
     { href: '/status', icon: '✅', label: 'Status' }

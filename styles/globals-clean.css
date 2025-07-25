@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* World-Class Premium CSS for Aranya One - Token: Mn7HYW5eZVBMIX2ea73uXwNG */
+/* World-Class Premium CSS for Aranya One - Clean Version */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -18,23 +18,15 @@
 }
 
 @layer components {
-  /* Premium animations for world-class experience */
+  /* Premium animations */
   @keyframes float {
     0%, 100% { 
-      transform: translateY(0px) rotate(0deg);
+      transform: translateY(0px);
       opacity: 0.3;
     }
-    25% { 
-      transform: translateY(-10px) rotate(90deg);
-      opacity: 0.6;
-    }
     50% { 
-      transform: translateY(-20px) rotate(180deg);
+      transform: translateY(-20px);
       opacity: 1;
-    }
-    75% { 
-      transform: translateY(-10px) rotate(270deg);
-      opacity: 0.6;
     }
   }
 
@@ -55,23 +47,6 @@
     100% { background-position: 0% 50%; }
   }
 
-  @keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes scale-bounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-
   .animate-float {
     animation: float 4s ease-in-out infinite;
     will-change: transform, opacity;
@@ -80,23 +55,6 @@
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
     will-change: opacity, box-shadow;
-  }
-
-  .animate-gradient {
-    background: linear-gradient(-45deg, #8b5cf6, #ec4899, #06b6d4, #10b981);
-    background-size: 400% 400%;
-    animation: gradient-shift 4s ease infinite;
-    will-change: background-position;
-  }
-
-  .animate-slide-up {
-    animation: slide-up 0.6s ease-out forwards;
-    will-change: transform, opacity;
-  }
-
-  .animate-scale-bounce {
-    animation: scale-bounce 0.3s ease-in-out;
-    will-change: transform;
   }
 
   /* Premium glassmorphism effects */
@@ -128,10 +86,10 @@
     transform: scaleY(1.02);
   }
 
-  /* Real-time indicator with GPU acceleration */
+  /* Real-time indicator */
   .live-indicator {
     position: relative;
-    transform: translateZ(0); /* Force GPU layer */
+    transform: translateZ(0);
   }
 
   .live-indicator::before {
@@ -155,66 +113,14 @@
     padding: 12px 24px;
     color: white;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
   }
 
-  .btn-premium::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-  }
-
-  .btn-premium:hover::before {
-    left: 100%;
-  }
-
   .btn-premium:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
-  }
-
-  /* Enhanced scroll indicator */
-  .scroll-indicator {
-    position: relative;
-    width: 24px;
-    height: 40px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .scroll-indicator::before {
-    content: '';
-    width: 4px;
-    height: 12px;
-    background: white;
-    border-radius: 2px;
-    margin-top: 8px;
-    animation: scroll-down 2s ease-in-out infinite;
-  }
-
-  @keyframes scroll-down {
-    0% {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(8px);
-    }
   }
 
   /* GPU acceleration helpers */
@@ -228,38 +134,12 @@
     will-change: transform;
   }
 
-  /* Smooth scrolling sections */
-  .smooth-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .smooth-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Premium loading states */
-  .loading-shimmer {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
   /* Premium typography */
   .text-gradient {
     background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
   }
 
   /* Enhanced navigation */
@@ -293,36 +173,7 @@
   }
 
   .metric-card:hover {
-    transform: translateY(-2px) translateZ(0);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
-                0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-}
-
-@layer utilities {
-  /* Performance-focused utilities */
-  .gpu-accelerated {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-  
-  .will-change-transform {
-    will-change: transform;
-  }
-  
-  .will-change-opacity {
-    will-change: opacity;
-  }
-  
-  /* Remove animations for users who prefer reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-pulse-slow,
-    .chart-bar,
-    .live-indicator::before,
-    .metric-card {
-      animation: none;
-      transition: none;
-    }
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 }

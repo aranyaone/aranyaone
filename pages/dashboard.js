@@ -1,33 +1,34 @@
-import { memo, useEffect, useState } from 'react';
-import Layout from '../components/layout/Layout';
-import Card from '../components/ui/Card';
-import LineChart from '../components/charts/LineChart';
-import BarChart from '../components/charts/BarChart';
-import { mockAnalyticsData } from '../data/mockData';
-import { formatCurrency, formatNumber, formatRelativeTime } from '../utils';
+import Head from 'next/head';
+import { useState, useEffect, memo } from 'react';
 
-const MetricCard = memo(function MetricCard({ title, value, change, icon, color = 'blue' }) {
-  const colorClasses = {
-    blue: 'text-blue-600',
-    green: 'text-green-600',
-    yellow: 'text-yellow-600',
-    red: 'text-red-600',
-    purple: 'text-purple-600',
-  };
+// Mock data for demonstration
+const mockAnalyticsData = {
+  metrics: {
+    totalUsers: 2847,
+    revenue: 84923,
+    conversionRate: 3.2,
+    activeServices: 12
+  },
+  recentActivity: [
+    { id: 1, type: 'user_signup', message: 'New user registered', timestamp: new Date(Date.now() - 5 * 60 * 1000) },
+    { id: 2, type: 'service_deployed', message: 'Service deployed successfully', timestamp: new Date(Date.now() - 15 * 60 * 1000) },
+    { id: 3, type: 'payment_received', message: 'Payment received $299', timestamp: new Date(Date.now() - 30 * 60 * 1000) }
+  ]
+};
+
+function formatRelativeTime(date) {
+  const now = new Date();
+  const diffInMinutes = Math.floor((now - date) / (1000 * 60));
   
-  return (
-    <Card className="text-center">
-      <div className={`text-3xl mb-2 ${colorClasses[color]}`}>{icon}</div>
-      <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">{title}</h3>
-      <p className="text-2xl font-bold text-gray-900 mt-2">{value}</p>
-      {change && (
-        <p className={`text-sm mt-1 ${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-          {change >= 0 ? '↗' : '↘'} {Math.abs(change)}%
-        </p>
-      )}
-    </Card>
-  );
-});
+  if (diffInMinutes < 1) return 'Just now';
+  if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
+  
+  const diffInHours = Math.floor(diffInMinutes / 60);
+  if (diffInHours < 24) return `${diffInHours}h ago`;
+  
+  const diffInDays = Math.floor(diffInHours / 24);
+  return `${diffInDays}d ago`;
+}
 
 const ActivityItem = memo(function ActivityItem({ activity }) {
   const typeIcons = {
@@ -38,11 +39,11 @@ const ActivityItem = memo(function ActivityItem({ activity }) {
   };
   
   return (
-    <div className="flex items-center space-x-3 py-3 border-b border-gray-100 last:border-b-0">
+    <div className="flex items-center space-x-3 py-3 border-b border-white/10 last:border-b-0">
       <div className="text-2xl">{typeIcons[activity.type] || '📝'}</div>
       <div className="flex-1">
-        <p className="text-sm font-medium text-gray-900">{activity.message}</p>
-        <p className="text-xs text-gray-500">{formatRelativeTime(activity.timestamp)}</p>
+        <p className="text-sm font-medium text-white">{activity.message}</p>
+        <p className="text-xs text-white/60">{formatRelativeTime(activity.timestamp)}</p>
       </div>
     </div>
   );
@@ -50,128 +51,89 @@ const ActivityItem = memo(function ActivityItem({ activity }) {
 
 export default function Dashboard() {
   const [metrics, setMetrics] = useState(null);
-  const [chartData, setChartData] = useState(null);
   const [activities, setActivities] = useState([]);
   
   useEffect(() => {
-    // Simulate API calls with mock data
+    // Load mock data
     setMetrics(mockAnalyticsData.metrics);
-    setChartData(mockAnalyticsData.chartData);
     setActivities(mockAnalyticsData.recentActivity);
   }, []);
   
   if (!metrics) {
     return (
-      <Layout title="Dashboard - Aranya One">
-        <div className="flex items-center justify-center h-64">
-          <div className="text-lg text-gray-500">Loading dashboard...</div>
+      <>
+        <Head>
+          <title>Dashboard - Aranya One</title>
+          <meta name="description" content="Premium Analytics Dashboard" />
+        </Head>
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center">
+          <div className="text-white text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <p>Loading Dashboard...</p>
+          </div>
         </div>
-      </Layout>
+      </>
     );
   }
   
   return (
-    <Layout title="Dashboard - Aranya One">
-      <div className="space-y-6">
+    <>
+      <Head>
+        <title>Dashboard - Aranya One</title>
+        <meta name="description" content="Premium Analytics Dashboard" />
+      </Head>
+
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600">Welcome to your digital empire control center</p>
-        </div>
-        
-        {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <MetricCard
-            title="Total Users"
-            value={formatNumber(metrics.totalUsers)}
-            change={metrics.growth}
-            icon="👥"
-            color="blue"
-          />
-          <MetricCard
-            title="Active Users"
-            value={formatNumber(metrics.activeUsers)}
-            change={15.2}
-            icon="✅"
-            color="green"
-          />
-          <MetricCard
-            title="Revenue"
-            value={formatCurrency(metrics.revenue)}
-            change={23.5}
-            icon="💰"
-            color="yellow"
-          />
-          <MetricCard
-            title="Conversion Rate"
-            value={`${metrics.conversionRate}%`}
-            change={-1.2}
-            icon="📈"
-            color="purple"
-          />
-        </div>
-        
-        {/* Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
-            <Card.Header>
-              <Card.Title>User Growth</Card.Title>
-            </Card.Header>
-            <Card.Content>
-              <LineChart
-                data={chartData?.userGrowth || []}
-                width={450}
-                height={300}
-                color="#3b82f6"
-              />
-            </Card.Content>
-          </Card>
-          
-          <Card>
-            <Card.Header>
-              <Card.Title>Service Usage</Card.Title>
-            </Card.Header>
-            <Card.Content>
-              <BarChart
-                data={chartData?.serviceUsage || []}
-                width={450}
-                height={300}
-                color="#10b981"
-              />
-            </Card.Content>
-          </Card>
-        </div>
-        
-        {/* Recent Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <Card>
-              <Card.Header>
-                <Card.Title>Revenue Trend</Card.Title>
-              </Card.Header>
-              <Card.Content>
-                <LineChart
-                  data={chartData?.revenue || []}
-                  width={600}
-                  height={300}
-                  color="#f59e0b"
-                />
-              </Card.Content>
-            </Card>
+        <header className="glass-card m-6 p-6">
+          <h1 className="text-3xl font-bold text-gradient mb-2">
+            Dashboard - Aranya One
+          </h1>
+          <p className="text-white/60">
+            Token: Mn7HYW5eZVBMIX2ea73uXwNG | Premium Analytics
+          </p>
+        </header>
+
+        {/* Main Content */}
+        <main className="px-6 pb-6">
+          {/* Metrics Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="glass-card p-6 metric-card">
+              <h3 className="text-white/60 text-sm font-medium mb-2">Total Users</h3>
+              <p className="text-3xl font-bold text-white">{metrics.totalUsers.toLocaleString()}</p>
+              <span className="text-green-400 text-sm">↗ +12%</span>
+            </div>
+            
+            <div className="glass-card p-6 metric-card">
+              <h3 className="text-white/60 text-sm font-medium mb-2">Revenue</h3>
+              <p className="text-3xl font-bold text-white">${metrics.revenue.toLocaleString()}</p>
+              <span className="text-green-400 text-sm">↗ +8%</span>
+            </div>
+            
+            <div className="glass-card p-6 metric-card">
+              <h3 className="text-white/60 text-sm font-medium mb-2">Conversion Rate</h3>
+              <p className="text-3xl font-bold text-white">{metrics.conversionRate}%</p>
+              <span className="text-yellow-400 text-sm">→ 0%</span>
+            </div>
+            
+            <div className="glass-card p-6 metric-card">
+              <h3 className="text-white/60 text-sm font-medium mb-2">Active Services</h3>
+              <p className="text-3xl font-bold text-white">{metrics.activeServices}</p>
+              <span className="text-green-400 text-sm">↗ +2</span>
+            </div>
           </div>
-          
-          <Card>
-            <Card.Header>
-              <Card.Title>Recent Activity</Card.Title>
-            </Card.Header>
-            <Card.Content className="max-h-64 overflow-y-auto">
+
+          {/* Recent Activity */}
+          <div className="glass-card p-6">
+            <h3 className="text-xl font-semibold mb-6">Recent Activity</h3>
+            <div className="space-y-4">
               {activities.map((activity) => (
                 <ActivityItem key={activity.id} activity={activity} />
               ))}
-            </Card.Content>
-          </Card>
-        </div>
+            </div>
+          </div>
+        </main>
       </div>
-    </Layout>
+    </>
   );
 }

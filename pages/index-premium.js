@@ -1,7 +1,14 @@
 import Head from 'next/head'
 import { memo, useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+import { PREMIUM_CONFIG } from '../config/premium'
 
-// Simple performance optimized components for now
+// Premium Components - Lazy loaded for performance
+const PremiumHero = dynamic(() => import('../components/layout/PremiumHero'), { ssr: false })
+const PremiumNavigation = dynamic(() => import('../components/navigation/PremiumNavigation'), { ssr: false })
+const PremiumAnalytics = dynamic(() => import('../components/analytics/PremiumAnalytics'), { ssr: false })
+
+// Performance: Lazy load heavy components
 const NavCard = memo(function NavCard({ href, icon, title, description, color }) {
   const colorClasses = {
     blue: "bg-blue-500 hover:bg-blue-600",
@@ -123,36 +130,16 @@ export default function Home() {
         <meta property="og:type" content="website" />
       </Head>
 
-      {/* Premium Hero Section with inline components */}
-      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
-        {/* Navigation */}
-        <nav className="fixed top-0 w-full z-50 glass-card">
-          <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="text-2xl font-bold text-gradient">Aranya One</div>
-            <div className="text-sm opacity-75">Token: Mn7HYW5eZVBMIX2ea73uXwNG</div>
-          </div>
-        </nav>
+      {/* Premium Navigation */}
+      <PremiumNavigation />
 
-        {/* Hero Content */}
-        <div className="pt-20 pb-12 px-6">
-          <div className="container mx-auto text-center">
-            <h1 className="text-6xl font-bold mb-6 text-gradient animate-slide-up">
-              Aranya One
-            </h1>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Your Premium Digital Empire Command Center
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button className="btn-premium animate-pulse-glow">
-                Launch Dashboard
-              </button>
-              <button className="glass-card px-6 py-3 rounded-lg hover:scale-105 transition-transform">
-                Explore Features
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Premium Hero Section */}
+      <PremiumHero />
+
+      {/* Premium Analytics Dashboard */}
+      <section className="py-20 px-6">
+        <PremiumAnalytics />
+      </section>
 
       {/* Enhanced Navigation Grid */}
       <section className="py-20 px-6">
@@ -208,11 +195,11 @@ export default function Home() {
             />
             
             <NavCard 
-              href="/founder"
-              icon="�"
-              title="Founder"
-              description="Meet the visionary"
-              color="yellow"
+              href="/support"
+              icon="🔗"
+              title="Integrations"
+              description="Connect everything"
+              color="pink"
             />
             
             <NavCard 
@@ -260,7 +247,7 @@ export default function Home() {
             </div>
           </div>
           <div className="text-white/60 mb-4">
-            Token ID: Mn7HYW5eZVBMIX2ea73uXwNG | Enterprise Edition
+            Token ID: {PREMIUM_CONFIG.TOKEN_ID} | Enterprise Edition
           </div>
           <div className="text-white/40 text-sm">
             🏗️ Built with Next.js 14 & Advanced Performance Optimization

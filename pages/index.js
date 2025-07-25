@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import { memo, useState, useEffect } from 'react'
+import Footer from '../components/Footer'
+import DarkModeToggle from '../components/DarkModeToggle'
 
 // Performance: Lazy load heavy components
 const NavCard = memo(function NavCard({ href, icon, title, description, color }) {
@@ -114,9 +116,36 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Aranya One - Digital Empire Dashboard</title>
-        <meta name="description" content="Your complete digital empire management platform - optimized for performance" />
+        <title>Aranya One - Digital Empire Dashboard | AI-Powered Platform</title>
+        <meta name="description" content="Your complete digital empire management platform - optimized for performance with AI-powered analytics, plugin management, and advanced intelligence features." />
+        <meta name="keywords" content="digital empire, dashboard, analytics, AI, performance optimization, plugin management, business intelligence" />
+        <meta name="author" content="Aranya One" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        
+        {/* Enhanced SEO Meta Tags */}
+        <meta property="og:title" content="Aranya One - Digital Empire Dashboard" />
+        <meta property="og:description" content="Complete digital empire management platform with AI-powered analytics and performance optimization" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://aranyaone.vercel.app" />
+        <meta property="og:image" content="/og-image.png" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Aranya One - Digital Empire Dashboard" />
+        <meta name="twitter:description" content="AI-powered digital empire management platform" />
+        <meta name="twitter:image" content="/og-image.png" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Aranya One",
+            "description": "Digital empire management platform with AI-powered analytics",
+            "url": "https://aranyaone.vercel.app",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web"
+          })}
+        </script>
         
         {/* Performance optimizations */}
         <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
@@ -133,16 +162,23 @@ export default function Home() {
           
           {/* Hero Section */}
           <div className="text-center mb-12">
-            <h1 className="text-6xl font-bold text-gray-800 mb-4 gpu-accelerated">🌟 Aranya One</h1>
-            <p className="text-2xl text-gray-600 mb-6">Your Digital Empire Starts Here</p>
-            <p className="text-lg text-green-600 font-semibold">🚀 Performance Optimized - July 17, 2025</p>
+            <div className="flex justify-between items-start mb-8">
+              <div className="flex-1">
+                <h1 className="text-6xl font-bold text-gray-800 mb-4 gpu-accelerated">🌟 Aranya One</h1>
+                <p className="text-2xl text-gray-600 mb-6">Your Digital Empire Starts Here</p>
+                <p className="text-lg text-green-600 font-semibold">🚀 Performance Optimized - July 17, 2025</p>
+              </div>
+              <div className="ml-8">
+                <DarkModeToggle />
+              </div>
+            </div>
           </div>
 
           {/* Main Navigation Dashboard */}
           <div className="bg-white rounded-2xl shadow-xl p-8 border-4 border-green-300">
             <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">🎯 Empire Control Center</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
               
               {/* Core Pages */}
               <NavCard 
@@ -209,6 +245,23 @@ export default function Home() {
                 description="System health"
                 color="green"
               />
+
+              {/* Phase III - New Advanced Features */}
+              <NavCard 
+                href="/plugin-deploy"
+                icon="🔌"
+                title="Plugin Deploy"
+                description="Admin plugin management"
+                color="indigo"
+              />
+              
+              <NavCard 
+                href="/brain-room"
+                icon="🧠"
+                title="Brain Room"
+                description="AI intelligence center"
+                color="purple"
+              />
               
             </div>
           </div>
@@ -227,6 +280,8 @@ export default function Home() {
           </div>
         </div>
       </main>
+      
+      <Footer />
     </div>
   )
 }

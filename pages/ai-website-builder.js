@@ -1,7 +1,17 @@
 import Head from 'next/head'
 import { useState, useEffect, useRef } from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import dynamic from 'next/dynamic'
+
+// Dynamically import SyntaxHighlighter to reduce initial bundle size
+const SyntaxHighlighter = dynamic(
+  () => import('react-syntax-highlighter').then(mod => mod.Prism),
+  { ssr: false, loading: () => <div className="bg-gray-100 p-4 rounded">Loading syntax highlighter...</div> }
+)
+
+const atomDark = dynamic(
+  () => import('react-syntax-highlighter/dist/cjs/styles/prism').then(mod => mod.atomDark),
+  { ssr: false }
+)
 
 export default function AIWebsiteBuilder() {
   const [prompt, setPrompt] = useState('')

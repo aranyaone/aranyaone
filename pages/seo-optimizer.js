@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react'
+import SEOAnalyzer from '../components/SEOAnalyzer'
 
 export default function SEOOptimizer() {
   const [url, setUrl] = useState('')
@@ -155,6 +156,11 @@ export default function SEOOptimizer() {
           <p className="text-gray-600 text-lg">
             Advanced SEO analysis, optimization tools, and search engine ranking improvements
           </p>
+        </div>
+
+        {/* Advanced SEO Analysis */}
+        <div className="mb-8">
+          <SEOAnalyzer url={url || 'https://aranyaone.vercel.app'} />
         </div>
 
         {/* URL Analysis */}

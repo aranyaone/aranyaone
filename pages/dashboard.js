@@ -1,5 +1,8 @@
 import Head from 'next/head'
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
+import AIInsights from '../components/AIInsights'
+import RealTimeMetrics from '../components/RealTimeMetrics'
+import PredictionEngine from '../components/PredictionEngine'
 
 const monthlyData = [
   { name: 'Jan', revenue: 4000, users: 2400, growth: 2.4 },
@@ -36,6 +39,11 @@ export default function Dashboard() {
           <p className="text-gray-600 text-lg">
             Monitor your digital empire&apos;s performance and growth metrics
           </p>
+        </div>
+
+        {/* Real-time Metrics */}
+        <div className="mb-8">
+          <RealTimeMetrics />
         </div>
 
         {/* Real-time Stats Cards */}
@@ -157,10 +165,20 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Advanced Analytics and Predictions */}
+        <div className="mb-8">
+          <PredictionEngine />
+        </div>
+
         {/* Service Usage and Quick Actions */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+          {/* AI Insights - Takes up 2 columns */}
+          <div className="xl:col-span-2">
+            <AIInsights data={monthlyData} />
+          </div>
+
           {/* Service Usage Pie Chart */}
-          <div className="lg:col-span-1 bg-white rounded-2xl shadow-soft p-6 border border-gray-100">
+          <div className="xl:col-span-1 bg-white rounded-2xl shadow-soft p-6 border border-gray-100">
             <h2 className="font-heading font-semibold text-xl text-gray-900 mb-6">
               ⚙️ Service Usage
             </h2>
@@ -199,7 +217,7 @@ export default function Dashboard() {
           </div>
 
           {/* Quick Actions & Status */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="xl:col-span-1 space-y-6">
             {/* Quick Actions */}
             <div className="bg-white rounded-2xl shadow-soft p-6 border border-gray-100">
               <h2 className="font-heading font-semibold text-xl text-gray-900 mb-6">

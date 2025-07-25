@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+
+# Allow all crawlers to access all pages
+Disallow: /api/
+Disallow: /admin/private/
+Disallow: /_next/
+Disallow: /tmp/
+
+# Sitemap location
+Sitemap: https://aranyaone.vercel.app/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Block malicious bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

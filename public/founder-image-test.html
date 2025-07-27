@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founder Image Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .test-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            display: block;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .success { background: rgba(0, 255, 0, 0.2) !important; }
+        .error { background: rgba(255, 0, 0, 0.2) !important; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Founder Image Loading Test</h1>
+        <p>Testing Srinivas Makam's professional photo display</p>
+        
+        <div class="status" id="status">⏳ Loading image...</div>
+        
+        <img 
+            id="founderImage" 
+            class="founder-image" 
+            src="/srinivas-makam.jpg" 
+            alt="Srinivas Makam - Founder of Aranya One"
+            onload="imageLoaded()"
+            onerror="imageError()"
+        />
+        
+        <div style="margin-top: 20px;">
+            <h3>✅ Test Results:</h3>
+            <ul style="text-align: left; display: inline-block;">
+                <li id="jpgTest">JPG format: Testing...</li>
+                <li id="pngTest">PNG format: Testing...</li>
+                <li id="pathTest">File path: /srinivas-makam.jpg</li>
+                <li id="sizeTest">Expected size: ~2MB</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function imageLoaded() {
+            document.getElementById('status').innerHTML = '✅ Image loaded successfully!';
+            document.getElementById('status').className = 'status success';
+            document.getElementById('jpgTest').innerHTML = 'JPG format: ✅ Success';
+            
+            // Test PNG format as well
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('pngTest').innerHTML = 'PNG format: ✅ Available';
+            };
+            img.onerror = function() {
+                document.getElementById('pngTest').innerHTML = 'PNG format: ❌ Not available';
+            };
+            img.src = '/srinivas-makam.png';
+        }
+        
+        function imageError() {
+            document.getElementById('status').innerHTML = '❌ Image failed to load';
+            document.getElementById('status').className = 'status error';
+            document.getElementById('jpgTest').innerHTML = 'JPG format: ❌ Failed';
+            
+            // Try PNG as fallback
+            const img = document.getElementById('founderImage');
+            img.src = '/srinivas-makam.png';
+            img.onload = function() {
+                document.getElementById('status').innerHTML = '✅ PNG fallback loaded!';
+                document.getElementById('status').className = 'status success';
+                document.getElementById('pngTest').innerHTML = 'PNG format: ✅ Success (fallback)';
+            };
+        }
+        
+        // Additional diagnostics
+        setTimeout(() => {
+            const img = document.getElementById('founderImage');
+            if (img.naturalWidth === 0) {
+                console.log('Image dimensions:', img.naturalWidth, 'x', img.naturalHeight);
+                document.getElementById('sizeTest').innerHTML = 'Image status: ❌ Not loaded';
+            } else {
+                document.getElementById('sizeTest').innerHTML = `Image dimensions: ${img.naturalWidth} x ${img.naturalHeight}`;
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

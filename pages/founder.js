@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function FounderPage() {
   const [imageError, setImageError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <>
@@ -32,26 +33,34 @@ export default function FounderPage() {
           <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 mb-8">
             <div className="flex flex-col items-center space-y-6">
               {/* Founder Image */}
-              <div className="relative">
-                {!imageError ? (
+              <div className="relative w-40 h-40">
+                <Image
+                  src="/srinivas-makam.jpg"
+                  width={160}
+                  height={160}
+                  alt="Srinivas Makam - Founder of Aranya One"
+                  className={`rounded-full shadow-md border-4 border-blue-100 transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-50'}`}
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => {
+                    console.log('JPG failed, trying PNG...');
+                    setImageError(true);
+                  }}
+                  priority
+                />
+                {imageError && (
                   <Image
-                    src="/srinivas-makam.jpg"
+                    src="/srinivas-makam.png"
                     width={160}
                     height={160}
                     alt="Srinivas Makam - Founder of Aranya One"
-                    className="rounded-full shadow-md border-4 border-blue-100"
-                    onError={() => setImageError(true)}
+                    className="rounded-full shadow-md border-4 border-blue-100 absolute inset-0"
+                    onLoad={() => setImageLoaded(true)}
                     priority
                   />
-                ) : (
-                  <div className="relative">
-                    <Image
-                      src="/founder.svg"
-                      width={160}
-                      height={160}
-                      alt="Srinivas Makam"
-                      className="rounded-full shadow-md border-4 border-blue-100"
-                    />
+                )}
+                {!imageLoaded && !imageError && (
+                  <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-md border-4 border-blue-100 flex items-center justify-center absolute inset-0">
+                    <div className="text-white text-2xl font-bold">SM</div>
                   </div>
                 )}
               </div>

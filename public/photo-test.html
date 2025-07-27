@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Test - Srinivas Makam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .photo-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .founder-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+        }
+        .success { background: rgba(0,255,0,0.2) !important; }
+        .error { background: rgba(255,0,0,0.2) !important; }
+    </style>
+</head>
+<body>
+    <div class="photo-container">
+        <h1>📸 Founder Photo Test</h1>
+        <p>Testing Srinivas Makam's professional photo</p>
+        
+        <img 
+            id="founderPhoto"
+            class="founder-photo" 
+            src="/srinivas-makam.jpg" 
+            alt="Srinivas Makam"
+            onload="photoLoaded()"
+            onerror="photoError()"
+        />
+        
+        <div id="status" class="status">⏳ Loading photo...</div>
+        
+        <h2>✅ Srinivas Makam</h2>
+        <p><strong>Founder & Visionary of Aranya One</strong></p>
+        <p>🇮🇳 Telangana, India</p>
+        
+        <div style="margin-top: 30px;">
+            <a href="/founder" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 10px; margin: 5px;">Full Page</a>
+            <a href="/founder-simple" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 10px; margin: 5px;">Simple Page</a>
+        </div>
+    </div>
+
+    <script>
+        function photoLoaded() {
+            console.log('✅ Photo loaded successfully!');
+            document.getElementById('status').innerHTML = '✅ Photo loaded successfully!';
+            document.getElementById('status').className = 'status success';
+        }
+        
+        function photoError() {
+            console.log('❌ JPG failed, trying PNG...');
+            document.getElementById('status').innerHTML = '⚠️ JPG failed, trying PNG...';
+            document.getElementById('status').className = 'status error';
+            
+            // Try PNG fallback
+            const img = document.getElementById('founderPhoto');
+            img.src = '/srinivas-makam.png';
+            img.onload = function() {
+                console.log('✅ PNG loaded successfully!');
+                document.getElementById('status').innerHTML = '✅ PNG loaded successfully!';
+                document.getElementById('status').className = 'status success';
+            };
+            img.onerror = function() {
+                console.log('❌ Both JPG and PNG failed');
+                document.getElementById('status').innerHTML = '❌ Both JPG and PNG failed to load';
+                document.getElementById('status').className = 'status error';
+            };
+        }
+        
+        // Force visible
+        setTimeout(() => {
+            const img = document.getElementById('founderPhoto');
+            img.style.display = 'block';
+            img.style.visibility = 'visible';
+            img.style.opacity = '1';
+        }, 100);
+    </script>
+</body>
+</html>

@@ -165,7 +165,139 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            {/* Core Pages */}
+            {/* Core AI Services */}
+            <NavCard 
+              href="/ai-chat"
+              icon="🤖"
+              title="AI Chat Service"
+              description="Stanford/MIT-level intelligence"
+              color="blue"
+            />
+            
+            <NavCard 
+              href="/advanced-analytics"
+              icon="📊"
+              title="Advanced Analytics"
+              description="Real-time AI insights"
+              color="purple"
+            />
+            
+            <NavCard 
+              href="/security-manager"
+              icon="🔒"
+              title="Security Manager"
+              description="Military-grade protection"
+              color="red"
+            />
+            
+            <NavCard 
+              href="/ai-website-builder"
+              icon="🌐"
+              title="AI Website Builder"
+              description="Auto-generating sites"
+              color="green"
+            />
+            
+            {/* Advanced Services */}
+            <NavCard 
+              href="/smart-design-assistant"
+              icon="🎨"
+              title="Smart Design Assistant"
+              description="Creative AI for branding"
+              color="pink"
+            />
+            
+            <NavCard 
+              href="/code-generator-pro"
+              icon="💻"
+              title="Code Generator Pro"
+              description="Advanced code generation"
+              color="indigo"
+            />
+            
+            <NavCard 
+              href="/deployment-engine"
+              icon="🚀"
+              title="Deployment Engine"
+              description="Automated CI/CD"
+              color="orange"
+            />
+            
+            <NavCard 
+              href="/seo-ai-optimizer"
+              icon="🔍"
+              title="SEO AI Optimizer"
+              description="Advanced search optimization"
+              color="teal"
+            />
+            
+            {/* Marketing & Growth Services */}
+            <NavCard 
+              href="/social-media-manager"
+              icon="📱"
+              title="Social Media Manager"
+              description="Multi-platform automation"
+              color="blue"
+            />
+            
+            <NavCard 
+              href="/email-marketing-pro"
+              icon="📧"
+              title="Email Marketing Pro"
+              description="AI personalization"
+              color="purple"
+            />
+            
+            <NavCard 
+              href="/design-studio-pro"
+              icon="🎨"
+              title="Design Studio Pro"
+              description="Professional design suite"
+              color="pink"
+            />
+            
+            <NavCard 
+              href="/content-optimizer"
+              icon="✍️"
+              title="Content Optimizer"
+              description="AI-powered content creation"
+              color="green"
+            />
+            
+            {/* Enterprise Features */}
+            <NavCard 
+              href="/growth-analytics"
+              icon="📈"
+              title="Growth Analytics"
+              description="Advanced growth hacking"
+              color="orange"
+            />
+            
+            <NavCard 
+              href="/affiliate-marketing"
+              icon="💰"
+              title="Affiliate Marketing"
+              description="Comprehensive management"
+              color="emerald"
+            />
+            
+            <NavCard 
+              href="/support-center"
+              icon="🆘"
+              title="Support Center"
+              description="AI-powered customer support"
+              color="blue"
+            />
+            
+            <NavCard 
+              href="/status"
+              icon="🌍"
+              title="Multi-Workspace"
+              description="Manage multiple projects"
+              color="gray"
+            />
+            
+            {/* Legacy Services */}
             <NavCard 
               href="/dashboard"
               icon="🎯"
@@ -177,58 +309,25 @@ export default function Home() {
             <NavCard 
               href="/analytics"
               icon="📊"
-              title="Analytics"
-              description="AI-powered insights"
+              title="Basic Analytics"
+              description="Standard insights"
               color="purple"
             />
             
             <NavCard 
               href="/services"
               icon="⚡"
-              title="Automation"
-              description="Smart workflows"
+              title="Service Management"
+              description="Core service operations"
               color="indigo"
             />
             
             <NavCard 
-              href="/settings"
-              icon="🔒"
-              title="Security"
-              description="Enterprise protection"
-              color="gray"
-            />
-            
-            {/* Premium Features */}
-            <NavCard 
-              href="/profile"
-              icon="🤖"
-              title="AI Assistant"
-              description="Intelligent automation"
-              color="orange"
-            />
-            
-            <NavCard 
               href="/founder"
-              icon="�"
+              icon="👑"
               title="Founder"
               description="Meet the visionary"
               color="yellow"
-            />
-            
-            <NavCard 
-              href="/docs"
-              icon="📋"
-              title="Reports"
-              description="Advanced reporting"
-              color="teal"
-            />
-            
-            <NavCard 
-              href="/status"
-              icon="🌐"
-              title="Multi-Workspace"
-              description="Manage multiple projects"
-              color="green"
             />
             
           </div>

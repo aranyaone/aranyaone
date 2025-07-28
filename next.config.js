@@ -9,7 +9,6 @@ const nextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
   compress: true,
   
   // Optimize for Vercel deployment

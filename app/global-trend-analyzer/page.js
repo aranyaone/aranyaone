@@ -1,5 +1,5 @@
-import GlobalTrendAnalyzer from '../components/GlobalTrendAnalyzer';
+import GlobalTrendAnalyzer from '@/components/GlobalTrendAnalyzer'
 
 export default function GlobalTrendAnalyzerPage() {
-  return <GlobalTrendAnalyzer />;
+  return <GlobalTrendAnalyzer />
 } 

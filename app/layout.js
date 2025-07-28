@@ -1,7 +1,7 @@
 import './globals.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import QuantumPerformanceMonitor from '@/components/QuantumPerformanceMonitor';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import QuantumPerformanceMonitor from '../components/QuantumPerformanceMonitor';
 import { CurrencyProvider } from './context/CurrencyContext';
 import { Inter } from 'next/font/google';
 

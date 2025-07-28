@@ -16,7 +16,6 @@ const nextConfig = {
   // 🔥 QUANTUM PERFORMANCE FEATURES
   experimental: {
     // Next.js 15.4.4 Cutting-Edge Features
-    serverComponentsExternalPackages: ['@prisma/client'],
     optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-icons'],
     turbo: {
       rules: {
@@ -31,10 +30,6 @@ const nextConfig = {
       dynamic: 30,
       static: 180,
     },
-    // Performance Monitoring
-    instrumentationHook: true,
-    // Advanced Bundling
-    bundlePagesRouterDependencies: true,
     // Quantum optimizations
     optimizeCss: true,
     scrollRestoration: true,
@@ -51,11 +46,6 @@ const nextConfig = {
     minimumCacheTTL: 86400, // 24 hours
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Quality optimization
-    quality: 90,
-    // Advanced loading
-    priority: true,
-    placeholder: 'blur',
   },
   
   // ⚡ QUANTUM-LEVEL WEBPACK OPTIMIZATION
@@ -244,7 +234,6 @@ const nextConfig = {
 
   // 🌟 PRODUCTION QUANTUM FEATURES
   productionBrowserSourceMaps: false,
-  optimizeFonts: true,
   
   // Skip build errors temporarily for deployment
   eslint: {
@@ -252,11 +241,6 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-
-  // 📊 ADVANCED ANALYTICS & MONITORING
-  analytics: {
-    id: process.env.VERCEL_ANALYTICS_ID,
   },
 
   // 🔥 QUANTUM COMPILER OPTIONS

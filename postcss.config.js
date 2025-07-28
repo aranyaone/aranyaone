@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 module.exports = {
   plugins: {
+    '@tailwindcss/postcss': {},
     tailwindcss: {},
     autoprefixer: {},
     // CSS optimization for production
@@ -42,12 +42,3 @@ module.exports = {
     }),
   },
 }
-=======
-// postcss.config.js
-module.exports = {
-  plugins: {
-    '@tailwindcss/postcss': {},
-    autoprefixer: {},
-  },
-}; 
->>>>>>> pluginstore/main

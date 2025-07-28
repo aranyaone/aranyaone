@@ -1,9 +1,8 @@
-<<<<<<< HEAD
-# 🌟 Aranya One - Digital Empire Dashboard (Performance Optimized)
+# 🌟 Aranya One - World-Class AI Productivity & Finance Empire
 
 ## ✅ **FULLY OPTIMIZED & PRODUCTION READY**
 
-Your complete digital empire management platform, now with comprehensive performance optimizations and bug-free deployment.
+Your complete digital empire management platform, now with comprehensive performance optimizations, AI productivity suite, and bug-free deployment. Bujji Chat is a premium, extensible AI productivity and finance suite that operates autonomously, continuously improves, and provides world-class tools for users.
 
 ## 🚀 **Current Status: DEPLOYED & VERIFIED**
 
@@ -11,6 +10,7 @@ Your complete digital empire management platform, now with comprehensive perform
 - ✅ **Performance Optimized**: 86.5 kB optimally split bundles
 - ✅ **Accessibility Compliant**: WCAG standards met
 - ✅ **Production Ready**: Clean builds with zero errors
+- ✅ **AI Tools Integrated**: Self-operating, self-repairing, and self-updating
 - ✅ **Local Servers Running**: Multiple test environments active
 
 ## 🌐 **Live Access**
@@ -22,13 +22,6 @@ Your complete digital empire management platform, now with comprehensive perform
 
 ### **Deploy to Production**
 Choose any hosting platform:
-=======
-# Bujji Chat - World-Class AI Productivity & Finance Suite
-
-## 🌟 Overview
-
-Bujji Chat is a premium, extensible AI productivity and finance suite that operates autonomously, continuously improves, and provides world-class tools for users. Each tool is self-operating, self-repairing, and self-updating with real API integrations for live data and AI capabilities.
->>>>>>> pluginstore/main
 
 ## 🚀 Advanced AI Tools Suite
 
@@ -210,7 +203,12 @@ Bujji Chat is a premium, extensible AI productivity and finance suite that opera
 
 ### Prerequisites
 ```bash
-<<<<<<< HEAD
+Node.js 18+
+npm or yarn
+```
+
+### Deployment Options
+```bash
 # Vercel (Recommended)
 npx vercel --prod
 
@@ -347,16 +345,18 @@ The application is configured for static export and can be deployed to any CDN o
 
 Your Aranya One digital empire platform is fully optimized, thoroughly tested, and ready for production deployment. All performance optimizations are active, accessibility standards are met, and the codebase is bug-free.
 
-**Deploy now and start managing your digital empire! 🌟**
-=======
+### Installation & Setup
+
+#### Prerequisites
+```bash
 Node.js 18+
 npm or yarn
 ```
 
-### Installation
+#### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/bujji-chat.git
+git clone https://github.com/your-username/aranya-one.git
 
 # Install dependencies
 npm install
@@ -368,7 +368,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-### Environment Variables
+#### Environment Variables
 ```env
 # OpenAI API
 OPENAI_API_KEY=your_openai_api_key
@@ -429,10 +429,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 ### Contact Information
-- **Email**: support@bujjichat.com
-- **Discord**: [Join our community](https://discord.gg/bujjichat)
-- **Documentation**: [docs.bujjichat.com](https://docs.bujjichat.com)
-- **Issues**: [GitHub Issues](https://github.com/your-username/bujji-chat/issues)
+- **Email**: support@aranyaone.com
+- **Discord**: [Join our community](https://discord.gg/aranyaone)
+- **Documentation**: [docs.aranyaone.com](https://docs.aranyaone.com)
+- **Issues**: [GitHub Issues](https://github.com/your-username/aranya-one/issues)
 
 ### Premium Support
 - **24/7 Support**: Round-the-clock assistance
@@ -442,5 +442,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Bujji Chat** - Empowering users with world-class AI tools that evolve, adapt, and improve continuously. 🚀✨
->>>>>>> pluginstore/main
+**Deploy now and start managing your digital empire! 🌟**
+
+**Aranya One** - Empowering users with world-class AI tools that evolve, adapt, and improve continuously. 🚀✨

@@ -2,7 +2,6 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-<<<<<<< HEAD
 			"label": "dev",
 			"type": "shell",
 			"command": "npm",
@@ -10,11 +9,18 @@
 				"run",
 				"dev"
 			],
-=======
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
 			"type": "shell",
 			"label": "Start Next.js Production Server",
-			"command": "npm run start",
->>>>>>> pluginstore/main
+			"command": "npm",
+			"args": [
+				"run", 
+				"start"
+			],
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": []

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -14,13 +13,19 @@ module.exports = {
         'pulse-slow': 'pulse 3s ease-in-out infinite',
         'bounce-subtle': 'bounce 1s ease-in-out 2',
       },
-      // Optimized color palette - only include colors we use
+      // Optimized color palette - combining both color schemes
       colors: {
         primary: {
           50: '#eff6ff',
           500: '#3b82f6',
           600: '#2563eb',
+          DEFAULT: '#7C3AED', // Violet 600
         },
+        accent: '#F472B6',  // Pink 400
+        background: '#F8FAFC', // Slate 50
+        surface: '#FFFFFF',
+        text: '#1E293B', // Slate 800
+        subtle: '#64748B', // Slate 400
         gray: {
           50: '#f9fafb',
           100: '#f3f4f6',
@@ -30,32 +35,13 @@ module.exports = {
           700: '#374151',
           800: '#1f2937',
         },
-=======
-// tailwind.config.js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#7C3AED', // Violet 600
-        accent: '#F472B6',  // Pink 400
-        background: '#F8FAFC', // Slate 50
-        surface: '#FFFFFF',
-        text: '#1E293B', // Slate 800
-        subtle: '#64748B', // Slate 400
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
->>>>>>> pluginstore/main
       },
     },
   },
   plugins: [],
-<<<<<<< HEAD
   // Optimize for production
   corePlugins: {
     // Disable unused utilities for smaller bundle
@@ -83,6 +69,3 @@ module.exports = {
     hoverOnlyWhenSupported: true,
   },
 }
-=======
-};
->>>>>>> pluginstore/main

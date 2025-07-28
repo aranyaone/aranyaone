@@ -4,16 +4,18 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const nextConfig = {
-  output: 'export',
+  // Remove static export for Vercel deployment
+  // output: 'export',
   trailingSlash: true,
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
   compress: true,
   
-  // Stable performance optimizations only
+  // Optimize for Vercel deployment
   images: {
-    unoptimized: true, // Required for static export
+    // Enable optimized images for Vercel
+    unoptimized: false,
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

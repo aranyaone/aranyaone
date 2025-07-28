@@ -1,6 +1,7 @@
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import QuantumPerformanceMonitor from '@/components/QuantumPerformanceMonitor';
 import { CurrencyProvider } from './context/CurrencyContext';
 import { Inter } from 'next/font/google';
 
@@ -133,6 +134,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />
+          <QuantumPerformanceMonitor />
         </CurrencyProvider>
         
         {/* Analytics Scripts */}

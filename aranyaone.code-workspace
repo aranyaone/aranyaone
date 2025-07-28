@@ -1,0 +1,36 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "typescript.preferences.includePackageJsonAutoImports": "off",
+    "extensions.autoUpdate": false,
+    "webview.experimental.useExternalEndpoint": false,
+    "security.workspace.trust.enabled": false,
+    "terminal.integrated.enablePersistentSessions": false,
+    "workbench.experimental.settingsProfiles.enabled": false,
+    "window.experimental.useSandbox": false,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.profiles.windows": {
+      "Command Prompt": {
+        "path": "C:\\Windows\\System32\\cmd.exe",
+        "args": [],
+        "icon": "terminal-cmd"
+      },
+      "PowerShell": {
+        "source": "PowerShell",
+        "icon": "terminal-powershell",
+        "args": ["-ExecutionPolicy", "Bypass"]
+      }
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "bradlc.vscode-tailwindcss",
+      "esbenp.prettier-vscode",
+      "ms-vscode.vscode-typescript-next"
+    ]
+  }
+}

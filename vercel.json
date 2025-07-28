@@ -1,7 +1,16 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "out",
   "installCommand": "npm install"
+=======
+  "builds": [
+    { "src": "next.config.js", "use": "@vercel/next" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/app/$1" }
+  ]
+>>>>>>> pluginstore/main
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module.exports = {
   plugins: {
     tailwindcss: {},
@@ -41,3 +42,12 @@ module.exports = {
     }),
   },
 }
+=======
+// postcss.config.js
+module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+}; 
+>>>>>>> pluginstore/main

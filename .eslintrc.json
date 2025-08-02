@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": ["react", "import", "jsx-a11y"],
+  "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-no-undef": "error",
+    "react/jsx-key": "error",
+    "import/order": ["error", { "groups": ["builtin", "external", "internal"], "newlines-between": "always" }],
+    "jsx-a11y/anchor-is-valid": "warn",
+    "jsx-a11y/no-autofocus": "warn"
+  }
+}

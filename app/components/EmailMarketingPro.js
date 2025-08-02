@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Users, TrendingUp, Target, Send, Eye, MousePointer, DollarSign, Calendar, BarChart3 } from 'lucide-react';

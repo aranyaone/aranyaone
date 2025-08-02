@@ -33,28 +33,28 @@ const AIWebsiteBuilder = () => {
       id: 'business',
       name: 'Business Pro',
       description: 'Professional business website',
-      preview: '/api/placeholder/300/200',
+      preview: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxRjI5MzciLz48cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDAiIGZpbGw9IiMzQjgyRjYiLz48dGV4dCB4PSIxNTAiIHk9IjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5CdXNpbmVzcyBQcm88L3RleHQ+PHJlY3QgeD0iMjAiIHk9IjgwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNEI1NTYzIi8+PHJlY3QgeD0iMTYwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzQ5NzMxNiIvPjx0ZXh0IHg9IjE1MCIgeT0iMTg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUNBM0FGIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPlByb2Zlc3Npb25hbCBMYXlvdXQ8L3RleHQ+PC9zdmc+',
       category: 'Business'
     },
     {
       id: 'ecommerce',
       name: 'E-commerce Store',
       description: 'Online shopping platform',
-      preview: '/api/placeholder/300/200',
+      preview: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxMTE4MjciLz48cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDAiIGZpbGw9IiNFRjQ0NDQiLz48dGV4dCB4PSIxNTAiIHk9IjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5TaG9wIE5vdzwvdGV4dD48cmVjdCB4PSIyMCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzM3NDE1MSIvPjxyZWN0IHg9IjExMCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzM3NDE1MSIvPjxyZWN0IHg9IjIwMCIgeT0iODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzM3NDE1MSIvPjx0ZXh0IHg9IjE1MCIgeT0iMTg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUNBM0FGIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPlByb2R1Y3QgR3JpZDwvdGV4dD48L3N2Zz4=',
       category: 'E-commerce'
     },
     {
       id: 'portfolio',
       name: 'Creative Portfolio',
       description: 'Showcase your work',
-      preview: '/api/placeholder/300/200',
+      preview: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMwRjE0MjkiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSI2MCIgcj0iMzAiIGZpbGw9IiM4QjVDRjYiLz48cmVjdCB4PSI1MCIgeT0iMTEwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9IiNGNTlFMEIiLz48cmVjdCB4PSIxMjAiIHk9IjExMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMTA5OTMzIi8+PHJlY3QgeD0iMTkwIiB5PSIxMTAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI0VGNDQ0NCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUNBM0FGIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPkNyZWF0aXZlIERlc2lnbjwvdGV4dD48L3N2Zz4=',
       category: 'Portfolio'
     },
     {
       id: 'blog',
       name: 'Modern Blog',
       description: 'Content publishing platform',
-      preview: '/api/placeholder/300/200',
+      preview: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNGRkZGRkYiLz48cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxRjI5MzciLz48dGV4dCB4PSIxNTAiIHk9IjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIj5Nb2Rlcm4gQmxvZzwvdGV4dD48cmVjdCB4PSIyMCIgeT0iNjAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTAiIGZpbGw9IiNFNUU3RUIiLz48cmVjdCB4PSIyMCIgeT0iODAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMTAiIGZpbGw9IiNFNUU3RUIiLz48cmVjdCB4PSIyMCIgeT0iMTAwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRTVFN0VCIi8+PHJlY3QgeD0iMjAiIHk9IjEyMCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0U1RTdFQiIvPjx0ZXh0IHg9IjE1MCIgeT0iMTY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjM3MzRGIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiPkNvbnRlbnQgTGF5b3V0PC90ZXh0Pjwvc3ZnPg==',
       category: 'Blog'
     }
   ];
@@ -209,7 +209,7 @@ const AIWebsiteBuilder = () => {
               <div>
                 <label className="block text-gray-300 mb-2">Describe your website:</label>
                 <textarea
-                  placeholder="e.g., A modern tech startup website with dark theme, showcasing AI products and services..."
+                  placeholder="Describe your vision: 'A cutting-edge SaaS platform for financial services with modern dashboard, user analytics, secure payment integration, and mobile-responsive design that converts visitors into customers...'"
                   className="w-full h-32 px-4 py-3 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-indigo-500 focus:outline-none resize-none"
                 />
                 

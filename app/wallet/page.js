@@ -122,7 +122,7 @@ export default function WalletPage() {
                     value={selectedAmount}
                     onChange={(e) => setSelectedAmount(Number(e.target.value))}
                     className="w-full pl-8 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary focus:outline-none"
-                    placeholder="Enter amount"
+                    placeholder="Enter amount (minimum $10, maximum $10,000)"
                   />
                 </div>
               </div>

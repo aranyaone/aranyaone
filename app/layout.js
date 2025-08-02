@@ -1,8 +1,11 @@
 import './globals.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import QuantumPerformanceMonitor from '../components/QuantumPerformanceMonitor';
-import { CurrencyProvider } from './context/CurrencyContext';
+// Sentry error reporting
+import * as Sentry from '@sentry/browser';
+Sentry.init({
+  dsn: 'https://examplePublicKey@o0.ingest.sentry.io/0', // Replace with your actual Sentry DSN
+  tracesSampleRate: 1.0,
+});
+import GlobalClientLayout from './components/GlobalClientLayout';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -66,92 +69,53 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // ...existing code...
+  // FeedbackWidget for each main service
+  const FeedbackWidget = require('../components/FeedbackWidget').default;
+  const services = [
+    'AI Chat',
+    'Payments',
+    'Analytics',
+    'Support',
+    'Subscriptions',
+    'Wallet',
+    'Cybersecurity',
+    'Global Trend Analyzer',
+    'King Wallet',
+    'Self-Learning AI',
+    'Website Animations',
+    'Withdrawals',
+    'Founder',
+    'Premium',
+    'Trials',
+    'Refunds',
+    'Contact',
+    'Blog',
+    'About',
+    'Admin',
+  ];
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#7C3AED" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Bujji Chat" />
-        <meta name="application-name" content="Bujji Chat" />
-        <meta name="msapplication-TileColor" content="#7C3AED" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-        
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://api.openai.com" />
-        <link rel="preconnect" href="https://api.stripe.com" />
-        
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "Bujji Chat",
-              "description": "World's most emotionally intelligent AI chat platform",
-              "url": "https://bujjichat.com",
-              "applicationCategory": "CommunicationApplication",
-              "operatingSystem": "Web",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "INR"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "King Srinivas",
-                "jobTitle": "Founder & CEO",
-                "worksFor": {
-                  "@type": "Organization",
-                  "name": "Bujji Chat"
-                }
-              },
-              "creator": {
-                "@type": "Organization",
-                "name": "Bujji Chat",
-                "founder": {
-                  "@type": "Person",
-                  "name": "King Srinivas"
-                }
-              }
-            })
-          }}
-        />
+        {/* ...existing code... */}
       </head>
       <body className={`${inter.className} min-h-screen bg-gray-50 text-gray-900 antialiased`}>
-        <CurrencyProvider>
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-          <QuantumPerformanceMonitor />
-        </CurrencyProvider>
-        
-        {/* Analytics Scripts */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'GA_MEASUREMENT_ID');
-            `,
-          }}
-        />
+        {/* ...existing code... */}
+        <GlobalClientLayout>
+          <main id="main-content" className="min-h-screen" tabIndex="-1" role="main">
+            {children}
+            {/* Automated Feedback Widgets for each service */}
+            <section className="mt-8 mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.map(service => (
+                <div key={service} className="border rounded p-4 bg-white shadow">
+                  <h2 className="font-bold text-lg mb-2">{service} Feedback</h2>
+                  <FeedbackWidget service={service} />
+                </div>
+              ))}
+            </section>
+          </main>
+        </GlobalClientLayout>
+        {/* ...existing code... */}
       </body>
     </html>
   );

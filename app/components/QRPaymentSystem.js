@@ -16,7 +16,7 @@ import {
   Scan,
   X,
   RefreshCw,
-  Bank
+  CreditCard as BankIcon
 } from 'lucide-react';
 
 const QRPaymentSystem = () => {
@@ -375,7 +375,7 @@ const QRPaymentSystem = () => {
                   </h4>
                   <div className="space-y-3">
                     <div className="flex items-center text-sm text-gray-300">
-                      <Bank className="w-4 h-4 mr-2 text-blue-400" />
+                      <BankIcon className="w-4 h-4 mr-2 text-blue-400" />
                       <span>Bank Transfers: {selectedCountryData.banks.length} banks</span>
                     </div>
                     <div className="flex items-center text-sm text-gray-300">

@@ -83,7 +83,7 @@ const SEOAIOptimizer = () => {
       issues: [
         { type: 'pass', text: 'Page load speed optimized' },
         { type: 'pass', text: 'Mobile-friendly design' },
-        { type: 'warning', text: 'Some images missing alt text' },
+        { type: 'warning', text: 'Optimize images with alt text for better accessibility and SEO rankings' },
         { type: 'pass', text: 'HTTPS enabled' }
       ]
     },
@@ -256,7 +256,7 @@ const SEOAIOptimizer = () => {
                 value={currentUrl}
                 onChange={(e) => setCurrentUrl(e.target.value)}
                 className="w-full px-4 py-3 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-blue-500 focus:outline-none"
-                placeholder="Enter website URL to analyze"
+                placeholder="Enter your website URL for comprehensive SEO analysis (e.g., https://yourcompany.com)"
               />
             </div>
             

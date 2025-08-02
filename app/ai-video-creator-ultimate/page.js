@@ -524,7 +524,7 @@ export default function AIVideoCreatorUltimate() {
                     value={videoProject.title}
                     onChange={(e) => setVideoProject(prev => ({ ...prev, title: e.target.value }))}
                     className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white"
-                    placeholder="Enter your video title..."
+                    placeholder="Enter your video title (e.g., 'Revolutionary AI Technology Launch', 'Complete Guide to Digital Marketing', 'Product Demo: Next-Gen Solutions')"
                   />
                 </div>
                 

@@ -4,7 +4,9 @@
     "esbenp.prettier-vscode",
     "ms-vscode.vscode-typescript-next",
     "formulahendry.auto-rename-tag",
-    "christian-kohler.path-intellisense"
+    "christian-kohler.path-intellisense",
+    "ms-vscode.cpptools",
+    "ms-vscode.cpptools"
   ],
   "unwantedRecommendations": [
     "ms-vscode.vscode-json",

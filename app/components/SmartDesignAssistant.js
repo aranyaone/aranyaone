@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Palette, Image, Type, Layout, Smartphone, Crown, Sparkles, Target, Wand2, Download, Share } from 'lucide-react';

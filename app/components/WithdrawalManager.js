@@ -16,7 +16,6 @@ import {
   Calendar,
   DollarSign,
   CreditCard,
-  CreditCard,
   Building,
   Bitcoin,
   Ethereum,

@@ -37,6 +37,8 @@ import {
   Sparkles as SparklesIcon, TrendingUp as TrendingUpIcon
 } from 'lucide-react';
 
+import VisualMindMap from '../../components/VisualMindMap';
+
 const advancedTools = [
   // Core AI Tools
   {
@@ -148,6 +150,16 @@ const advancedTools = [
     status: 'live',
     features: ['Real-time STT', 'Voice cloning', 'Multi-language', 'Emotion detection'],
     api: 'Whisper + ElevenLabs + Azure Speech'
+  },
+  {
+    id: 'visual-mind-map',
+    name: 'Visual Mind Map',
+    description: 'AI-powered mind mapping with ChatGPT, Google AI, DeepSeek integration and comprehensive export formats',
+    icon: Brain,
+    color: 'from-purple-400 to-pink-400',
+    status: 'live',
+    features: ['Multi-AI generation', 'Beautiful colors', '25+ export formats', 'Real-time collaboration'],
+    api: 'ChatGPT + Google AI + DeepSeek + Claude + Gemini'
   },
   // World-First Tools
   {
@@ -288,7 +300,31 @@ const AIToolsSuite = () => {
     // Simulate API initialization
     await new Promise(resolve => setTimeout(resolve, 1000));
     setIsLoading(false);
+
+    // Handle specific tools
+    if (tool.id === 'visual-mind-map') {
+      // The VisualMindMap component will be rendered below
+      return;
+    }
   };
+
+  // If VisualMindMap is selected, render it
+  if (selectedTool?.id === 'visual-mind-map') {
+    return (
+      <div className="min-h-screen">
+        <div className="fixed top-4 left-4 z-50">
+          <button
+            onClick={() => setSelectedTool(null)}
+            className="flex items-center px-4 py-2 bg-gray-800/90 text-white rounded-lg hover:bg-gray-700/90 transition-all"
+          >
+            <ChevronLeft className="w-4 h-4 mr-2" />
+            Back to AI Tools
+          </button>
+        </div>
+        <VisualMindMap />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
@@ -394,6 +430,7 @@ const AIToolsSuite = () => {
                 
                 <div className="flex items-center justify-between mt-4">
                   <button
+                    onClick={() => handleToolLaunch(tool)}
                     className={`px-4 py-2 rounded-xl font-semibold transition-all duration-300 flex items-center text-white bg-gradient-to-r ${tool.color} shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed`}
                     disabled={isLoading}
                   >

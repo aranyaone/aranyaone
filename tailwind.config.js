@@ -41,7 +41,10 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+  ],
   // Optimize for production
   corePlugins: {
     // Disable unused utilities for smaller bundle

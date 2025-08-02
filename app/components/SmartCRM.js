@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Building, Phone, Mail, Calendar, TrendingUp, Target, Plus, Search, Filter, MoreVertical } from 'lucide-react';

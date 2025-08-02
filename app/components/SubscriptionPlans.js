@@ -6,7 +6,7 @@ import {
   DollarSign, Gift, Award, Trophy, Medal, Diamond, Sparkles,
   Brain, Bot, Camera, Video, FileText, BarChart3, PieChart,
   Calculator, Workflow, Automation, Terminal, MessageCircle,
-  TrendingUp, Eye, Target, Settings, Download, Upload
+  TrendingUp, Eye, Target, Settings, Download, Upload, Edit3, Mic
 } from 'lucide-react';
 
 const SubscriptionPlans = () => {

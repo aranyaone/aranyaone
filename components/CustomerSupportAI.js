@@ -484,7 +484,7 @@ const CustomerSupportAI = () => {
               value={chatMessage}
               onChange={(e) => setChatMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-              placeholder="Type your message..."
+              placeholder="Describe your issue, question, or concern in detail. Our AI will analyze your request and provide personalized assistance or connect you with the right specialist..."
               className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
@@ -545,7 +545,7 @@ const CustomerSupportAI = () => {
             <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Search tickets..."
+              placeholder="Search tickets by ID, customer name, issue type, priority level, status, or date range..."
               className="border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500"
             />
           </div>

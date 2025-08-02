@@ -1,40 +1,34 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').Nenpm run build && npm run startxtConfig} */
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
 const nextConfig = {
   // 🚀 WORLD'S MOST ADVANCED NEXT.JS CONFIGURATION
-  
+
   // Remove static export for Vercel deployment
   // output: 'export',
   trailingSlash: true,
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
-  
-  // 🔥 QUANTUM PERFORMANCE FEATURES
-  experimental: {
-    // Next.js 15.4.4 Cutting-Edge Features
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-icons'],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+
+  // � Turbopack Configuration (stable)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
-    // Advanced Caching for quantum speed
-    staleTimes: {
-      dynamic: 30,
-      static: 180,
-    },
-    // Quantum optimizations
-    optimizeCss: true,
+  },
+
+  // �🔥 QUANTUM PERFORMANCE FEATURES
+  experimental: {
+    // Temporarily disable experimental features causing issues
     scrollRestoration: true,
   },
-  
+
   // 🌍 ULTRA-ADVANCED IMAGE OPTIMIZATION
   images: {
     // Enable optimized images for Vercel
@@ -47,7 +41,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  
+
   // ⚡ QUANTUM-LEVEL WEBPACK OPTIMIZATION
   webpack: (config, { dev, isServer }) => {
     // Advanced alias setup
@@ -58,8 +52,8 @@ const nextConfig = {
       '@app': require('path').resolve(__dirname, 'app'),
       '@utils': require('path').resolve(__dirname, 'utils'),
       '@lib': require('path').resolve(__dirname, 'lib'),
-    }
-    
+    };
+
     if (!dev && !isServer) {
       // 🚀 PRODUCTION QUANTUM OPTIMIZATIONS
       config.optimization = {
@@ -118,25 +112,25 @@ const nextConfig = {
         innerGraph: true,
         mangleExports: true,
       };
-      
+
       // Advanced minification
       config.optimization.minimizer = [
         ...config.optimization.minimizer,
       ];
     }
-    
+
     // Bundle analyzer for optimization
     if (process.env.ANALYZE === 'true') {
-      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
       config.plugins.push(
         new BundleAnalyzerPlugin({
           analyzerMode: 'static',
           openAnalyzer: false,
           reportFilename: 'bundle-analysis.html',
         })
-      )
+      );
     }
-    
+
     return config;
   },
 
@@ -149,44 +143,44 @@ const nextConfig = {
           // Advanced Security Headers
           {
             key: 'X-DNS-Prefetch-Control',
-            value: 'on'
+            value: 'on',
           },
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload'
+            value: 'max-age=63072000; includeSubDomains; preload',
           },
           {
             key: 'X-XSS-Protection',
-            value: '1; mode=block'
+            value: '1; mode=block',
           },
           {
             key: 'X-Frame-Options',
-            value: 'DENY'
+            value: 'DENY',
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff'
+            value: 'nosniff',
           },
           {
             key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin'
+            value: 'strict-origin-when-cross-origin',
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;",
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()'
+            value: 'camera=(), microphone=(), geolocation=()',
           },
           // Quantum Performance Headers
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable'
+            value: 'public, max-age=31536000, immutable',
           },
           {
             key: 'X-Powered-By',
-            value: 'Aranya One Quantum Engine'
+            value: 'Aranya One Quantum Engine',
           },
         ],
       },
@@ -196,11 +190,11 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable'
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
-    ]
+    ];
   },
 
   // 🚀 ADVANCED REDIRECTS & REWRITES
@@ -216,7 +210,7 @@ const nextConfig = {
         destination: '/dashboard',
         permanent: true,
       },
-    ]
+    ];
   },
 
   // ⚡ QUANTUM PERFORMANCE OPTIMIZATIONS
@@ -234,7 +228,7 @@ const nextConfig = {
 
   // 🌟 PRODUCTION QUANTUM FEATURES
   productionBrowserSourceMaps: false,
-  
+
   // Skip build errors temporarily for deployment
   eslint: {
     ignoreDuringBuilds: true,
@@ -252,6 +246,6 @@ const nextConfig = {
     // Advanced optimizations
     styledComponents: true,
   },
-}
+};
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withBundleAnalyzer(nextConfig);

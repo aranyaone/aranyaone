@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Video, Play, Pause, Stop, RotateCw, Crop, Palette,
+  Video, Play, Pause, Square as Stop, RotateCw, Crop, Palette,
   Volume2, VolumeX, Download, Upload, Settings, Brain,
   Zap, Clock, CheckCircle, AlertCircle, ArrowRight,
   ChevronDown, ChevronUp, Plus, Trash2, Copy, Edit,

@@ -6,7 +6,8 @@ import {
   Brain, Bot, Camera, Video, FileText, BarChart3, PieChart,
   Calculator, Workflow, Automation, Terminal, MessageCircle,
   TrendingUp, Eye, Target, Settings, Download, Upload,
-  DollarSign, Gift, Award, Trophy, Medal, Diamond, Sparkles
+  DollarSign, Gift, Award, Trophy, Medal, Diamond, Sparkles,
+  Edit3, Mic
 } from 'lucide-react';
 
 const ComparisonTable = () => {

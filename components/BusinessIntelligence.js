@@ -33,6 +33,7 @@ import {
   Grid,
   Map,
   Gauge,
+  FileText,
   AlertCircle,
   CheckCircle,
   Info,

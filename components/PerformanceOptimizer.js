@@ -39,7 +39,7 @@ import {
   Shield,
   Sparkles,
   Rocket,
-  Lightning,
+  Zap as Lightning,
   Timer,
   Speedometer,
   OptimizeIcon,

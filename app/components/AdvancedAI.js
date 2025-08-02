@@ -177,7 +177,7 @@ const AdvancedAI = () => {
               <textarea
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Ask anything... The AI will provide intelligent responses using advanced models."
+                placeholder="Ask me anything about AI, technology, business strategies, coding solutions, content creation, or any complex problem you need help solving..."
                 className="w-full h-32 px-4 py-3 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-purple-500 focus:outline-none resize-none"
               />
             </div>

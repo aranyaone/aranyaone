@@ -315,7 +315,7 @@ const SocialMediaManager = () => {
             <textarea
               rows={6}
               className="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="What's on your mind? Share your thoughts with the world..."
+              placeholder="Share your thoughts, insights, company updates, industry news, or engage with your community. Create content that resonates with your audience and drives meaningful conversations..."
             />
             <p className="text-sm text-gray-500 mt-2">280 characters remaining</p>
           </div>

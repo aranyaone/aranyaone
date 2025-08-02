@@ -401,7 +401,7 @@ export default AIComponent`
               <textarea
                 rows={4}
                 className="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Describe what you want to build... e.g., 'Create a React component that displays user profiles with edit functionality'"
+                placeholder="Describe your development needs in detail... Examples: 'Build a React dashboard with real-time charts, user authentication, and data export features' or 'Create a Node.js API with MongoDB integration, JWT authentication, and email notifications' or 'Design a responsive landing page with animations and contact forms'..."
               />
             </div>
 

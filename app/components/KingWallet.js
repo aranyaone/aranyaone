@@ -10,7 +10,6 @@ import {
   Download,
   Upload,
   CreditCard,
-  CreditCard,
   Globe,
   Shield,
   Lock,

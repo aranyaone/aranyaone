@@ -585,7 +585,7 @@ export default function SmartDesignAssistantUltimate() {
                     value={designProject.title}
                     onChange={(e) => setDesignProject(prev => ({ ...prev, title: e.target.value }))}
                     className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white"
-                    placeholder="Enter brand/project name..."
+                    placeholder="Enter your brand/project name (e.g., 'TechVision AI', 'Green Earth Solutions', 'Elite Financial Services')"
                   />
                 </div>
                 
@@ -643,7 +643,7 @@ export default function SmartDesignAssistantUltimate() {
                     value={designProject.brandGuidelines}
                     onChange={(e) => setDesignProject(prev => ({ ...prev, brandGuidelines: e.target.value }))}
                     className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white h-24"
-                    placeholder="Enter existing brand guidelines, values, or specific requirements..."
+                    placeholder="Enter your brand guidelines, core values, target audience demographics, preferred messaging tone, competitive positioning, and any specific design requirements or restrictions..."
                   />
                 </div>
               </div>

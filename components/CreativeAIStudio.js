@@ -194,7 +194,7 @@ const CreativeAIStudio = () => {
               <textarea
                 rows={4}
                 className="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="A mystical forest with glowing mushrooms and fairy lights, ethereal atmosphere, magical realism style..."
+                placeholder="Describe your creative vision in vivid detail... Examples: 'A futuristic cyberpunk cityscape at sunset with neon lights reflecting on wet streets, flying cars, and holographic advertisements' or 'An elegant minimalist product photography setup with soft lighting and premium aesthetics'..."
               />
             </div>
 

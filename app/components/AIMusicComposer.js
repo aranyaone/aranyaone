@@ -15,7 +15,7 @@ import {
   Piano,
   Guitar,
   Drum,
-  Violin,
+  Music as MusicalNote,
   Headphones,
   Radio,
   Disc,
@@ -47,7 +47,7 @@ const AIMusicComposer = () => {
   const instruments = [
     { id: 'piano', name: 'Piano', icon: Piano, category: 'Keys' },
     { id: 'guitar', name: 'Guitar', icon: Guitar, category: 'Strings' },
-    { id: 'violin', name: 'Violin', icon: Violin, category: 'Strings' },
+    { id: 'violin', name: 'Violin', icon: MusicalNote, category: 'Strings' },
     { id: 'drums', name: 'Drums', icon: Drum, category: 'Percussion' },
     { id: 'voice', name: 'Voice', icon: Mic, category: 'Vocal' },
     { id: 'synth', name: 'Synthesizer', icon: Radio, category: 'Electronic' }

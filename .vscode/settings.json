@@ -1,0 +1,16 @@
+{
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+  "workbench.enableExperiments": false,
+  "telemetry.telemetryLevel": "off",
+  "update.mode": "manual",
+  "webview.experimental.useExternalEndpoint": false,
+  "security.workspace.trust.enabled": false,
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.experimentalUseTitleEvent": false,
+  "workbench.experimental.settingsProfiles.enabled": false,
+  "window.experimental.useSandbox": false,
+  "extensions.experimental.affinity": {},
+  "webview.experimental.useIframes": false
+}

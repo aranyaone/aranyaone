@@ -12,6 +12,18 @@
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": []
+		},
+		{
+			"type": "shell",
+			"label": "Start Next.js Production Server",
+			"command": "npm",
+			"args": [
+				"run", 
+				"start"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
 		}
 	]
 }

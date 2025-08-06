@@ -1,0 +1,686 @@
+/* QR Payment System - Mobile Responsive Styles */
+
+.qrContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  padding: 1rem;
+}
+
+.qrHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.qrTitle {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.qrSubtitle {
+  color: #cbd5e1;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.qrTabContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.qrTabButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qrTabButton.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.qrTabButton:not(.active) {
+  color: #cbd5e1;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.qrTabButton:not(.active):hover {
+  color: white;
+  background: rgba(51, 65, 85, 0.5);
+}
+
+.qrConfigPanel {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.qrConfigTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.qrCountryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.qrCountryButton {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  background: rgba(51, 65, 85, 0.5);
+  color: #cbd5e1;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.qrCountryButton:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.1);
+  color: white;
+}
+
+.qrCountryButton.selected {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.qrCountryName {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.qrCountryCurrency {
+  font-size: 0.625rem;
+  color: #94a3b8;
+}
+
+.qrInputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.qrInputLabel {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.75rem;
+}
+
+.qrInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(51, 65, 85, 0.5);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.qrInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.qrInput::placeholder {
+  color: #94a3b8;
+}
+
+.qrSelect {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(51, 65, 85, 0.5);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.qrSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.qrGenerateButton {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.qrGenerateButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.qrGenerateButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qrDisplayPanel {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  text-align: center;
+}
+
+.qrCodeContainer {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.qrCodeCanvas {
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.qrPaymentDetails {
+  background: rgba(51, 65, 85, 0.5);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.qrPaymentAmount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.qrPaymentInfo {
+  color: #cbd5e1;
+  font-size: 0.875rem;
+}
+
+.qrActionButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.qrActionButton {
+  padding: 0.75rem;
+  background: rgba(51, 65, 85, 0.5);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  border-radius: 0.75rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.qrActionButton:hover {
+  background: rgba(71, 85, 105, 0.5);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.qrScannerContainer {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.qrScannerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.qrScannerTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.qrScannerCloseButton {
+  padding: 0.5rem;
+  background: rgba(51, 65, 85, 0.5);
+  border: none;
+  border-radius: 0.5rem;
+  color: #94a3b8;
+  transition: all 0.3s ease;
+}
+
+.qrScannerCloseButton:hover {
+  background: rgba(71, 85, 105, 0.5);
+  color: white;
+}
+
+.qrVideoContainer {
+  position: relative;
+  background: black;
+  border-radius: 0 0 1rem 1rem;
+  overflow: hidden;
+}
+
+.qrVideo {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+}
+
+.qrScanOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrScanFrame {
+  border: 2px solid #3b82f6;
+  border-radius: 1rem;
+  width: 16rem;
+  height: 16rem;
+  position: relative;
+}
+
+.qrScanCorner {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid #3b82f6;
+}
+
+.qrScanCorner.topLeft {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 0.5rem;
+}
+
+.qrScanCorner.topRight {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 0.5rem;
+}
+
+.qrScanCorner.bottomLeft {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.qrScanCorner.bottomRight {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.qrScanLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #3b82f6;
+  animation: scanLine 2s linear infinite;
+}
+
+@keyframes scanLine {
+  0% { top: 0; }
+  50% { top: 100%; }
+  100% { top: 0; }
+}
+
+.qrScanText {
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.qrScanTextTitle {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.qrScanTextSubtitle {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.qrDeviceIndicator {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.qrScannerControls {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.qrControlButton {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrControlButton.flash {
+  background: rgba(51, 65, 85, 0.5);
+  color: #cbd5e1;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.qrControlButton.flash.active {
+  background: #f59e0b;
+  color: black;
+}
+
+.qrControlButton.camera {
+  background: rgba(51, 65, 85, 0.5);
+  color: #cbd5e1;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.qrControlButton.scan {
+  background: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.qrControlButton:hover {
+  transform: translateY(-1px);
+}
+
+.qrScannerStatus {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.qrScannerStatusText {
+  color: #10b981;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.qrScannerInstructions {
+  background: rgba(51, 65, 85, 0.5);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.qrInstructionsTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.qrInstructionsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.qrInstructionsItem {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.qrInstructionsItem::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+}
+
+.qrFeaturesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.qrFeatureCard {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.qrFeatureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.qrFeatureIcon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  color: #3b82f6;
+}
+
+.qrFeatureTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.qrFeatureDescription {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .qrContainer {
+    padding: 0.5rem;
+  }
+  
+  .qrConfigPanel,
+  .qrDisplayPanel {
+    padding: 1rem;
+  }
+  
+  .qrCountryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .qrActionButtons {
+    grid-template-columns: 1fr;
+  }
+  
+  .qrFeaturesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .qrScannerControls {
+    flex-wrap: wrap;
+  }
+  
+  .qrScanFrame {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .qrCountryGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .qrTabContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .qrTabButton {
+    justify-content: center;
+  }
+}
+
+/* Animation Classes */
+.qrFadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.qrSlideUp {
+  animation: slideUp 0.5s ease-out;
+}
+
+.qrScaleIn {
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Loading States */
+.qrLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.qrSpinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Success/Error States */
+.qrSuccess {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.qrError {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.qrWarning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #f59e0b;
+} 

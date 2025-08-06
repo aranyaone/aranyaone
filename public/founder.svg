@@ -1,11 +1,35 @@
-<!-- SVG Placeholder for Founder Image -->
+<!-- Professional CEO Avatar -->
 <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="80" cy="80" r="80" fill="url(#gradient)"/>
-  <text x="80" y="95" text-anchor="middle" fill="white" font-size="48" font-weight="bold" font-family="Arial, sans-serif">SM</text>
+  
+  <!-- Professional Suit -->
+  <path d="M40 120C40 115 45 110 50 110H110C115 110 120 115 120 120V160H40V120Z" fill="#1F2937"/>
+  <path d="M65 110V130C65 132 67 134 69 134H91C93 134 95 132 95 130V110" fill="#3B82F6"/>
+  <rect x="77" y="110" width="6" height="24" fill="#EF4444"/>
+  
+  <!-- Face -->
+  <circle cx="80" cy="70" r="25" fill="#FBBF24"/>
+  
+  <!-- Hair -->
+  <path d="M55 55C55 40 65 30 80 30C95 30 105 40 105 55C105 50 100 45 95 47C92 45 88 45 86 47C84 45 80 45 78 47C73 45 68 50 55 55Z" fill="#374151"/>
+  
+  <!-- Eyes -->
+  <circle cx="72" cy="68" r="2" fill="#1F2937"/>
+  <circle cx="88" cy="68" r="2" fill="#1F2937"/>
+  <circle cx="72.5" cy="67.5" r="0.5" fill="#FFFFFF"/>
+  <circle cx="88.5" cy="67.5" r="0.5" fill="#FFFFFF"/>
+  
+  <!-- Smile -->
+  <path d="M72 78C76 82 84 82 88 78" stroke="#1F2937" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- CEO Badge -->
+  <circle cx="130" cy="30" r="15" fill="#10B981"/>
+  <text x="130" y="36" text-anchor="middle" fill="#FFFFFF" font-family="Arial" font-size="10" font-weight="bold">CEO</text>
+  
   <defs>
     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
     </linearGradient>
   </defs>
 </svg>

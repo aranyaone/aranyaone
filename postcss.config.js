@@ -1,6 +1,6 @@
 module.exports = {
   plugins: {
-    tailwindcss: {},
+    '@tailwindcss/postcss': {},
     autoprefixer: {},
     // CSS optimization for production
     ...(process.env.NODE_ENV === 'production' && {
@@ -17,11 +17,12 @@ module.exports = {
           'animate-pulse-slow',
           'animate-bounce-subtle',
           // Keep dynamic color classes
-          /^bg-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(50|100|500|600)$/,
-          /^text-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(50|100|500|600|700|800)$/,
-          /^border-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(100|200|300|800)$/,
-          // Keep hover states
+          /^bg-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(50|100|200|300|400|500|600|700|800|900)$/,
+          /^text-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(50|100|200|300|400|500|600|700|800|900)$/,
+          /^border-(blue|purple|indigo|gray|orange|pink|teal|green|red)-(50|100|200|300|400|500|600|700|800|900)$/,
+          // Keep hover and focus states
           /^hover:/,
+          /^focus:/,
           // Keep responsive classes
           /^(sm|md|lg|xl|2xl):/,
         ],
